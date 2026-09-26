@@ -50,7 +50,7 @@ export function Modal({ isOpen, onClose, title, subtitle, children, maxWidth = '
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 text-[#8A8A8A] hover:text-[#172033] hover:bg-[#EEF2F7] rounded-lg transition-colors select-none"
+            className="p-1.5 text-[#7D899B] hover:text-[#172033] hover:bg-[#EEF2F7] rounded-lg transition-colors select-none"
             aria-label="Tutup modal"
           >
             <X className="w-4 h-4" />
