@@ -4,8 +4,8 @@
   "description": "Kelola bisnis dan kasir lebih mudah.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0B0B0C",
-  "theme_color": "#0B0B0C",
+  "background_color": "#F7F9FC",
+  "theme_color": "#F7F9FC",
   "orientation": "portrait",
   "icons": [
     {
