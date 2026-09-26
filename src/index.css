@@ -3,171 +3,34 @@
 @layer base {
   :root {
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --bk-bg: #080F14;
-    --bk-surface: #0E1722;
-    --bk-surface-2: #111D2A;
-    --bk-surface-3: #162435;
-    --bk-border: #203244;
-    --bk-border-soft: #1A2A3A;
-    --bk-text: #E5E7EB;
-    --bk-muted: #94A3B8;
-    --bk-primary: #0EA5E9;
-    --bk-primary-dark: #0369A1;
-    --bk-accent: #22D3EE;
+    --bk-bg: #F7F9FC;
+    --bk-surface: #FFFFFF;
+    --bk-surface-2: #F7F9FC;
+    --bk-surface-3: #EEF2F7;
+    --bk-border: #E4E8EE;
+    --bk-border-soft: #EDF0F4;
+    --bk-text: #172033;
+    --bk-muted: #7D899B;
+    --bk-primary: #172E4D;
+    --bk-primary-dark: #213D61;
+    --bk-accent: #304C70;
   }
-
-  html, body {
-    font-family: var(--font-sans);
-    background-color: var(--bk-bg);
-    color: var(--bk-text);
-    min-height: 100vh;
-    overflow-x: hidden;
-    touch-action: manipulation;
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  h1, h2, h3, h4, h5, h6, label, th, .no-select {
-    cursor: default;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-
-  nav, button, [role="button"], [role="tab"] {
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-
-  input, textarea, [contenteditable="true"], .allow-select, .selectable-content {
-    cursor: text;
-    user-select: text !important;
-    -webkit-user-select: text !important;
-  }
+  html, body { font-family: var(--font-sans); background-color: var(--bk-bg); color: var(--bk-text); min-height: 100vh; overflow-x: hidden; touch-action: manipulation; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+  h1,h2,h3,h4,h5,h6,label,th,.no-select { cursor: default; user-select: none; -webkit-user-select: none; }
+  nav,button,[role="button"],[role="tab"] { cursor:pointer; user-select:none; -webkit-user-select:none; }
+  input,textarea,[contenteditable="true"],.allow-select,.selectable-content { cursor:text; user-select:text!important; -webkit-user-select:text!important; }
 }
-
 .tabular-nums { font-variant-numeric: tabular-nums; }
-
 ::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: var(--bk-bg); }
-::-webkit-scrollbar-thumb { background: #294055; border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: #3B5870; }
-
+::-webkit-scrollbar-track { background: #F7F9FC; }
+::-webkit-scrollbar-thumb { background: #CBD3DE; border-radius: 999px; }
 .pb-safe { padding-bottom: max(env(safe-area-inset-bottom, 0px), 0.75rem); }
 
-/* --- BisnisKu visual system ---
-   Keep existing Tailwind markup/UX intact while translating the old green/charcoal
-   palette into the dark navy + electric blue/cyan system.
-*/
-[class*="bg-[#0B0B0C]"] { background-color: var(--bk-bg) !important; }
-[class*="bg-[#0A0A0B]"] { background-color: var(--bk-bg) !important; }
-[class*="bg-[#0D1010]"] { background-color: var(--bk-surface) !important; }
-[class*="bg-[#101313]"] { background-color: #101B28 !important; }
-[class*="bg-[#111313]"] { background-color: #101B28 !important; }
-[class*="bg-[#121717]"] { background-color: #142131 !important; }
-[class*="bg-[#141416]"] { background-color: var(--bk-surface-2) !important; }
-[class*="bg-[#141416]/"] { background-color: color-mix(in srgb, var(--bk-surface-2) 70%, transparent) !important; }
-[class*="bg-[#151515]"] { background-color: var(--bk-surface-2) !important; }
-[class*="bg-[#151A19]"] { background-color: #142131 !important; }
-[class*="bg-[#151A1"] { background-color: #142131 !important; }
-[class*="bg-[#1C1C1E]"] { background-color: var(--bk-surface-3) !important; }
-[class*="bg-[#1C1C20]"] { background-color: #1A2A3A !important; }
-[class*="bg-[#1F1F1F]"] { background-color: #172536 !important; }
-
-[class*="border-[#18201E]"] { border-color: var(--bk-border-soft) !important; }
-[class*="border-[#1D2322]"] { border-color: var(--bk-border-soft) !important; }
-[class*="border-[#1C2221]"] { border-color: var(--bk-border-soft) !important; }
-[class*="border-[#242428]"] { border-color: var(--bk-border) !important; }
-[class*="border-[#24292A]"] { border-color: var(--bk-border) !important; }
-[class*="border-[#252525]"] { border-color: var(--bk-border) !important; }
-[class*="border-[#252C2A]"] { border-color: var(--bk-border-soft) !important; }
-[class*="border-[#282D2D]"] { border-color: #263B50 !important; }
-[class*="border-[#282F2D]"] { border-color: #263B50 !important; }
-
-[class*="text-[#F5F5F5]"] { color: var(--bk-text) !important; }
-[class*="text-[#F3F5F4]"] { color: #F8FAFC !important; }
-[class*="text-[#E4E8E6]"] { color: #E2E8F0 !important; }
-[class*="text-[#E7ECE9]"] { color: #E2E8F0 !important; }
-[class*="text-[#E8ECEA]"] { color: #E2E8F0 !important; }
-[class*="text-[#DCE1DF]"] { color: #CBD5E1 !important; }
-[class*="text-[#D8DEDB]"] { color: #CBD5E1 !important; }
-[class*="text-[#AEB8B4]"] { color: #94A3B8 !important; }
-[class*="text-[#AAB3B0]"] { color: #94A3B8 !important; }
-[class*="text-[#9DA5A2]"] { color: #94A3B8 !important; }
-[class*="text-[#8A8A91]"] { color: #94A3B8 !important; }
-[class*="text-[#8A8A8A]"] { color: #94A3B8 !important; }
-[class*="text-[#69716F]"] { color: #71849A !important; }
-[class*="text-[#68716E]"] { color: #71849A !important; }
-[class*="text-[#66706C]"] { color: #71849A !important; }
-[class*="text-[#5E6764]"] { color: #60758A !important; }
-[class*="text-[#59615F]"] { color: #60758A !important; }
-
-[class*="text-[#22C55E]"] { color: var(--bk-primary) !important; }
-[class*="bg-[#22C55E]"] { background-color: var(--bk-primary) !important; }
-[class*="border-[#22C55E]"] { border-color: var(--bk-primary) !important; }
-[class*="ring-[#22C55E]"] { --tw-ring-color: var(--bk-primary) !important; }
-[class*="decoration-[#22C55E]"] { text-decoration-color: var(--bk-primary) !important; }
-[class*="hover\\:text-[#22C55E]"]:hover { color: var(--bk-accent) !important; }
-[class*="hover\\:bg-[#16A34A]"]:hover { background-color: var(--bk-primary-dark) !important; }
-[class*="focus\\:border-[#22C55E]"]:focus { border-color: var(--bk-primary) !important; }
-[class*="focus\\:ring-[#22C55E]"]:focus { --tw-ring-color: color-mix(in srgb, var(--bk-primary) 35%, transparent) !important; }
-
-[class*="text-[#6ED1AE]"] { color: #38BDF8 !important; }
-[class*="text-[#66C8A6]"] { color: #38BDF8 !important; }
-[class*="text-[#79CBB2]"] { color: var(--bk-primary) !important; }
-[class*="text-[#9DD7C5]"] { color: #38BDF8 !important; }
-[class*="text-[#A7DECE]"] { color: #67E8F9 !important; }
-[class*="text-[#9ACFBE]"] { color: #38BDF8 !important; }
-[class*="bg-[#79CBB2]"] { background-color: var(--bk-primary) !important; }
-[class*="bg-[#A7DECE]"] { background-color: #67E8F9 !important; }
-[class*="bg-[#123B2A]"] { background-color: #082F49 !important; }
-[class*="text-[#69D3A7]"] { color: #67E8F9 !important; }
-
-[class*="bg-[#242B29]"] { background-color: #1C3043 !important; }
-[class*="bg-[#1A2020]"] { background-color: #172838 !important; }
-[class*="border-[#1A2020]"] { border-color: #172838 !important; }
-[class*="border-[#1D2322]"] { border-color: var(--bk-border-soft) !important; }
-
-/* Primary action buttons get a subtle cyan lift instead of flat blue. */
-button[class*="bg-[#22C55E]"], a[class*="bg-[#22C55E]"] {
-  box-shadow: 0 6px 20px rgba(14,165,233,.12);
-}
-button[class*="bg-[#22C55E]"]:hover, a[class*="bg-[#22C55E]"]:hover {
-  box-shadow: 0 8px 26px rgba(34,211,238,.18);
-}
-
-/* Print must stay black/white. */
 @media print {
-  @page { size: auto; margin: 0; }
-  html, body {
-    background: #FFFFFF !important;
-    color: #000000 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    height: auto !important;
-  }
-  body * { visibility: hidden; }
-  #printable-thermal-receipt, #printable-thermal-receipt * { visibility: visible; }
-  #printable-thermal-receipt {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100% !important;
-    max-width: 80mm !important;
-    padding: 3mm 4mm !important;
-    margin: 0 auto !important;
-    box-shadow: none !important;
-    border: none !important;
-    font-size: 10pt !important;
-    line-height: 1.25 !important;
-    color: #000000 !important;
-    background: #FFFFFF !important;
-  }
-  #printable-thermal-receipt.thermal-58mm {
-    max-width: 58mm !important;
-    font-size: 8.5pt !important;
-    padding: 2mm 2.5mm !important;
-  }
+  @page { size:auto; margin:0; }
+  html,body { background:#fff!important; color:#000!important; margin:0!important; padding:0!important; width:100%!important; height:auto!important; }
+  body * { visibility:hidden; }
+  #printable-thermal-receipt,#printable-thermal-receipt * { visibility:visible; }
+  #printable-thermal-receipt { position:absolute; left:0; top:0; width:100%!important; max-width:80mm!important; padding:3mm 4mm!important; margin:0 auto!important; box-shadow:none!important; border:none!important; font-size:10pt!important; line-height:1.25!important; color:#000!important; background:#fff!important; }
+  #printable-thermal-receipt.thermal-58mm { max-width:58mm!important; font-size:8.5pt!important; padding:2mm 2.5mm!important; }
 }
