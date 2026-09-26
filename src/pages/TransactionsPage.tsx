@@ -251,7 +251,11 @@ export function TransactionsPage() {
           message: `Transaksi ${newTx.invoice_number} berhasil dicatat!`,
           type: 'success',
         });
-        await refreshData();
+        // createTransaction already updates the shared BusinessContext state
+        // (transactions + products). Do not immediately refetch here: a stale
+        // read can overwrite the freshly-added transaction and make the dashboard
+        // chart/summary/top products/low stock appear unchanged.
+
       }
     } catch (err: any) {
       setToast({
