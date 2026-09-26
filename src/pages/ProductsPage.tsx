@@ -208,7 +208,7 @@ export function ProductsPage() {
           className={`p-3 rounded-lg border text-xs flex items-center justify-between transition-all ${
             toast.type === 'success'
               ? 'bg-[#172E4D]/10 border-[#172E4D]/30 text-[#172E4D]'
-              : 'bg-red-500/10 border-red-500/30 text-red-400'
+              : 'bg-[#FBF5F5] border-[#E7D2D4] text-[#A96D73]'
           }`}
         >
           <div className="flex items-center gap-2">
@@ -322,7 +322,7 @@ export function ProductsPage() {
                   <div className="flex items-center justify-between text-[9px] sm:text-[10px] text-[#7D899B] mb-1.5 font-medium">
                     <span>{product.category}</span>
                     {isLowStock ? (
-                      <span className="text-amber-400 font-medium flex items-center gap-1">
+                      <span className="text-[#A88968] font-medium flex items-center gap-1">
                         <AlertTriangle className="w-2.5 h-2.5" />
                         Stok Menipis
                       </span>
@@ -414,7 +414,7 @@ export function ProductsPage() {
                     <button
                       type="button"
                       onClick={() => setDeletingProduct(product)}
-                      className="p-1 text-[#7D899B] hover:text-red-400 hover:bg-red-500/10 rounded-md transition-colors"
+                      className="p-1 text-[#7D899B] hover:text-[#A96D73] hover:bg-[#FBF5F5] rounded-md transition-colors"
                       title="Hapus Produk"
                     >
                       <Trash2 className="w-3 h-3" />
@@ -437,7 +437,7 @@ export function ProductsPage() {
       >
         <form onSubmit={handleSubmit} className="space-y-4">
           {formError && (
-            <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-xs text-red-400">
+            <div className="p-3 rounded-lg bg-[#FBF5F5] border border-[#E7D2D4] text-xs text-[#A96D73]">
               {formError}
             </div>
           )}
@@ -459,7 +459,7 @@ export function ProductsPage() {
                   <button
                     type="button"
                     onClick={() => setFormImage('')}
-                    className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center text-xs shadow-md transition-all"
+                    className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#9E666C] hover:bg-[#8C5960] text-white rounded-full flex items-center justify-center text-xs shadow-md transition-all"
                     title="Hapus foto"
                   >
                     <X className="w-3 h-3" />
@@ -673,7 +673,7 @@ export function ProductsPage() {
         maxWidth="sm"
       >
         <div className="space-y-4">
-          <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-xs text-red-300">
+          <div className="p-3 rounded-lg bg-[#FBF5F5] border border-[#E7D2D4] text-xs text-[#A96D73]">
             Apakah Anda yakin ingin menghapus produk <strong>&quot;{deletingProduct?.name}&quot;</strong>? Riwayat transaksi lama tetap tersimpan.
           </div>
           <div className="flex items-center justify-end gap-2 pt-2 border-t border-[#E4E8EE]">
@@ -689,7 +689,7 @@ export function ProductsPage() {
               type="button"
               disabled={isDeleting}
               onClick={handleDeleteConfirm}
-              className="px-4 py-2 text-xs font-semibold text-white bg-red-600 hover:bg-red-700 rounded-lg transition-colors disabled:opacity-50 flex items-center gap-1.5"
+              className="px-4 py-2 text-xs font-semibold text-white bg-[#9E666C] hover:bg-[#8C5960] rounded-lg transition-colors disabled:opacity-50 flex items-center gap-1.5"
             >
               {isDeleting ? (
                 <>
