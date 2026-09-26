@@ -13,7 +13,7 @@ interface DashboardPageProps {
 type Range = 'Hari Ini' | '7 Hari' | '30 Hari';
 
 export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps) {
-  const { profile, dashboardSummary, transactions } = useBusiness();
+  const { profile, dashboardSummary, transactions, products } = useBusiness();
   const [range, setRange] = useState<Range>('7 Hari');
   const { omzetToday, expensesToday, estimatedProfitToday, transactionsCountToday, topProductsToday, lowStockProducts } = dashboardSummary;
 
@@ -35,7 +35,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
   const average = transactionsCountToday ? omzetToday / transactionsCountToday : 0;
   const hppToday = Math.max(omzetToday - estimatedProfitToday - expensesToday, 0);
   const margin = omzetToday ? (estimatedProfitToday / omzetToday) * 100 : 0;
-  const productImage = (product: any) => product?.image_url || product?.image || '';
+  const productImage = (product: any) => product?.image_url || product?.image || '';\n  const getTopProductImage = (product: any) => {\n    const match = products.find(p => p.name === product?.name);\n    return productImage(match);\n  };
 
   return (
     <div className="min-h-full pb-24 text-[#172033]">
@@ -49,7 +49,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         </button>
       </header>
 
-      <section className="relative overflow-hidden rounded-2xl bg-[#172E4D] p-5 text-white shadow-[0_12px_32px_rgba(23,46,77,0.10)]">
+      <section className="relative overflow-hidden rounded-2xl bg-[#203A5C] p-5 text-white shadow-[0_12px_32px_rgba(23,46,77,0.10)]">
         <div className="relative">
           <div className="flex items-start justify-between gap-3">
             <div>
@@ -113,7 +113,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         <div className="mt-4 space-y-4">
           {topProductsToday.length === 0 ? <p className="py-5 text-center text-[10px] text-[#8A96A8]">Belum ada penjualan hari ini.</p> : topProductsToday.slice(0, 4).map(function(product: any, index) {
             const width = Math.min(100, Math.max(8, Number(product.quantity || 0) * 8));
-            return <div key={product.name || index} className="flex items-center gap-3"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#F1F3F6] text-[10px] font-semibold text-[#6D7A8E]">{index + 1}</span>{productImage(product) ? <img src={productImage(product)} alt="" className="h-8 w-8 rounded-md object-cover" /> : <div className="h-8 w-8 rounded-md bg-[#F2F4F7]" />}<div className="min-w-0 w-28 shrink-0"><p className="truncate text-[10px] font-medium">{product.name}</p><p className="text-[9px] text-[#8A96A8]">{product.quantity} pcs terjual</p></div><div className="flex-1"><div className="h-1.5 overflow-hidden rounded-full bg-[#E8ECF1]"><div className="h-full rounded-full bg-[#203A5C]" style={{ width: String(width) + '%' }} /></div></div><span className="w-8 text-right text-[9px] text-[#68778B]">{Math.min(99, Number(product.quantity || 0) * 3)}%</span></div>;
+            return <div key={product.name || index} className="flex items-center gap-3"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#F1F3F6] text-[10px] font-semibold text-[#6D7A8E]">{index + 1}</span>{getTopProductImage(product) ? <img src={getTopProductImage(product)} alt={product.name} className="h-8 w-8 rounded-md object-cover border border-[#E5E9F0]" loading="lazy" onError={e => { e.currentTarget.style.display = 'none'; }} /> : <div className="h-8 w-8 rounded-md bg-[#F2F4F7] border border-[#E5E9F0]" />}<div className="min-w-0 w-28 shrink-0"><p className="truncate text-[10px] font-medium">{product.name}</p><p className="text-[9px] text-[#8A96A8]">{product.quantity} pcs terjual</p></div><div className="flex-1"><div className="h-1.5 overflow-hidden rounded-full bg-[#E8ECF1]"><div className="h-full rounded-full bg-[#203A5C]" style={{ width: String(width) + '%' }} /></div></div><span className="w-8 text-right text-[9px] text-[#68778B]">{Math.min(99, Number(product.quantity || 0) * 3)}%</span></div>;
           })}
         </div>
       </section>
