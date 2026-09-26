@@ -482,7 +482,7 @@ export function TransactionsPage() {
                         isOutOfStock
                           ? 'opacity-40 bg-[#FFFFFF] border-[#E4E8EE] cursor-not-allowed'
                           : isMaxInCart
-                          ? 'bg-[#EEF2F7] border-amber-500/40'
+                          ? 'bg-[#EEF2F7] border-[#D9CBB8]'
                           : inCart
                           ? 'bg-[#EEF2F7] border-[#172E4D]/50'
                           : 'bg-[#FFFFFF] border-[#E4E8EE] hover:border-[#D5DCE5]'
@@ -500,7 +500,7 @@ export function TransactionsPage() {
                           {isOutOfStock ? (
                             <span className="text-[#B86B6B] font-semibold text-[9px]">Habis</span>
                           ) : isMaxInCart ? (
-                            <span className="text-amber-400 font-semibold text-[9px]">Max Stok</span>
+                            <span className="text-[#A88968] font-semibold text-[9px]">Max Stok</span>
                           ) : null}
                         </div>
 
