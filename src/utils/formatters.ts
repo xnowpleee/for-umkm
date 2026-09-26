@@ -74,10 +74,23 @@ export function formatDateOnly(dateStr: string): string {
  * Get date string in YYYY-MM-DD
  */
 export function getTodayDateString(): string {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
+  return getDateKey(new Date());
+}
+
+/**
+ * Get local calendar date key (YYYY-MM-DD) from an ISO timestamp/date.
+ * This avoids treating a UTC Supabase timestamp as a different calendar day.
+ */
+export function getDateKey(value?: string | Date | null): string {
+  if (!value) return '';
+
+  const d = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(d.getTime())) return '';
+
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+
   return `${year}-${month}-${day}`;
 }
 
