@@ -243,10 +243,10 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
     <div className="space-y-5 pb-24 md:pb-8">
       {/* Header */}
       <div className="pt-1">
-        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#F5F5F5]">
+        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#172033]">
           Pengaturan Usaha
         </h1>
-        <p className="text-xs text-[#8A8A8A] mt-0.5">
+        <p className="text-xs text-[#7D899B] mt-0.5">
           Kelola profil toko, format struk kasir, database Supabase, dan cadangan data.
         </p>
       </div>
@@ -255,7 +255,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
         <div
           className={`p-3 rounded-lg border text-xs flex items-center justify-between ${
             toastMsg.type === 'success'
-              ? 'bg-[#22C55E]/10 border-[#22C55E]/30 text-[#22C55E]'
+              ? 'bg-[#172E4D]/10 border-[#172E4D]/30 text-[#172E4D]'
               : 'bg-red-500/10 border-red-500/30 text-red-400'
           }`}
         >
@@ -271,16 +271,16 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
       )}
 
       {/* Account Info Card */}
-      <div className="p-3.5 rounded-xl bg-[#151515] border border-[#252525] flex items-center justify-between">
+      <div className="p-3.5 rounded-xl bg-[#FFFFFF] border border-[#E4E8EE] flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="p-2 rounded-lg bg-[#1F1F1F] text-[#22C55E]">
+          <div className="p-2 rounded-lg bg-[#F1F4F8] text-[#172E4D]">
             <UserCheck className="w-4 h-4" />
           </div>
           <div>
-            <p className="text-xs font-semibold text-[#F5F5F5]">
-              {user.name || 'Owner Toko'} {user.isAuthenticated && <span className="text-[#22C55E] text-[10px] font-normal">(Login Aktif)</span>}
+            <p className="text-xs font-semibold text-[#172033]">
+              {user.name || 'Owner Toko'} {user.isAuthenticated && <span className="text-[#172E4D] text-[10px] font-normal">(Login Aktif)</span>}
             </p>
-            <p className="text-[11px] text-[#8A8A8A]">
+            <p className="text-[11px] text-[#7D899B]">
               {user.email || 'Akun Supabase'} · ID: <span className="font-mono text-[10px]">{user.id ? user.id.slice(0, 8) + '...' : '-'}</span>
             </p>
           </div>
@@ -288,17 +288,17 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
       </div>
 
       {/* Navigation Sub-Tabs */}
-      <div className="flex items-center gap-1 border-b border-[#252525] pb-2 overflow-x-auto scrollbar-none select-none">
+      <div className="flex items-center gap-1 border-b border-[#E4E8EE] pb-2 overflow-x-auto scrollbar-none select-none">
         <button
           type="button"
           onClick={() => setActiveTab('profile')}
           className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
             activeTab === 'profile'
-              ? 'bg-[#151515] text-[#F5F5F5] border border-[#252525]'
-              : 'text-[#8A8A8A] hover:text-[#F5F5F5]'
+              ? 'bg-[#FFFFFF] text-[#172033] border border-[#E4E8EE]'
+              : 'text-[#7D899B] hover:text-[#172033]'
           }`}
         >
-          <Store className="w-3.5 h-3.5 text-[#22C55E]" />
+          <Store className="w-3.5 h-3.5 text-[#172E4D]" />
           <span>Profil Toko & Struk</span>
         </button>
 
@@ -307,14 +307,14 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
           onClick={() => setActiveTab('supabase')}
           className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
             activeTab === 'supabase'
-              ? 'bg-[#151515] text-[#F5F5F5] border border-[#252525]'
-              : 'text-[#8A8A8A] hover:text-[#F5F5F5]'
+              ? 'bg-[#FFFFFF] text-[#172033] border border-[#E4E8EE]'
+              : 'text-[#7D899B] hover:text-[#172033]'
           }`}
         >
-          <Database className="w-3.5 h-3.5 text-[#22C55E]" />
+          <Database className="w-3.5 h-3.5 text-[#172E4D]" />
           <span>Koneksi Supabase</span>
           {isSupabaseConfigured && (
-            <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#172E4D]"></span>
           )}
         </button>
 
@@ -323,11 +323,11 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
           onClick={() => setActiveTab('backup')}
           className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
             activeTab === 'backup'
-              ? 'bg-[#151515] text-[#F5F5F5] border border-[#252525]'
-              : 'text-[#8A8A8A] hover:text-[#F5F5F5]'
+              ? 'bg-[#FFFFFF] text-[#172033] border border-[#E4E8EE]'
+              : 'text-[#7D899B] hover:text-[#172033]'
           }`}
         >
-          <Download className="w-3.5 h-3.5 text-[#22C55E]" />
+          <Download className="w-3.5 h-3.5 text-[#172E4D]" />
           <span>Cadangan & Reset</span>
         </button>
 
@@ -336,11 +336,11 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
           onClick={() => setActiveTab('about')}
           className={`flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
             activeTab === 'about'
-              ? 'bg-[#151515] text-[#F5F5F5] border border-[#252525]'
-              : 'text-[#8A8A8A] hover:text-[#F5F5F5]'
+              ? 'bg-[#FFFFFF] text-[#172033] border border-[#E4E8EE]'
+              : 'text-[#7D899B] hover:text-[#172033]'
           }`}
         >
-          <Info className="w-3.5 h-3.5 text-[#22C55E]" />
+          <Info className="w-3.5 h-3.5 text-[#172E4D]" />
           <span>Tentang BisnisKu</span>
         </button>
       </div>
@@ -348,15 +348,15 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
       {/* Profile Form */}
       {activeTab === 'profile' && (
         <form onSubmit={handleSaveProfile} className="max-w-2xl space-y-4">
-          <div className="p-4 sm:p-5 rounded-xl bg-[#151515] border border-[#252525] space-y-3.5">
+          <div className="p-4 sm:p-5 rounded-xl bg-[#FFFFFF] border border-[#E4E8EE] space-y-3.5">
             {/* Logo Toko */}
             <div>
-              <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+              <label className="block text-xs font-medium text-[#7D899B] mb-1">
                 Logo Usaha / Toko (Akan muncul di struk kasir)
               </label>
               <div className="flex items-center gap-3">
                 {logoUrl ? (
-                  <div className="relative w-16 h-16 rounded-lg bg-white p-1 border border-[#252525] flex items-center justify-center shrink-0">
+                  <div className="relative w-16 h-16 rounded-lg bg-white p-1 border border-[#E4E8EE] flex items-center justify-center shrink-0">
                     <img
                       src={logoUrl}
                       alt="Logo Usaha"
@@ -372,14 +372,14 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                     </button>
                   </div>
                 ) : (
-                  <div className="w-16 h-16 rounded-lg bg-[#1C1C1E] border border-dashed border-[#333333] flex flex-col items-center justify-center text-[#8A8A8A] shrink-0">
-                    <ImageIcon className="w-5 h-5 text-[#8A8A8A]" />
+                  <div className="w-16 h-16 rounded-lg bg-[#F7F9FC] border border-dashed border-[#D5DCE5] flex flex-col items-center justify-center text-[#7D899B] shrink-0">
+                    <ImageIcon className="w-5 h-5 text-[#7D899B]" />
                     <span className="text-[9px] mt-0.5">No Logo</span>
                   </div>
                 )}
                 <div className="space-y-1">
-                  <label className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-[#1C1C1E] hover:bg-[#252525] border border-[#252525] text-[#F5F5F5] rounded-lg cursor-pointer transition-colors">
-                    <Upload className="w-3.5 h-3.5 text-[#22C55E]" />
+                  <label className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-[#F7F9FC] hover:bg-[#E4E8EE] border border-[#E4E8EE] text-[#172033] rounded-lg cursor-pointer transition-colors">
+                    <Upload className="w-3.5 h-3.5 text-[#172E4D]" />
                     <span>{logoUrl ? 'Ganti Logo' : 'Unggah Logo'}</span>
                     <input
                       type="file"
@@ -388,7 +388,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                       className="hidden"
                     />
                   </label>
-                  <p className="text-[10px] text-[#8A8A8A]">
+                  <p className="text-[10px] text-[#7D899B]">
                     Format PNG/JPG/WebP transparan atau putih (maks. 2MB).
                   </p>
                 </div>
@@ -396,7 +396,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+              <label className="block text-xs font-medium text-[#7D899B] mb-1">
                 Nama Usaha / Toko *
               </label>
               <input
@@ -405,13 +405,13 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                 placeholder="Contoh: AT Corner Angkringan"
                 value={businessName}
                 onChange={e => setBusinessName(e.target.value)}
-                className="w-full px-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] focus:outline-hidden focus:border-[#22C55E]"
+                className="w-full px-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+                <label className="block text-xs font-medium text-[#7D899B] mb-1">
                   Nama Pemilik
                 </label>
                 <input
@@ -419,12 +419,12 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                   placeholder="Nama Anda"
                   value={ownerName}
                   onChange={e => setOwnerName(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] focus:outline-hidden focus:border-[#22C55E]"
+                  className="w-full px-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+                <label className="block text-xs font-medium text-[#7D899B] mb-1">
                   Nomor WhatsApp / Telp
                 </label>
                 <input
@@ -432,14 +432,14 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                   placeholder="0812xxxxxxxx"
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] focus:outline-hidden focus:border-[#22C55E]"
+                  className="w-full px-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+                <label className="block text-xs font-medium text-[#7D899B] mb-1">
                   Kategori Usaha
                 </label>
                 <input
@@ -447,12 +447,12 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                   placeholder="F&B / Kuliner / Retail"
                   value={businessType}
                   onChange={e => setBusinessType(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] focus:outline-hidden focus:border-[#22C55E]"
+                  className="w-full px-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+                <label className="block text-xs font-medium text-[#7D899B] mb-1">
                   Instagram (Opsional)
                 </label>
                 <input
@@ -460,13 +460,13 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                   placeholder="@namausaha"
                   value={instagram}
                   onChange={e => setInstagram(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] focus:outline-hidden focus:border-[#22C55E]"
+                  className="w-full px-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+              <label className="block text-xs font-medium text-[#7D899B] mb-1">
                 Alamat / Lokasi Toko
               </label>
               <input
@@ -474,12 +474,12 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                 placeholder="Jl. Sudirman No. 123, Jakarta"
                 value={address}
                 onChange={e => setAddress(e.target.value)}
-                className="w-full px-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] focus:outline-hidden focus:border-[#22C55E]"
+                className="w-full px-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+              <label className="block text-xs font-medium text-[#7D899B] mb-1">
                 Pesan Footer Struk Kasir
               </label>
               <textarea
@@ -487,7 +487,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                 placeholder="Terima kasih sudah mampir 🙏"
                 value={receiptFooter}
                 onChange={e => setReceiptFooter(e.target.value)}
-                className="w-full px-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] focus:outline-hidden focus:border-[#22C55E]"
+                className="w-full px-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
               />
             </div>
           </div>
@@ -495,14 +495,14 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
           <div className="flex items-center gap-3">
             <button
               type="submit"
-              className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-[#0B0B0C] bg-[#22C55E] hover:bg-[#16A34A] rounded-lg transition-colors active:scale-[0.98] select-none"
+              className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-[#FFFFFF] bg-[#172E4D] hover:bg-[#213D61] rounded-lg transition-colors active:scale-[0.98] select-none"
             >
               <Save className="w-3.5 h-3.5" />
               <span>Simpan Profil</span>
             </button>
 
             {isProfileSaved && (
-              <span className="text-xs text-[#22C55E] font-medium flex items-center gap-1">
+              <span className="text-xs text-[#172E4D] font-medium flex items-center gap-1">
                 <Check className="w-3.5 h-3.5" />
                 <span>Profil usaha berhasil disimpan</span>
               </span>
@@ -514,19 +514,19 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
       {/* Supabase PostgreSQL Integration */}
       {activeTab === 'supabase' && (
         <div className="max-w-2xl space-y-4">
-          <div className="p-4 sm:p-5 rounded-xl bg-[#151515] border border-[#252525] space-y-3.5">
+          <div className="p-4 sm:p-5 rounded-xl bg-[#FFFFFF] border border-[#E4E8EE] space-y-3.5">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <h3 className="text-sm font-semibold text-[#F5F5F5] flex items-center gap-2">
+                <h3 className="text-sm font-semibold text-[#172033] flex items-center gap-2">
                   <span>Koneksi Database Supabase PostgreSQL</span>
                   {isSupabaseConfigured && (
-                    <span className="text-[10px] font-medium text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>
+                    <span className="text-[10px] font-medium text-[#172E4D] bg-[#172E4D]/10 px-2 py-0.5 rounded flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#172E4D]"></span>
                       Terhubung
                     </span>
                   )}
                 </h3>
-                <p className="text-xs text-[#8A8A8A] mt-1">
+                <p className="text-xs text-[#7D899B] mt-1">
                   Data usaha tersimpan aman dengan PostgreSQL & Row Level Security (RLS).
                 </p>
               </div>
@@ -534,7 +534,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
 
             <form onSubmit={handleSaveSupabase} className="space-y-3 pt-2">
               <div>
-                <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+                <label className="block text-xs font-medium text-[#7D899B] mb-1">
                   Supabase Project URL
                 </label>
                 <input
@@ -543,12 +543,12 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                   placeholder="https://xyzcompany.supabase.co"
                   value={supabaseUrl}
                   onChange={e => setSupabaseUrl(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] font-mono focus:outline-hidden focus:border-[#22C55E]"
+                  className="w-full px-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] font-mono focus:outline-hidden focus:border-[#172E4D]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+                <label className="block text-xs font-medium text-[#7D899B] mb-1">
                   Supabase Anon Key
                 </label>
                 <input
@@ -557,7 +557,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                   placeholder="eyJhbGciOi..."
                   value={supabaseAnonKey}
                   onChange={e => setSupabaseAnonKey(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] font-mono focus:outline-hidden focus:border-[#22C55E]"
+                  className="w-full px-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] font-mono focus:outline-hidden focus:border-[#172E4D]"
                 />
               </div>
 
@@ -565,7 +565,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                 <button
                   type="submit"
                   disabled={connectionStatus.testing}
-                  className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-[#0B0B0C] bg-[#22C55E] hover:bg-[#16A34A] rounded-lg transition-colors disabled:opacity-50 select-none"
+                  className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-[#FFFFFF] bg-[#172E4D] hover:bg-[#213D61] rounded-lg transition-colors disabled:opacity-50 select-none"
                 >
                   {connectionStatus.testing ? (
                     <>
@@ -585,7 +585,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
                 <div
                   className={`p-3 rounded-lg text-xs flex items-center gap-2 ${
                     connectionStatus.success
-                      ? 'bg-[#22C55E]/10 border border-[#22C55E]/30 text-[#22C55E]'
+                      ? 'bg-[#172E4D]/10 border border-[#172E4D]/30 text-[#172E4D]'
                       : 'bg-red-500/10 border border-red-500/30 text-red-400'
                   }`}
                 >
@@ -601,25 +601,25 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
           </div>
 
           {/* SQL Schema helper box */}
-          <div className="p-4 sm:p-5 rounded-xl bg-[#151515] border border-[#252525] space-y-3">
+          <div className="p-4 sm:p-5 rounded-xl bg-[#FFFFFF] border border-[#E4E8EE] space-y-3">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-semibold text-[#F5F5F5]">
+                <h4 className="text-xs font-semibold text-[#172033]">
                   Skema Tabel PostgreSQL
                 </h4>
-                <p className="text-[11px] text-[#8A8A8A]">
+                <p className="text-[11px] text-[#7D899B]">
                   Jalankan skrip ini di SQL Editor dashboard Supabase Anda.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={handleCopySchemaSql}
-                className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-[#F5F5F5] bg-[#1C1C1E] hover:bg-[#252525] border border-[#252525] rounded-lg transition-colors select-none"
+                className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-[#172033] bg-[#F7F9FC] hover:bg-[#E4E8EE] border border-[#E4E8EE] rounded-lg transition-colors select-none"
               >
                 {isCopiedSql ? (
                   <>
-                    <Check className="w-3 h-3 text-[#22C55E]" />
-                    <span className="text-[#22C55E]">Tersalin</span>
+                    <Check className="w-3 h-3 text-[#172E4D]" />
+                    <span className="text-[#172E4D]">Tersalin</span>
                   </>
                 ) : (
                   <>
@@ -636,11 +636,11 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
       {/* Backup & Reset */}
       {activeTab === 'backup' && (
         <div className="max-w-2xl space-y-4">
-          <div className="p-4 sm:p-5 rounded-xl bg-[#151515] border border-[#252525] space-y-3">
-            <h3 className="text-sm font-semibold text-[#F5F5F5]">
+          <div className="p-4 sm:p-5 rounded-xl bg-[#FFFFFF] border border-[#E4E8EE] space-y-3">
+            <h3 className="text-sm font-semibold text-[#172033]">
               Cadangkan & Pulihkan Data
             </h3>
-            <p className="text-xs text-[#8A8A8A]">
+            <p className="text-xs text-[#7D899B]">
               Ekspor seluruh data katalog, transaksi, dan pengeluaran ke format JSON untuk arsip offline atau impor ke perangkat baru.
             </p>
 
@@ -648,14 +648,14 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
               <button
                 type="button"
                 onClick={handleDownloadBackup}
-                className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-[#F5F5F5] bg-[#1C1C1E] hover:bg-[#252525] border border-[#252525] rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-[#172033] bg-[#F7F9FC] hover:bg-[#E4E8EE] border border-[#E4E8EE] rounded-lg transition-colors"
               >
-                <Download className="w-3.5 h-3.5 text-[#22C55E]" />
+                <Download className="w-3.5 h-3.5 text-[#172E4D]" />
                 <span>Unduh Cadangan JSON</span>
               </button>
 
-              <label className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-[#F5F5F5] bg-[#1C1C1E] hover:bg-[#252525] border border-[#252525] rounded-lg transition-colors cursor-pointer">
-                <Upload className="w-3.5 h-3.5 text-[#22C55E]" />
+              <label className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-[#172033] bg-[#F7F9FC] hover:bg-[#E4E8EE] border border-[#E4E8EE] rounded-lg transition-colors cursor-pointer">
+                <Upload className="w-3.5 h-3.5 text-[#172E4D]" />
                 <span>Pulihkan dari File JSON</span>
                 <input
                   type="file"
@@ -667,12 +667,12 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
             </div>
           </div>
 
-          <div className="p-4 sm:p-5 rounded-xl bg-[#151515] border border-red-500/20 space-y-3">
+          <div className="p-4 sm:p-5 rounded-xl bg-[#FFFFFF] border border-red-500/20 space-y-3">
             <div className="flex items-center gap-2 text-red-400">
               <AlertCircle className="w-4 h-4" />
               <h3 className="text-sm font-semibold">Zona Berbahaya</h3>
             </div>
-            <p className="text-xs text-[#8A8A8A]">
+            <p className="text-xs text-[#7D899B]">
               Hapus seluruh transaksi, produk, dan pengeluaran. Tindakan ini permanen.
             </p>
 
@@ -696,25 +696,25 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
       {/* About BisnisKu Tab */}
       {activeTab === 'about' && (
         <div className="max-w-2xl space-y-4">
-          <div className="p-6 rounded-xl bg-[#151515] border border-[#252525] text-center space-y-4">
-            <div className="text-[#22C55E] flex items-center justify-center mx-auto">
+          <div className="p-6 rounded-xl bg-[#FFFFFF] border border-[#E4E8EE] text-center space-y-4">
+            <div className="text-[#172E4D] flex items-center justify-center mx-auto">
               <Logo size={52} />
             </div>
             <div>
-              <h3 className="text-base font-bold text-[#F5F5F5]">
+              <h3 className="text-base font-bold text-[#172033]">
                 BisnisKu
               </h3>
-              <p className="text-xs text-[#8A8A8A] mt-0.5">
+              <p className="text-xs text-[#7D899B] mt-0.5">
                 Versi 1.5 · Aplikasi Pengelolaan Usaha & Kasir UMKM
               </p>
             </div>
-            <p className="text-xs text-[#8A8A8A] max-w-md mx-auto leading-relaxed">
+            <p className="text-xs text-[#7D899B] max-w-md mx-auto leading-relaxed">
               Dirancang untuk membantu pelaku usaha dan UMKM mencatat transaksi kasir, mengelola katalog produk & modal HPP, memantau pengeluaran, mencetak struk thermal, serta memahami perkembangan bisnis dengan asisten pintar.
             </p>
-            <div className="pt-3 border-t border-[#252525] flex items-center justify-center gap-6 text-xs text-[#8A8A8A]">
-              <span>Status: <strong className="text-[#22C55E] font-medium">Aktif</strong></span>
+            <div className="pt-3 border-t border-[#E4E8EE] flex items-center justify-center gap-6 text-xs text-[#7D899B]">
+              <span>Status: <strong className="text-[#172E4D] font-medium">Aktif</strong></span>
               <span>•</span>
-              <span>Platform: <strong className="text-[#F5F5F5] font-medium">Web & Mobile PWA</strong></span>
+              <span>Platform: <strong className="text-[#172033] font-medium">Web & Mobile PWA</strong></span>
             </div>
           </div>
         </div>
