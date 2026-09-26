@@ -107,18 +107,18 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
 
   return (
     <div className="w-full max-w-md mx-auto py-6 sm:py-10">
-      <div className="bg-[#151515] border border-[#252525] rounded-2xl p-6 sm:p-7 shadow-lg space-y-5">
+      <div className="bg-[#FFFFFF] border border-[#E4E8EE] rounded-2xl p-6 sm:p-7 shadow-lg space-y-5">
         {/* Brand Header */}
         <div className="text-center space-y-2 select-none">
-          <div className="text-[#22C55E] flex items-center justify-center mx-auto mb-1">
+          <div className="text-[#172E4D] flex items-center justify-center mx-auto mb-1">
             <Logo size={40} />
           </div>
-          <h2 className="text-lg sm:text-xl font-bold tracking-tight text-[#F5F5F5]">
+          <h2 className="text-lg sm:text-xl font-bold tracking-tight text-[#172033]">
             {mode === 'login' && 'Masuk ke BisnisKu'}
             {mode === 'register' && 'Daftar Akun BisnisKu'}
             {mode === 'forgot' && 'Lupa Password?'}
           </h2>
-          <p className="text-xs text-[#8A8A8A]">
+          <p className="text-xs text-[#7D899B]">
             {mode === 'login' && 'Aplikasi pencatatan kasir dan keuangan usaha Anda.'}
             {mode === 'register' && 'Mulai kelola kasir dan keuangan tokomu dengan mudah.'}
             {mode === 'forgot' && 'Masukkan email akun untuk mendapatkan link reset password.'}
@@ -127,7 +127,7 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
 
         {/* Mode Selector Tabs (Masuk vs Daftar) */}
         {mode !== 'forgot' && (
-          <div className="grid grid-cols-2 p-1 bg-[#0B0B0C] border border-[#252525] rounded-lg text-xs font-medium select-none">
+          <div className="grid grid-cols-2 p-1 bg-[#FFFFFF] border border-[#E4E8EE] rounded-lg text-xs font-medium select-none">
             <button
               type="button"
               onClick={() => {
@@ -137,8 +137,8 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
               }}
               className={`py-1.5 rounded-md transition-all ${
                 mode === 'login'
-                  ? 'bg-[#151515] text-[#F5F5F5] font-semibold'
-                  : 'text-[#8A8A8A] hover:text-[#F5F5F5]'
+                  ? 'bg-[#FFFFFF] text-[#172033] font-semibold'
+                  : 'text-[#7D899B] hover:text-[#172033]'
               }`}
             >
               Masuk
@@ -152,8 +152,8 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
               }}
               className={`py-1.5 rounded-md transition-all ${
                 mode === 'register'
-                  ? 'bg-[#151515] text-[#F5F5F5] font-semibold'
-                  : 'text-[#8A8A8A] hover:text-[#F5F5F5]'
+                  ? 'bg-[#FFFFFF] text-[#172033] font-semibold'
+                  : 'text-[#7D899B] hover:text-[#172033]'
               }`}
             >
               Daftar Baru
@@ -169,7 +169,7 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
         )}
 
         {infoMsg && (
-          <div className="p-3 rounded-lg bg-[#22C55E]/10 border border-[#22C55E]/20 text-[#22C55E] text-xs">
+          <div className="p-3 rounded-lg bg-[#172E4D]/10 border border-[#172E4D]/20 text-[#172E4D] text-xs">
             {infoMsg}
           </div>
         )}
@@ -178,25 +178,25 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
         {mode === 'login' && (
           <form onSubmit={handleLoginSubmit} className="space-y-3.5">
             <div>
-              <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+              <label className="block text-xs font-medium text-[#7D899B] mb-1">
                 Email atau Username
               </label>
               <div className="relative">
-                <User className="w-4 h-4 text-[#8A8A8A] absolute left-3 top-1/2 -translate-y-1/2" />
+                <User className="w-4 h-4 text-[#7D899B] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   required
                   placeholder="nama@toko.com atau namauser"
                   value={loginIdentifier}
                   onChange={e => setLoginIdentifier(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] placeholder-[#8A8A8A] focus:outline-hidden focus:border-[#22C55E]"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
                 />
               </div>
             </div>
 
             <div>
               <div className="flex items-center justify-between mb-1 select-none">
-                <label className="text-xs font-medium text-[#8A8A8A]">
+                <label className="text-xs font-medium text-[#7D899B]">
                   Kata Sandi
                 </label>
                 <button
@@ -205,20 +205,20 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
                     setErrorMsg('');
                     setMode('forgot');
                   }}
-                  className="text-[11px] text-[#8A8A8A] hover:text-[#F5F5F5]"
+                  className="text-[11px] text-[#7D899B] hover:text-[#172033]"
                 >
                   Lupa password?
                 </button>
               </div>
               <div className="relative">
-                <Lock className="w-4 h-4 text-[#8A8A8A] absolute left-3 top-1/2 -translate-y-1/2" />
+                <Lock className="w-4 h-4 text-[#7D899B] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="password"
                   required
                   placeholder="••••••••"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] placeholder-[#8A8A8A] focus:outline-hidden focus:border-[#22C55E]"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
                 />
               </div>
             </div>
@@ -226,9 +226,9 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-2.5 px-4 text-xs font-semibold text-[#0B0B0C] bg-[#22C55E] hover:bg-[#16A34A] disabled:opacity-50 rounded-lg transition-colors flex items-center justify-center gap-2 active:scale-[0.99] mt-2 select-none"
+              className="w-full py-2.5 px-4 text-xs font-semibold text-[#FFFFFF] bg-[#172E4D] hover:bg-[#213D61] disabled:opacity-50 rounded-lg transition-colors flex items-center justify-center gap-2 active:scale-[0.99] mt-2 select-none"
             >
-              {isLoading && <Loader2 className="w-4 h-4 animate-spin text-[#0B0B0C]" />}
+              {isLoading && <Loader2 className="w-4 h-4 animate-spin text-[#FFFFFF]" />}
               <span>{isLoading ? 'Memproses...' : 'Masuk ke BisnisKu'}</span>
             </button>
           </form>
@@ -238,69 +238,69 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
         {mode === 'register' && (
           <form onSubmit={handleRegisterSubmit} className="space-y-3.5">
             <div>
-              <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+              <label className="block text-xs font-medium text-[#7D899B] mb-1">
                 Nama Pemilik
               </label>
               <div className="relative">
-                <User className="w-4 h-4 text-[#8A8A8A] absolute left-3 top-1/2 -translate-y-1/2" />
+                <User className="w-4 h-4 text-[#7D899B] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   required
                   placeholder="Contoh: Budi Santoso"
                   value={name}
                   onChange={e => setName(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] placeholder-[#8A8A8A] focus:outline-hidden focus:border-[#22C55E]"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+              <label className="block text-xs font-medium text-[#7D899B] mb-1">
                 Nama Usaha / Toko
               </label>
               <div className="relative">
-                <Store className="w-4 h-4 text-[#8A8A8A] absolute left-3 top-1/2 -translate-y-1/2" />
+                <Store className="w-4 h-4 text-[#7D899B] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   required
                   placeholder="Contoh: AT Corner Angkringan"
                   value={businessName}
                   onChange={e => setBusinessName(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] placeholder-[#8A8A8A] focus:outline-hidden focus:border-[#22C55E]"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+              <label className="block text-xs font-medium text-[#7D899B] mb-1">
                 Alamat Email
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-[#8A8A8A] absolute left-3 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-[#7D899B] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="email"
                   required
                   placeholder="owner@toko.com"
                   value={registerEmail}
                   onChange={e => setRegisterEmail(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] placeholder-[#8A8A8A] focus:outline-hidden focus:border-[#22C55E]"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+              <label className="block text-xs font-medium text-[#7D899B] mb-1">
                 Kata Sandi
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-[#8A8A8A] absolute left-3 top-1/2 -translate-y-1/2" />
+                <Lock className="w-4 h-4 text-[#7D899B] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="password"
                   required
                   placeholder="Minimal 6 karakter"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] placeholder-[#8A8A8A] focus:outline-hidden focus:border-[#22C55E]"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
                 />
               </div>
             </div>
@@ -308,9 +308,9 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-2.5 px-4 text-xs font-semibold text-[#0B0B0C] bg-[#22C55E] hover:bg-[#16A34A] disabled:opacity-50 rounded-lg transition-colors flex items-center justify-center gap-2 active:scale-[0.99] mt-2 select-none"
+              className="w-full py-2.5 px-4 text-xs font-semibold text-[#FFFFFF] bg-[#172E4D] hover:bg-[#213D61] disabled:opacity-50 rounded-lg transition-colors flex items-center justify-center gap-2 active:scale-[0.99] mt-2 select-none"
             >
-              {isLoading && <Loader2 className="w-4 h-4 animate-spin text-[#0B0B0C]" />}
+              {isLoading && <Loader2 className="w-4 h-4 animate-spin text-[#FFFFFF]" />}
               <span>{isLoading ? 'Mendaftarkan...' : 'Daftar Akun Usaha'}</span>
             </button>
           </form>
@@ -321,13 +321,13 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
           <div className="space-y-4">
             {forgotSent ? (
               <div className="text-center space-y-3 py-3">
-                <CheckCircle className="w-9 h-9 text-[#22C55E] mx-auto" />
-                <h3 className="text-sm font-semibold text-[#F5F5F5]">
+                <CheckCircle className="w-9 h-9 text-[#172E4D] mx-auto" />
+                <h3 className="text-sm font-semibold text-[#172033]">
                   Tautan Telah Dikirim
                 </h3>
-                <p className="text-xs text-[#8A8A8A]">
+                <p className="text-xs text-[#7D899B]">
                   Tautan reset kata sandi telah dikirim ke{' '}
-                  <span className="text-[#F5F5F5] font-semibold">{forgotEmail}</span>. Silakan cek kotak masuk atau spam email Anda.
+                  <span className="text-[#172033] font-semibold">{forgotEmail}</span>. Silakan cek kotak masuk atau spam email Anda.
                 </p>
                 <button
                   type="button"
@@ -335,7 +335,7 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
                     setForgotSent(false);
                     setMode('login');
                   }}
-                  className="mt-2 px-4 py-2 text-xs font-semibold text-[#0B0B0C] bg-[#22C55E] rounded-lg"
+                  className="mt-2 px-4 py-2 text-xs font-semibold text-[#FFFFFF] bg-[#172E4D] rounded-lg"
                 >
                   Kembali ke Masuk
                 </button>
@@ -343,18 +343,18 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
             ) : (
               <form onSubmit={handleForgotSubmit} className="space-y-3.5">
                 <div>
-                  <label className="block text-xs font-medium text-[#8A8A8A] mb-1">
+                  <label className="block text-xs font-medium text-[#7D899B] mb-1">
                     Email Akun
                   </label>
                   <div className="relative">
-                    <Mail className="w-4 h-4 text-[#8A8A8A] absolute left-3 top-1/2 -translate-y-1/2" />
+                    <Mail className="w-4 h-4 text-[#7D899B] absolute left-3 top-1/2 -translate-y-1/2" />
                     <input
                       type="email"
                       required
                       placeholder="owner@toko.com"
                       value={forgotEmail}
                       onChange={e => setForgotEmail(e.target.value)}
-                      className="w-full pl-9 pr-3 py-2 text-xs bg-[#1C1C1E] border border-[#252525] rounded-lg text-[#F5F5F5] placeholder-[#8A8A8A] focus:outline-hidden focus:border-[#22C55E]"
+                      className="w-full pl-9 pr-3 py-2 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
                     />
                   </div>
                 </div>
@@ -362,9 +362,9 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full py-2.5 px-4 text-xs font-semibold text-[#0B0B0C] bg-[#22C55E] hover:bg-[#16A34A] disabled:opacity-50 rounded-lg transition-colors flex items-center justify-center gap-2 select-none"
+                  className="w-full py-2.5 px-4 text-xs font-semibold text-[#FFFFFF] bg-[#172E4D] hover:bg-[#213D61] disabled:opacity-50 rounded-lg transition-colors flex items-center justify-center gap-2 select-none"
                 >
-                  {isLoading && <Loader2 className="w-4 h-4 animate-spin text-[#0B0B0C]" />}
+                  {isLoading && <Loader2 className="w-4 h-4 animate-spin text-[#FFFFFF]" />}
                   <span>{isLoading ? 'Mengirim...' : 'Kirim Link Reset Password'}</span>
                 </button>
 
@@ -375,7 +375,7 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
                       setErrorMsg('');
                       setMode('login');
                     }}
-                    className="text-xs text-[#8A8A8A] hover:text-[#F5F5F5] flex items-center justify-center gap-1 mx-auto"
+                    className="text-xs text-[#7D899B] hover:text-[#172033] flex items-center justify-center gap-1 mx-auto"
                   >
                     <ArrowLeft className="w-3.5 h-3.5" />
                     <span>Kembali ke Halaman Masuk</span>
