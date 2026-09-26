@@ -320,25 +320,25 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-xs overflow-y-auto">
-      <div className="bg-[#151515] border border-[#252525] rounded-xl w-full max-w-md my-auto shadow-2xl overflow-hidden flex flex-col max-h-[94vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#172033]/25 backdrop-blur-[2px] overflow-y-auto">
+      <div className="bg-[#FFFFFF] border border-[#E4E8EE] rounded-xl w-full max-w-md my-auto shadow-2xl overflow-hidden flex flex-col max-h-[94vh]">
         {/* Header Bar */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-[#252525] bg-[#111111] select-none shrink-0">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-[#EDF0F4] bg-[#F7F9FC] select-none shrink-0">
           <div className="flex items-center gap-2">
-            <ReceiptIcon className="w-4 h-4 text-[#22C55E]" />
-            <h3 className="text-xs sm:text-sm font-semibold text-[#F5F5F5]">
+            <ReceiptIcon className="w-4 h-4 text-[#304C70]" />
+            <h3 className="text-xs sm:text-sm font-semibold text-[#172033]">
               Struk Transaksi Kasir
             </h3>
           </div>
 
           <div className="flex items-center gap-2">
             {/* Thermal Paper Width Switcher */}
-            <div className="flex items-center bg-[#1C1C1E] border border-[#252525] rounded-md p-0.5 text-[10px]">
+            <div className="flex items-center bg-[#F7F9FC] border border-[#E4E8EE] rounded-md p-0.5 text-[10px]">
               <button
                 type="button"
                 onClick={() => setPaperWidth('80mm')}
                 className={`px-2 py-0.5 rounded font-medium transition-colors ${
-                  paperWidth === '80mm' ? 'bg-[#252525] text-[#F5F5F5]' : 'text-[#8A8A8A] hover:text-[#F5F5F5]'
+                  paperWidth === '80mm' ? 'bg-[#252525] text-[#172033]' : 'text-[#7D899B] hover:text-[#172033]'
                 }`}
               >
                 80mm
@@ -347,7 +347,7 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
                 type="button"
                 onClick={() => setPaperWidth('58mm')}
                 className={`px-2 py-0.5 rounded font-medium transition-colors ${
-                  paperWidth === '58mm' ? 'bg-[#252525] text-[#F5F5F5]' : 'text-[#8A8A8A] hover:text-[#F5F5F5]'
+                  paperWidth === '58mm' ? 'bg-[#252525] text-[#172033]' : 'text-[#7D899B] hover:text-[#172033]'
                 }`}
               >
                 58mm
@@ -357,7 +357,7 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
             <button
               type="button"
               onClick={onClose}
-              className="p-1 rounded-md text-[#8A8A8A] hover:text-[#F5F5F5] hover:bg-[#1F1F1F] transition-colors"
+              className="p-1 rounded-md text-[#7D899B] hover:text-[#172033] hover:bg-[#EEF2F7] transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -368,8 +368,8 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
           <div
             className={`px-4 py-2 text-xs font-medium text-center border-b select-none ${
               feedbackMsg.type === 'success'
-                ? 'bg-[#22C55E]/10 text-[#22C55E] border-[#22C55E]/30'
-                : 'bg-blue-500/10 text-blue-400 border-blue-500/30'
+                ? 'bg-[#22C55E]/10 text-[#304C70] border-[#22C55E]/30'
+                : 'bg-[#F1F4F8] text-[#5E718A] border-[#DDE4EC]'
             }`}
           >
             {feedbackMsg.text}
@@ -377,10 +377,10 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
         )}
 
         {/* Canvas Image Preview Area */}
-        <div className="p-4 overflow-y-auto flex-1 flex flex-col items-center justify-center bg-[#0B0B0C]">
+        <div className="p-4 overflow-y-auto flex-1 flex flex-col items-center justify-center bg-[#F7F9FC]">
           {isGenerating && !receiptImgSrc ? (
-            <div className="py-16 flex flex-col items-center justify-center gap-2 text-xs text-[#8A8A8A]">
-              <Loader2 className="w-6 h-6 animate-spin text-[#22C55E]" />
+            <div className="py-16 flex flex-col items-center justify-center gap-2 text-xs text-[#7D899B]">
+              <Loader2 className="w-6 h-6 animate-spin text-[#304C70]" />
               <span>Membuat struk gambar canvas...</span>
             </div>
           ) : receiptImgSrc ? (
@@ -404,16 +404,16 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
               type="button"
               disabled={isSaving || isGenerating}
               onClick={handleSaveImage}
-              className="flex items-center justify-center gap-1.5 py-2 px-3 bg-[#1F1F1F] hover:bg-[#282828] border border-[#252525] text-[#F5F5F5] rounded-lg text-xs font-medium transition-colors disabled:opacity-50 active:scale-[0.98]"
+              className="flex items-center justify-center gap-1.5 py-2 px-3 bg-[#FFFFFF] hover:bg-[#F7F9FC] border border-[#E4E8EE] text-[#172033] rounded-lg text-xs font-medium transition-colors disabled:opacity-50 active:scale-[0.98]"
             >
               {isSaving ? (
                 <>
-                  <Loader2 className="w-3.5 h-3.5 animate-spin text-[#22C55E]" />
+                  <Loader2 className="w-3.5 h-3.5 animate-spin text-[#304C70]" />
                   <span>Mengunduh...</span>
                 </>
               ) : (
                 <>
-                  <Download className="w-3.5 h-3.5 text-[#22C55E]" />
+                  <Download className="w-3.5 h-3.5 text-[#304C70]" />
                   <span>Simpan Gambar</span>
                 </>
               )}
@@ -423,9 +423,9 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
             <button
               type="button"
               onClick={handlePrint}
-              className="flex items-center justify-center gap-1.5 py-2 px-3 bg-[#1F1F1F] hover:bg-[#282828] border border-[#252525] text-[#F5F5F5] rounded-lg text-xs font-medium transition-colors active:scale-[0.98]"
+              className="flex items-center justify-center gap-1.5 py-2 px-3 bg-[#FFFFFF] hover:bg-[#F7F9FC] border border-[#E4E8EE] text-[#172033] rounded-lg text-xs font-medium transition-colors active:scale-[0.98]"
             >
-              <Printer className="w-3.5 h-3.5 text-[#22C55E]" />
+              <Printer className="w-3.5 h-3.5 text-[#304C70]" />
               <span>Cetak Struk</span>
             </button>
           </div>
@@ -436,11 +436,11 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
               type="button"
               disabled={isSharing || isGenerating}
               onClick={handleShare}
-              className="flex items-center justify-center gap-1.5 py-2 px-3 bg-[#22C55E] hover:bg-[#16A34A] text-[#0B0B0C] rounded-lg text-xs font-semibold transition-colors disabled:opacity-50 active:scale-[0.98]"
+              className="flex items-center justify-center gap-1.5 py-2 px-3 bg-[#172E4D] hover:bg-[#213D61] text-[#FFFFFF] rounded-lg text-xs font-semibold transition-colors disabled:opacity-50 active:scale-[0.98]"
             >
               {isSharing ? (
                 <>
-                  <Loader2 className="w-3.5 h-3.5 animate-spin text-[#0B0B0C]" />
+                  <Loader2 className="w-3.5 h-3.5 animate-spin text-[#FFFFFF]" />
                   <span>Mempersiapkan...</span>
                 </>
               ) : (
@@ -455,12 +455,12 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
             <button
               type="button"
               onClick={handleCopyText}
-              className="flex items-center justify-center gap-1.5 py-2 px-3 bg-[#1F1F1F] hover:bg-[#282828] border border-[#252525] text-[#8A8A8A] hover:text-[#F5F5F5] rounded-lg text-xs font-medium transition-colors active:scale-[0.98]"
+              className="flex items-center justify-center gap-1.5 py-2 px-3 bg-[#FFFFFF] hover:bg-[#F7F9FC] border border-[#E4E8EE] text-[#7D899B] hover:text-[#172033] rounded-lg text-xs font-medium transition-colors active:scale-[0.98]"
             >
               {copiedText ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-[#22C55E]" />
-                  <span className="text-[#22C55E]">Tersalin</span>
+                  <Check className="w-3.5 h-3.5 text-[#304C70]" />
+                  <span className="text-[#304C70]">Tersalin</span>
                 </>
               ) : (
                 <>
