@@ -24,6 +24,7 @@ import {
 import {
   generateInvoiceNumber,
   getTodayDateString,
+  getDateKey,
 } from '../utils/formatters';
 
 import {
@@ -1986,22 +1987,19 @@ export function BusinessProvider({
                   item.quantity
               );
 
-            const {
-              error: stockErr,
-            } =
-              let stockQuery = supabase
-                .from('products')
-                .update({
-                  stock: newStock,
-                  updated_at: new Date().toISOString(),
-                })
-                .eq('id', item.product_id);
+            let stockQuery = supabase
+              .from('products')
+              .update({
+                stock: newStock,
+                updated_at: new Date().toISOString(),
+              })
+              .eq('id', item.product_id);
 
-              if (bizId) {
-                stockQuery = stockQuery.eq('business_id', bizId);
-              }
+            if (bizId) {
+              stockQuery = stockQuery.eq('business_id', bizId);
+            }
 
-              const { error: stockErr } = await stockQuery;
+            const { error: stockErr } = await stockQuery;
 
             if (stockErr) {
               throw new Error(
@@ -2830,12 +2828,7 @@ export function BusinessProvider({
         const todayTxs =
           transactions.filter(
             t => {
-              const txDateStr =
-                t.date
-                  ? t.date.split(
-                      'T'
-                    )[0]
-                  : '';
+              const txDateStr = getDateKey(t.date);
 
               return (
                 txDateStr ===
@@ -2874,8 +2867,7 @@ export function BusinessProvider({
         const todayExps =
           expenses.filter(
             e =>
-              (e.date || e.created_at || '')
-                .split('T')[0] === todayStr
+              getDateKey(e.date || e.created_at) === todayStr
           );
 
         const expensesToday =
@@ -3002,21 +2994,13 @@ export function BusinessProvider({
           const dayTxs =
             transactions.filter(
               t =>
-                (
-                  t.date
-                    ? t.date.split(
-                        'T'
-                      )[0]
-                    : ''
-                ) ===
-                dateString
+                getDateKey(t.date) === dateString
             );
 
           const dayExps =
             expenses.filter(
               e =>
-                (e.date || e.created_at || '')
-                  .split('T')[0] === dateString
+                getDateKey(e.date || e.created_at) === dateString
             );
 
           const dayOmzet =
