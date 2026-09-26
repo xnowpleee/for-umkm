@@ -491,7 +491,7 @@ export function ChatPage() {
   return (
     <div className="flex min-h-0 h-full max-h-full flex-col max-w-4xl mx-auto pb-16 md:pb-0 overflow-hidden">
       {/* Chat Header */}
-      <div className="relative z-20 flex min-h-[52px] h-[52px] items-center justify-between border-b border-[#E4E8EE] bg-[#172033] py-2.5 shrink-0">
+      <div className="relative z-20 flex min-h-[52px] h-[52px] items-center justify-between border-b border-[#E7EBF1] bg-[#FBFCFE] py-2.5 shrink-0">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-[#172E4D]" />
@@ -517,7 +517,7 @@ export function ChatPage() {
             } catch {}
             setChatError(null);
           }}
-          className="p-1.5 text-[#7D899B] hover:text-[#172033] hover:bg-[#FFFFFF] rounded-lg transition-colors text-xs flex items-center gap-1 select-none"
+          className="p-1.5 text-[#7D899B] hover:text-[#172033] hover:bg-[#F1F4F8] rounded-lg transition-colors text-xs flex items-center gap-1 select-none"
           title="Bersihkan Percakapan"
         >
           <RefreshCw className="w-3.5 h-3.5" />
@@ -557,7 +557,7 @@ export function ChatPage() {
                 className={`max-w-[94%] sm:max-w-[82%] rounded-xl px-3.5 py-3 text-[11px] leading-relaxed relative group ${
                   isUser
                     ? 'bg-[#EEF2F7] border border-[#E4E8EE] text-[#172033]'
-                    : 'bg-[#FFFFFF] border border-[#E4E8EE] text-[#172033]'
+                    : 'bg-[#FCFDFE] border border-[#E4E8EE] text-[#172033]'
                 }`}
               >
                 <div className="allow-select">
@@ -600,7 +600,7 @@ export function ChatPage() {
         {isLoading && (
           <div className="flex items-start gap-2.5">
             <div className="mt-1 h-1.5 w-1.5 rounded-full bg-[#172E4D] animate-pulse shrink-0" />
-            <div className="bg-[#FFFFFF] border border-[#E4E8EE] rounded-lg px-3 py-2 text-[10px] text-[#7D899B] flex items-center gap-2">
+            <div className="bg-[#FCFDFE] border border-[#E4E8EE] rounded-lg px-3 py-2 text-[10px] text-[#7D899B] flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#172E4D] animate-ping" />
               <span>Asisten sedang menganalisis data bisnismu...</span>
             </div>
@@ -632,7 +632,7 @@ export function ChatPage() {
           value={inputMessage}
           onChange={e => setInputMessage(e.target.value)}
           disabled={isLoading}
-          className="flex-1 px-3 py-2 text-[11px] bg-[#FFFFFF] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D] transition-colors"
+          className="flex-1 px-3 py-2 text-[11px] bg-[#FCFDFE] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D] transition-colors"
         />
         <button
           type="submit"
