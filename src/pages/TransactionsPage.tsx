@@ -386,7 +386,7 @@ export function TransactionsPage() {
           className={`p-3 rounded-xl border text-xs flex items-center justify-between transition-all ${
             toast.type === 'success'
               ? 'bg-[#172E4D]/10 border-[#172E4D]/20 text-[#172E4D]'
-              : 'bg-red-500/10 border-red-500/20 text-red-400'
+              : 'bg-[#FBF4F4] border-[#E6CACA] text-[#B86B6B]'
           }`}
         >
           <div className="flex items-center gap-2">
@@ -498,7 +498,7 @@ export function TransactionsPage() {
                         <div className="flex items-center justify-between text-[10px] mb-1.5">
                           <p className="text-[#7D899B] font-medium">{product.category}</p>
                           {isOutOfStock ? (
-                            <span className="text-red-400 font-semibold text-[9px]">Habis</span>
+                            <span className="text-[#B86B6B] font-semibold text-[9px]">Habis</span>
                           ) : isMaxInCart ? (
                             <span className="text-amber-400 font-semibold text-[9px]">Max Stok</span>
                           ) : null}
@@ -527,7 +527,7 @@ export function TransactionsPage() {
                         <span className="text-xs font-bold text-[#172033] tabular-nums">
                           {formatRupiah(product.selling_price)}
                         </span>
-                        <span className={`text-[10px] tabular-nums ${isOutOfStock ? 'text-red-400' : 'text-[#7D899B]'}`}>
+                        <span className={`text-[10px] tabular-nums ${isOutOfStock ? 'text-[#B86B6B]' : 'text-[#7D899B]'}`}>
                           {product.stock} {product.unit}
                         </span>
                       </div>
@@ -554,7 +554,7 @@ export function TransactionsPage() {
                     <button
                       type="button"
                       onClick={clearCart}
-                      className="text-xs text-[#7D899B] hover:text-red-400 transition-colors"
+                      className="text-xs text-[#7D899B] hover:text-[#B86B6B] transition-colors"
                     >
                       Kosongkan
                     </button>
@@ -632,7 +632,7 @@ export function TransactionsPage() {
                           <button
                             type="button"
                             onClick={() => removeFromCart(item.product.id)}
-                            className="text-[#7D899B] hover:text-red-400 p-1 transition-colors"
+                            className="text-[#7D899B] hover:text-[#B86B6B] p-1 transition-colors"
                             title="Hapus dari keranjang"
                           >
                             <X className="w-3.5 h-3.5" />
@@ -653,14 +653,14 @@ export function TransactionsPage() {
                     placeholder="Nama Pelanggan (opsional)"
                     value={customerName}
                     onChange={e => setCustomerName(e.target.value)}
-                    className="w-full px-3 py-1.5 text-xs bg-[#1A1A1E] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
+                    className="w-full px-3 py-1.5 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
                   />
                   <input
                     type="text"
                     placeholder="Catatan / Meja (opsional)"
                     value={transactionNotes}
                     onChange={e => setTransactionNotes(e.target.value)}
-                    className="w-full px-3 py-1.5 text-xs bg-[#1A1A1E] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
+                    className="w-full px-3 py-1.5 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
                   />
                 </div>
 
@@ -736,7 +736,7 @@ export function TransactionsPage() {
                       placeholder="0"
                       value={discountInput}
                       onChange={e => setDiscountInput(e.target.value)}
-                      className="w-full pl-9 pr-3 py-1.5 text-xs bg-[#1A1A1E] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
+                      className="w-full pl-9 pr-3 py-1.5 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
                     />
                   </div>
                 </div>
@@ -767,7 +767,7 @@ export function TransactionsPage() {
                         placeholder={`Minimal ${formatRupiah(cartSummary.totalAmount)}`}
                         value={cashReceivedInput}
                         onChange={e => setCashReceivedInput(e.target.value)}
-                        className="w-full pl-9 pr-3 py-1.5 text-xs bg-[#1A1A1E] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
+                        className="w-full pl-9 pr-3 py-1.5 text-xs bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
                       />
                     </div>
 
@@ -806,7 +806,7 @@ export function TransactionsPage() {
                     <span className="font-semibold text-[#172033] tabular-nums">{formatRupiah(cartSummary.rawSubtotal)}</span>
                   </div>
                   {cartSummary.discount > 0 && (
-                    <div className="flex justify-between text-red-400">
+                    <div className="flex justify-between text-[#B86B6B]">
                       <span>Diskon</span>
                       <span className="tabular-nums">-{formatRupiah(cartSummary.discount)}</span>
                     </div>
@@ -970,7 +970,7 @@ export function TransactionsPage() {
                           <button
                             type="button"
                             onClick={() => setDeletingTx(tx)}
-                            className="p-1.5 text-[#7D899B] hover:text-red-400 hover:bg-[#EEF2F7] rounded-md transition-colors"
+                            className="p-1.5 text-[#7D899B] hover:text-[#B86B6B] hover:bg-[#EEF2F7] rounded-md transition-colors"
                             title="Hapus Nota"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -1003,7 +1003,7 @@ export function TransactionsPage() {
         maxWidth="sm"
       >
         <div className="space-y-4">
-          <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-xs text-red-300">
+          <div className="p-3 rounded-lg bg-[#FBF4F4] border border-[#E6CACA] text-xs text-[#B86B6B]">
             Apakah Anda yakin ingin menghapus nota transaksi <strong>{deletingTx?.invoice_number}</strong> senilai <strong className="tabular-nums">{formatRupiah(deletingTx?.total_amount || 0)}</strong>? Data penjualan akan dihapus secara permanen.
           </div>
           <div className="flex items-center justify-end gap-2 pt-2 border-t border-[#E4E8EE]">
@@ -1019,7 +1019,7 @@ export function TransactionsPage() {
               type="button"
               disabled={isDeleting}
               onClick={handleDeleteTransactionConfirm}
-              className="px-4 py-2 text-xs font-semibold text-white bg-red-600 hover:bg-red-700 rounded-lg transition-colors disabled:opacity-50 flex items-center gap-1.5"
+              className="px-4 py-2 text-xs font-semibold text-white bg-[#9E555A] hover:bg-[#8C4A4F] rounded-lg transition-colors disabled:opacity-50 flex items-center gap-1.5"
             >
               {isDeleting ? (
                 <>
