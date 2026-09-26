@@ -36,7 +36,10 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
   const hppToday = Math.max(omzetToday - estimatedProfitToday - expensesToday, 0);
   const margin = omzetToday ? (estimatedProfitToday / omzetToday) * 100 : 0;
   const productImage = (product: any) => product?.image_url || product?.image || '';
-  const getTopProductImage = (product: any) => {\n    const match = products.find(p => p.name === product?.name);\n    return productImage(match);\n  };
+  const getTopProductImage = (product: any) => {
+    const match = products.find(p => p.name === product?.name);
+    return productImage(match);
+  };
 
   return (
     <div className="min-h-full pb-24 text-[#172033]">
