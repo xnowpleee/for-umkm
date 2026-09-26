@@ -1503,6 +1503,7 @@ export function BusinessProvider({
         cost_price: Number(data.hpp || 0),
         selling_price: Number(data.selling_price || 0),
         stock: Number(data.stock || 0),
+        min_stock: Number(data.min_stock ?? 5),
         unit: data.unit || 'porsi',
         image_url: data.image_url || data.image || null,
         created_at: new Date().toISOString(),
@@ -1614,7 +1615,9 @@ export function BusinessProvider({
         delete updatePayload.hpp;
       }
 
-      delete updatePayload.min_stock;
+      if ('min_stock' in updatePayload) {
+        updatePayload.min_stock = Number(updatePayload.min_stock ?? 5);
+      }
 
       let query =
         supabase
@@ -1986,20 +1989,19 @@ export function BusinessProvider({
             const {
               error: stockErr,
             } =
-              await supabase
-                .from(
-                  'products'
-                )
+              let stockQuery = supabase
+                .from('products')
                 .update({
-                  stock:
-                    newStock,
-                  updated_at:
-                    new Date().toISOString(),
+                  stock: newStock,
+                  updated_at: new Date().toISOString(),
                 })
-                .eq(
-                  'id',
-                  item.product_id
-                );
+                .eq('id', item.product_id);
+
+              if (bizId) {
+                stockQuery = stockQuery.eq('business_id', bizId);
+              }
+
+              const { error: stockErr } = await stockQuery;
 
             if (stockErr) {
               throw new Error(
