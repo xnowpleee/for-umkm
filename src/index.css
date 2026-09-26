@@ -110,3 +110,15 @@
     padding: 2mm 2.5mm !important;
   }
 }
+
+
+/* BisnisKu brand theme — blue */
+[class*="text-[#22C55E]"] { color: #2563EB !important; }
+[class*="bg-[#22C55E]"] { background-color: #2563EB !important; }
+[class*="border-[#22C55E]"] { border-color: #2563EB !important; }
+[class*="ring-[#22C55E]"] { --tw-ring-color: #2563EB !important; }
+[class*="decoration-[#22C55E]"] { text-decoration-color: #2563EB !important; }
+[class*="hover\\:text-[#22C55E]"]:hover { color: #2563EB !important; }
+[class*="hover\\:bg-[#16A34A]"]:hover { background-color: #1D4ED8 !important; }
+[class*="focus\\:border-[#22C55E]"]:focus { border-color: #2563EB !important; }
+[class*="focus\\:ring-[#22C55E]"]:focus { --tw-ring-color: #2563EB !important; }
