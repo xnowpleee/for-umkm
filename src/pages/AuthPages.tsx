@@ -163,7 +163,7 @@ export function AuthPages({ onSuccess, initialMode = 'login' }: AuthPagesProps) 
 
         {/* Notifications */}
         {errorMsg && (
-          <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs">
+          <div className="p-3 rounded-lg bg-[#FBF5F5] border border-[#E7D2D4] text-[#A96D73] text-xs">
             {errorMsg}
           </div>
         )}
