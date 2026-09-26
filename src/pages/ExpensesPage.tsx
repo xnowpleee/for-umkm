@@ -249,7 +249,7 @@ export function ExpensesPage() {
           className={`p-3 rounded-lg border text-xs flex items-center justify-between transition-all ${
             toast.type === 'success'
               ? 'bg-[#172E4D]/10 border-[#172E4D]/20 text-[#172E4D]'
-              : 'bg-red-500/10 border-red-500/20 text-red-400'
+              : 'bg-[#FBF4F4] border-[#E6CACA] text-[#B86B6B]'
           }`}
         >
           <div className="flex items-center gap-2">
@@ -362,7 +362,7 @@ export function ExpensesPage() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs min-w-[550px]">
-              <thead className="text-[#7D899B] border-b border-[#E4E8EE] font-medium bg-[#111111]">
+              <thead className="text-[#7D899B] border-b border-[#E4E8EE] font-medium bg-[#F7F9FC]">
                 <tr>
                   <th className="py-2.5 px-4">Nama Pengeluaran</th>
                   <th className="py-2.5 px-3">Kategori</th>
@@ -388,7 +388,7 @@ export function ExpensesPage() {
                     <td className="py-3 px-3 text-[#7D899B] whitespace-nowrap tabular-nums">
                       {formatDateOnly(exp.date)}
                     </td>
-                    <td className="py-3 px-3 text-right font-semibold text-red-400 tabular-nums">
+                    <td className="py-3 px-3 text-right font-semibold text-[#B86B6B] tabular-nums">
                       -{formatRupiah(exp.amount)}
                     </td>
                     <td className="py-3 px-3 text-center">
@@ -404,7 +404,7 @@ export function ExpensesPage() {
                         <button
                           type="button"
                           onClick={() => setDeletingExpense(exp)}
-                          className="p-1.5 text-[#7D899B] hover:text-red-400 hover:bg-red-500/10 rounded-md transition-colors"
+                          className="p-1.5 text-[#7D899B] hover:text-[#B86B6B] hover:bg-[#FBF4F4] rounded-md transition-colors"
                           title="Hapus"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -538,7 +538,7 @@ export function ExpensesPage() {
         maxWidth="sm"
       >
         <div className="space-y-4 text-xs">
-          <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-300">
+          <div className="p-3 rounded-lg bg-[#FBF4F4] border border-[#E6CACA] text-[#B86B6B]">
             Yakin ingin menghapus pengeluaran <strong>&quot;{deletingExpense?.name}&quot;</strong> senilai <strong className="tabular-nums">{formatRupiah(deletingExpense?.amount || 0)}</strong>?
           </div>
           <div className="flex items-center justify-end gap-2 pt-2 border-t border-[#E4E8EE]">
@@ -554,7 +554,7 @@ export function ExpensesPage() {
               type="button"
               disabled={isDeleting}
               onClick={handleDeleteConfirm}
-              className="px-4 py-2 text-xs font-semibold text-white bg-red-600 hover:bg-red-700 rounded-lg transition-colors flex items-center gap-1.5"
+              className="px-4 py-2 text-xs font-semibold text-white bg-[#9E555A] hover:bg-[#8C4A4F] rounded-lg transition-colors flex items-center gap-1.5"
             >
               {isDeleting ? (
                 <>
