@@ -161,12 +161,12 @@ export async function renderReceiptToCanvas(
 
   // 3. Store Name (Bold uppercase)
   const storeName = (profile.business_name || 'BisnisKu').trim();
-  ctx.fillStyle = '#111827';
+  ctx.fillStyle = '#172033';
   ctx.font = `700 ${paperWidth === '58mm' ? 16 : 20}px ${primaryFont}`;
   currentY = drawWrappedText(ctx, storeName, centerX, currentY + 4, contentWidth, 24, 'center');
 
   // 4. Store Address, Phone, Instagram
-  ctx.fillStyle = '#4B5563';
+  ctx.fillStyle = '#607089';
   ctx.font = `400 ${paperWidth === '58mm' ? 11 : 12}px ${primaryFont}`;
 
   if (profile.address) {
@@ -187,7 +187,7 @@ export async function renderReceiptToCanvas(
 
   // Helper for drawing subtle divider line
   const drawDivider = (yPos: number) => {
-    ctx.strokeStyle = '#E5E7EB';
+    ctx.strokeStyle = '#E4E8EE';
     ctx.lineWidth = 1;
     ctx.setLineDash([4, 3]);
     ctx.beginPath();
@@ -213,12 +213,12 @@ export async function renderReceiptToCanvas(
 
   const drawKeyValue = (key: string, val: string, isBoldVal = false) => {
     ctx.textAlign = 'left';
-    ctx.fillStyle = '#6B7280';
+    ctx.fillStyle = '#7D899B';
     ctx.font = `400 ${paperWidth === '58mm' ? 11 : 12}px ${primaryFont}`;
     ctx.fillText(key, padding, currentY);
 
     ctx.textAlign = 'right';
-    ctx.fillStyle = '#111827';
+    ctx.fillStyle = '#172033';
     ctx.font = `${isBoldVal ? '600' : '400'} ${paperWidth === '58mm' ? 11 : 12}px ${primaryFont}`;
     ctx.fillText(val, baseWidth - padding, currentY);
     currentY += 18;
@@ -243,18 +243,18 @@ export async function renderReceiptToCanvas(
     for (const item of items) {
       // Product Name
       ctx.textAlign = 'left';
-      ctx.fillStyle = '#111827';
+      ctx.fillStyle = '#172033';
       ctx.font = `600 ${paperWidth === '58mm' ? 12 : 13}px ${primaryFont}`;
       currentY = drawWrappedText(ctx, item.product_name, padding, currentY, contentWidth, 16, 'left');
 
       // Quantity x Unit Price = Subtotal
-      ctx.fillStyle = '#6B7280';
+      ctx.fillStyle = '#7D899B';
       ctx.font = `400 ${paperWidth === '58mm' ? 11 : 12}px ${primaryFont}`;
       ctx.textAlign = 'left';
       ctx.fillText(`${item.quantity} × ${formatRupiah(item.unit_price)}`, padding, currentY);
 
       ctx.textAlign = 'right';
-      ctx.fillStyle = '#111827';
+      ctx.fillStyle = '#172033';
       ctx.font = `600 ${paperWidth === '58mm' ? 11 : 12}px ${primaryFont}`;
       const itemSubtotal = item.subtotal || item.quantity * item.unit_price;
       ctx.fillText(formatRupiah(itemSubtotal), baseWidth - padding, currentY);
@@ -263,7 +263,7 @@ export async function renderReceiptToCanvas(
     }
   } else {
     ctx.textAlign = 'left';
-    ctx.fillStyle = '#111827';
+    ctx.fillStyle = '#172033';
     ctx.font = `600 ${paperWidth === '58mm' ? 12 : 13}px ${primaryFont}`;
     ctx.fillText('Total Penjualan', padding, currentY);
     ctx.textAlign = 'right';
@@ -283,19 +283,19 @@ export async function renderReceiptToCanvas(
   if (discountAmount > 0) {
     drawKeyValue('Subtotal', formatRupiah(subtotalAmount));
     ctx.textAlign = 'left';
-    ctx.fillStyle = '#6B7280';
+    ctx.fillStyle = '#7D899B';
     ctx.font = `400 ${paperWidth === '58mm' ? 11 : 12}px ${primaryFont}`;
     ctx.fillText('Diskon', padding, currentY);
 
     ctx.textAlign = 'right';
-    ctx.fillStyle = '#EF4444';
+    ctx.fillStyle = '#B86B6B';
     ctx.font = `500 ${paperWidth === '58mm' ? 11 : 12}px ${primaryFont}`;
     ctx.fillText(`-${formatRupiah(discountAmount)}`, baseWidth - padding, currentY);
     currentY += 18;
   }
 
   // TOTAL (Large & Bold)
-  ctx.fillStyle = '#111827';
+  ctx.fillStyle = '#172033';
   ctx.textAlign = 'left';
   ctx.font = `700 ${paperWidth === '58mm' ? 14 : 16}px ${primaryFont}`;
   ctx.fillText('TOTAL', padding, currentY + 2);
@@ -323,12 +323,12 @@ export async function renderReceiptToCanvas(
 
   // 8. Custom Footer
   const footerMessage = (profile.receipt_footer || 'Terima kasih atas kunjungan Anda!').trim();
-  ctx.fillStyle = '#4B5563';
+  ctx.fillStyle = '#607089';
   ctx.font = `400 ${paperWidth === '58mm' ? 11 : 12}px ${primaryFont}`;
   currentY = drawWrappedText(ctx, footerMessage, centerX, currentY, contentWidth, 16, 'center');
 
   // 9. Branding
-  ctx.fillStyle = '#9CA3AF';
+  ctx.fillStyle = '#9AA6B6';
   ctx.font = `400 ${paperWidth === '58mm' ? 9 : 10}px ${primaryFont}`;
   ctx.textAlign = 'center';
   ctx.fillText('Dicatat via BisnisKu', centerX, currentY + 6);
