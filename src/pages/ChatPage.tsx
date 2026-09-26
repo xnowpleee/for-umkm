@@ -609,7 +609,7 @@ export function ChatPage() {
 
         {/* Error Banner */}
         {chatError && (
-          <div className="p-2.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs flex items-center gap-2">
+          <div className="p-2.5 rounded-lg bg-[#FBF5F5] border border-[#E7D2D4] text-[#A96D73] text-xs flex items-center gap-2">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>{chatError}</span>
           </div>
