@@ -84,9 +84,13 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         <div className="rounded-2xl border border-[#E5E9F0] bg-white p-4 shadow-[0_4px_18px_rgba(28,43,64,0.035)]">
           <div className="flex items-center justify-between"><div className="flex items-center gap-2"><BarChart3 className="h-4 w-4 text-[#52667E]" /><h2 className="text-[13px] font-semibold">Tren Penjualan</h2></div><select value={range} onChange={e => setRange(e.target.value as Range)} className="rounded-md border-0 bg-transparent text-[10px] font-medium text-[#65748A] outline-none"><option>Hari Ini</option><option>7 Hari</option><option>30 Hari</option></select></div>
           <div className="mt-4 flex h-36 items-end gap-2">
-            {trend.map(function(item) {
+            {trend.map(function(item, index) {
               const height = Math.max((item.omzet / maxOmzet) * 100, item.omzet ? 8 : 3);
-              return <div key={item.date} className="flex h-full flex-1 flex-col items-center justify-end gap-2"><div className="w-full max-w-[30px] rounded-t-md bg-[#667A91]" style={{ height: String(height) + '%' }} /><span className="text-[9px] text-[#8491A4]">{item.label}</span></div>;
+              const showLabel = days < 30 || index === 0 || index === trend.length - 1 || index % 5 === 0;
+              return <div key={item.date} className="min-w-0 flex h-full flex-1 flex-col items-center justify-end gap-1.5">
+                <div className="w-full max-w-[22px] rounded-t-md bg-[#667A91] transition-[height] duration-300" style={{ height: String(height) + '%' }} />
+                <span className="h-3 w-full truncate text-center text-[8px] text-[#8491A4]">{showLabel ? (days === 30 ? item.date.slice(8) : item.label) : ''}</span>
+              </div>;
             })}
           </div>
         </div>
