@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useBusiness } from '../context/BusinessContext';
-import { formatRupiah } from '../utils/formatters';
+import { formatRupiah, getDateKey } from '../utils/formatters';
 import { NavTab } from '../components/layout/BottomNav';
 import {
   ArrowUpRight,
@@ -51,8 +51,8 @@ export function DashboardPage({
       d.setDate(d.getDate() - i);
       const dateString = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
-      const dayTxs = transactions.filter(t => (t.date || '').split('T')[0] === dateString);
-      const dayExps = expenses.filter(e => (e.date || e.created_at || '').split('T')[0] === dateString);
+      const dayTxs = transactions.filter(t => getDateKey(t.date) === dateString);
+      const dayExps = expenses.filter(e => getDateKey(e.date || e.created_at) === dateString);
       const omzet = dayTxs.reduce((sum, t) => sum + Number(t.total_amount || 0), 0);
       const hpp = dayTxs.reduce((sum, t) => sum + Number(t.total_hpp || 0), 0);
       const expense = dayExps.reduce((sum, e) => sum + Number(e.amount || 0), 0);
