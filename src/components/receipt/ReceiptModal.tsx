@@ -338,7 +338,7 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
                 type="button"
                 onClick={() => setPaperWidth('80mm')}
                 className={`px-2 py-0.5 rounded font-medium transition-colors ${
-                  paperWidth === '80mm' ? 'bg-[#252525] text-[#172033]' : 'text-[#7D899B] hover:text-[#172033]'
+                  paperWidth === '80mm' ? 'bg-[#EEF2F7] text-[#172033]' : 'text-[#7D899B] hover:text-[#172033]'
                 }`}
               >
                 80mm
@@ -347,7 +347,7 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
                 type="button"
                 onClick={() => setPaperWidth('58mm')}
                 className={`px-2 py-0.5 rounded font-medium transition-colors ${
-                  paperWidth === '58mm' ? 'bg-[#252525] text-[#172033]' : 'text-[#7D899B] hover:text-[#172033]'
+                  paperWidth === '58mm' ? 'bg-[#EEF2F7] text-[#172033]' : 'text-[#7D899B] hover:text-[#172033]'
                 }`}
               >
                 58mm
@@ -368,7 +368,7 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
           <div
             className={`px-4 py-2 text-xs font-medium text-center border-b select-none ${
               feedbackMsg.type === 'success'
-                ? 'bg-[#22C55E]/10 text-[#304C70] border-[#22C55E]/30'
+                ? 'bg-[#304C70]/10 text-[#304C70] border-[#304C70]/30'
                 : 'bg-[#F1F4F8] text-[#5E718A] border-[#DDE4EC]'
             }`}
           >
@@ -397,7 +397,7 @@ export function ReceiptModal({ isOpen, onClose, transaction, profile }: ReceiptM
         </div>
 
         {/* Action Controls Bar */}
-        <div className="p-3 bg-[#111111] border-t border-[#252525] space-y-2 select-none shrink-0">
+        <div className="p-3 bg-[#F7F9FC] border-t border-[#E4E8EE] space-y-2 select-none shrink-0">
           <div className="grid grid-cols-2 gap-2">
             {/* 1. Simpan sebagai Gambar (PNG) */}
             <button
