@@ -251,10 +251,15 @@ export function TransactionsPage() {
           message: `Transaksi ${newTx.invoice_number} berhasil dicatat!`,
           type: 'success',
         });
-        // createTransaction already updates the shared BusinessContext state
-        // (transactions + products). Do not immediately refetch here: a stale
-        // read can overwrite the freshly-added transaction and make the dashboard
-        // chart/summary/top products/low stock appear unchanged.
+        // createTransaction updates the shared state immediately.
+        // Re-sync shortly after the DB commit so every dashboard calculation
+        // also receives the authoritative transaction + stock data, without
+        // blocking the local UI update.
+        window.setTimeout(() => {
+          refreshData().catch(error => {
+            console.error('Background dashboard sync failed:', error);
+          });
+        }, 500);
 
       }
     } catch (err: any) {
