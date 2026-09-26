@@ -35,22 +35,22 @@ export function Modal({ isOpen, onClose, title, subtitle, children, maxWidth = '
   }[maxWidth];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-xs animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#172033]/25 backdrop-blur-[2px] animate-in fade-in duration-150">
       <div
-        className={`w-full ${maxWidthClass} bg-[#151515] border border-[#252525] rounded-xl shadow-xl overflow-hidden flex flex-col max-h-[90vh]`}
+        className={`w-full ${maxWidthClass} bg-white border border-[#E4E8EE] rounded-xl shadow-xl overflow-hidden flex flex-col max-h-[90vh]`}
         role="dialog"
         aria-modal="true"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-3.5 border-b border-[#252525] bg-[#111111]">
+        <div className="flex items-center justify-between px-5 py-3.5 border-b border-[#EDF0F4] bg-[#F7F9FC]">
           <div>
-            <h3 className="text-sm sm:text-base font-semibold text-[#F5F5F5]">{title}</h3>
-            {subtitle && <p className="text-xs text-[#8A8A8A] mt-0.5">{subtitle}</p>}
+            <h3 className="text-sm sm:text-base font-semibold text-[#172033]">{title}</h3>
+            {subtitle && <p className="text-xs text-[#7D899B] mt-0.5">{subtitle}</p>}
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 text-[#8A8A8A] hover:text-[#F5F5F5] hover:bg-[#1F1F1F] rounded-lg transition-colors select-none"
+            className="p-1.5 text-[#8A8A8A] hover:text-[#172033] hover:bg-[#EEF2F7] rounded-lg transition-colors select-none"
             aria-label="Tutup modal"
           >
             <X className="w-4 h-4" />
