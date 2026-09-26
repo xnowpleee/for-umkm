@@ -84,7 +84,7 @@ export function getTodayDateString(): string {
 export function getDateKey(value?: string | Date | null): string {
   if (!value) return '';
 
-  const d = value instanceof Date ? value : new Date(value);
+  // Date-only values (YYYY-MM-DD) are already local calendar dates; do not parse them as UTC.\n  if (typeof value === 'string' && /^\\d{4}-\\d{2}-\\d{2}$/.test(value)) return value;\n\n  const d = value instanceof Date ? value : new Date(value);
   if (Number.isNaN(d.getTime())) return '';
 
   const year = d.getFullYear();
