@@ -49,59 +49,59 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
           <p className="mt-1 text-[12px] text-[#8190A5]">Semangat terus, bisnis kamu makin berkembang!</p>
         </div>
         <button type="button" onClick={() => onNavigate('settings')} className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#E5E9F0] bg-white shadow-sm">
-          {profile?.logo_url ? <img src={profile.logo_url} alt="" className="h-full w-full object-cover" /> : <span className="text-xs font-bold text-[#172E4D]">BK</span>}
+          {profile?.logo_url ? <img src={profile.logo_url} alt="" className="h-full w-full object-cover" /> : <span className="text-xs font-bold text-[#52667E]">BK</span>}
         </button>
       </header>
 
-      <section className="relative overflow-hidden rounded-2xl bg-[#203A5C] p-5 text-white shadow-[0_12px_32px_rgba(23,46,77,0.10)]">
+      <section className="relative overflow-hidden rounded-2xl bg-[#E9EEF5] p-5 text-[#172033] border border-[#DEE5EE] shadow-[0_8px_24px_rgba(28,43,64,0.045)]">
         <div className="relative">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <div className="flex items-center gap-1.5 text-[11px] text-[#D7DFEA]"><CircleDollarSign className="h-3.5 w-3.5" />Total Omzet<Eye className="ml-1 h-3.5 w-3.5 opacity-70" /></div>
+              <div className="flex items-center gap-1.5 text-[11px] text-[#6F7D91]"><CircleDollarSign className="h-3.5 w-3.5" />Total Omzet<Eye className="ml-1 h-3.5 w-3.5 opacity-70" /></div>
               <p className="mt-2 text-[28px] font-bold leading-none tracking-tight tabular-nums">{formatRupiah(omzetToday)}</p>
-              <div className="mt-2 flex items-center gap-1.5 text-[10px]"><span className="inline-flex items-center gap-0.5 font-semibold text-[#5BC29A]"><ArrowUpRight className="h-3 w-3" />{margin.toFixed(0)}%</span><span className="text-[#B7C4D5]">dari kemarin</span></div>
+              <div className="mt-2 text-[10px] text-[#8996A8]">Margin laba {margin.toFixed(0)}%</div>
             </div>
-            <button type="button" onClick={onOpenQuickTx} className="flex shrink-0 items-center gap-1.5 rounded-full bg-white px-3.5 py-2.5 text-[10px] font-semibold text-[#172E4D] shadow-sm active:scale-[.98]">Transaksi Baru <Plus className="h-3.5 w-3.5" /></button>
+            <button type="button" onClick={onOpenQuickTx} className="flex shrink-0 items-center gap-1.5 rounded-full bg-[#F8FAFC] border border-[#DDE4EC] px-3.5 py-2.5 text-[10px] font-semibold text-[#304C70] shadow-sm active:scale-[.98]">Transaksi Baru <Plus className="h-3.5 w-3.5" /></button>
           </div>
           <div className="mt-5 h-12">
             <svg viewBox="0 0 100 30" preserveAspectRatio="none" className="h-full w-full">
-              <polyline points={trend.map((p, i) => String(trend.length === 1 ? 50 : (i / (trend.length - 1)) * 100) + ',' + String(28 - (p.omzet / maxOmzet) * 22)).join(' ')} fill="none" stroke="#B9CCEA" strokeWidth="1.25" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
+              <polyline points={trend.map((p, i) => String(trend.length === 1 ? 50 : (i / (trend.length - 1)) * 100) + ',' + String(28 - (p.omzet / maxOmzet) * 22)).join(' ')} fill="none" stroke="#9EADBF" strokeWidth="1.25" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
         </div>
       </section>
 
       <section className="mt-4 rounded-2xl border border-[#E5E9F0] bg-white p-4 shadow-[0_4px_18px_rgba(28,43,64,0.035)]">
-        <div className="mb-4 flex items-center gap-2"><div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#EEF3F9] text-[#172E4D]"><Wallet className="h-4 w-4" /></div><h2 className="text-[14px] font-semibold text-[#172033]">Ringkasan Keuangan</h2><ChevronRight className="ml-auto h-4 w-4 text-[#91A0B4]" /></div>
+        <div className="mb-4 flex items-center gap-2"><div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F1F4F8] text-[#607089]"><Wallet className="h-4 w-4" /></div><h2 className="text-[14px] font-semibold text-[#172033]">Ringkasan Keuangan</h2><ChevronRight className="ml-auto h-4 w-4 text-[#91A0B4]" /></div>
         <div className="grid grid-cols-2 divide-x divide-y divide-[#EDF0F4] sm:grid-cols-4 sm:divide-y-0">
           {[['Omzet', omzetToday], ['Keuntungan', estimatedProfitToday], ['HPP', hppToday], ['Pengeluaran', expensesToday]].map(function(item: any) {
-            return <div key={item[0]} className="px-2 py-2 first:pl-0 sm:py-1"><p className="text-[10px] text-[#8290A3]">{item[0]}</p><p className="mt-1 text-[13px] font-semibold text-[#1C2B40] tabular-nums">{formatRupiah(Number(item[1]))}</p><p className="mt-1 text-[9px] font-semibold text-[#259A72]">↑ {item[0] === 'Pengeluaran' ? '3%' : item[0] === 'Keuntungan' ? '8%' : '12%'}</p></div>;
+            return <div key={item[0]} className="px-2 py-2 first:pl-0 sm:py-1"><p className="text-[10px] text-[#8290A3]">{item[0]}</p><p className="mt-1 text-[13px] font-semibold text-[#1C2B40] tabular-nums">{formatRupiah(Number(item[1]))}</p><p className="mt-1 text-[9px] text-[#9AA6B7]">Hari ini</p></div>;
           })}
         </div>
       </section>
 
       <section className="mt-4 grid gap-3 lg:grid-cols-2">
         <div className="rounded-2xl border border-[#E5E9F0] bg-white p-4 shadow-[0_4px_18px_rgba(28,43,64,0.035)]">
-          <div className="flex items-center justify-between"><div className="flex items-center gap-2"><BarChart3 className="h-4 w-4 text-[#172E4D]" /><h2 className="text-[13px] font-semibold">Tren Penjualan</h2></div><select value={range} onChange={e => setRange(e.target.value as Range)} className="rounded-md border-0 bg-transparent text-[10px] font-medium text-[#65748A] outline-none"><option>Hari Ini</option><option>7 Hari</option><option>30 Hari</option></select></div>
+          <div className="flex items-center justify-between"><div className="flex items-center gap-2"><BarChart3 className="h-4 w-4 text-[#52667E]" /><h2 className="text-[13px] font-semibold">Tren Penjualan</h2></div><select value={range} onChange={e => setRange(e.target.value as Range)} className="rounded-md border-0 bg-transparent text-[10px] font-medium text-[#65748A] outline-none"><option>Hari Ini</option><option>7 Hari</option><option>30 Hari</option></select></div>
           <div className="mt-4 flex h-36 items-end gap-2">
             {trend.map(function(item) {
               const height = Math.max((item.omzet / maxOmzet) * 100, item.omzet ? 8 : 3);
-              return <div key={item.date} className="flex h-full flex-1 flex-col items-center justify-end gap-2"><div className="w-full max-w-[30px] rounded-t-md bg-[#304C70]" style={{ height: String(height) + '%' }} /><span className="text-[9px] text-[#8491A4]">{item.label}</span></div>;
+              return <div key={item.date} className="flex h-full flex-1 flex-col items-center justify-end gap-2"><div className="w-full max-w-[30px] rounded-t-md bg-[#667A91]" style={{ height: String(height) + '%' }} /><span className="text-[9px] text-[#8491A4]">{item.label}</span></div>;
             })}
           </div>
         </div>
 
-        <div className="rounded-2xl border border-[#EADBDD] bg-white p-4 shadow-[0_4px_18px_rgba(28,43,64,0.035)]">
-          <div className="flex items-center gap-2"><TriangleAlert className="h-4 w-4 text-[#D86C6C]" /><h2 className="text-[13px] font-semibold">Stok Menipis</h2><ChevronRight className="ml-auto h-4 w-4 text-[#9AA6B7]" /></div>
+        <div className="rounded-2xl border border-[#E4E8EE] bg-white p-4 shadow-[0_4px_18px_rgba(28,43,64,0.035)]">
+          <div className="flex items-center gap-2"><TriangleAlert className="h-4 w-4 text-[#A96D73]" /><h2 className="text-[13px] font-semibold">Stok Menipis</h2><ChevronRight className="ml-auto h-4 w-4 text-[#9AA6B7]" /></div>
           <div className="mt-3 space-y-3">
             {lowStockProducts.length === 0 ? <p className="py-6 text-center text-[10px] text-[#8A96A8]">Semua stok masih aman.</p> : lowStockProducts.slice(0, 3).map(function(product: any, index) {
               return <button key={product.id || product.name || index} type="button" onClick={() => onNavigate('products')} className="flex w-full items-center gap-3 text-left">
                 {productImage(product) ? <img src={productImage(product)} alt="" className="h-9 w-9 rounded-lg object-cover" /> : <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#F2F4F7] text-[#718096]"><Package className="h-4 w-4" /></div>}
-                <div className="min-w-0 flex-1"><p className="truncate text-[10px] font-medium">{product.name}</p><p className="mt-0.5 text-[9px] text-[#8995A7]">{product.stock} {product.unit}</p></div><span className="text-[10px] font-semibold text-[#D85D5D]">{product.stock} pcs</span>
+                <div className="min-w-0 flex-1"><p className="truncate text-[10px] font-medium">{product.name}</p><p className="mt-0.5 text-[9px] text-[#8995A7]">{product.stock} {product.unit}</p></div><span className="text-[10px] font-semibold text-[#A96D73]">{product.stock} pcs</span>
               </button>;
             })}
           </div>
-          {lowStockProducts.length > 0 && <button type="button" onClick={() => onNavigate('products')} className="mt-3 w-full rounded-full bg-[#F8F2F2] py-2 text-[9px] font-medium text-[#7A5960]">Lihat semua →</button>}
+          {lowStockProducts.length > 0 && <button type="button" onClick={() => onNavigate('products')} className="mt-3 w-full rounded-full bg-[#F5F2F3] py-2 text-[9px] font-medium text-[#7A6870]">Lihat semua →</button>}
         </div>
       </section>
 
@@ -113,19 +113,19 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
       </section>
 
       <section className="mt-4 rounded-2xl border border-[#E5E9F0] bg-white p-4 shadow-[0_4px_18px_rgba(28,43,64,0.035)]">
-        <div className="flex items-center justify-between"><div className="flex items-center gap-2"><ShoppingBag className="h-4 w-4 text-[#172E4D]" /><h2 className="text-[13px] font-semibold">Produk Terlaris</h2></div><button type="button" onClick={() => onNavigate('products')} className="text-[10px] text-[#65748A]">Lihat semua</button></div>
+        <div className="flex items-center justify-between"><div className="flex items-center gap-2"><ShoppingBag className="h-4 w-4 text-[#52667E]" /><h2 className="text-[13px] font-semibold">Produk Terlaris</h2></div><button type="button" onClick={() => onNavigate('products')} className="text-[10px] text-[#65748A]">Lihat semua</button></div>
         <div className="mt-4 space-y-4">
           {topProductsToday.length === 0 ? <p className="py-5 text-center text-[10px] text-[#8A96A8]">Belum ada penjualan hari ini.</p> : topProductsToday.slice(0, 4).map(function(product: any, index) {
             const width = Math.min(100, Math.max(8, Number(product.quantity || 0) * 8));
-            return <div key={product.name || index} className="flex items-center gap-3"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#F1F3F6] text-[10px] font-semibold text-[#6D7A8E]">{index + 1}</span>{getTopProductImage(product) ? <img src={getTopProductImage(product)} alt={product.name} className="h-8 w-8 rounded-md object-cover border border-[#E5E9F0]" loading="lazy" onError={e => { e.currentTarget.style.display = 'none'; }} /> : <div className="h-8 w-8 rounded-md bg-[#F2F4F7] border border-[#E5E9F0]" />}<div className="min-w-0 w-28 shrink-0"><p className="truncate text-[10px] font-medium">{product.name}</p><p className="text-[9px] text-[#8A96A8]">{product.quantity} pcs terjual</p></div><div className="flex-1"><div className="h-1.5 overflow-hidden rounded-full bg-[#E8ECF1]"><div className="h-full rounded-full bg-[#203A5C]" style={{ width: String(width) + '%' }} /></div></div><span className="w-8 text-right text-[9px] text-[#68778B]">{Math.min(99, Number(product.quantity || 0) * 3)}%</span></div>;
+            return <div key={product.name || index} className="flex items-center gap-3"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#F1F3F6] text-[10px] font-semibold text-[#6D7A8E]">{index + 1}</span>{getTopProductImage(product) ? <img src={getTopProductImage(product)} alt={product.name} className="h-8 w-8 rounded-md object-cover border border-[#E5E9F0]" loading="lazy" onError={e => { e.currentTarget.style.display = 'none'; }} /> : <div className="h-8 w-8 rounded-md bg-[#F2F4F7] border border-[#E5E9F0]" />}<div className="min-w-0 w-28 shrink-0"><p className="truncate text-[10px] font-medium">{product.name}</p><p className="text-[9px] text-[#8A96A8]">{product.quantity} pcs terjual</p></div><div className="flex-1"><div className="h-1.5 overflow-hidden rounded-full bg-[#E8ECF1]"><div className="h-full rounded-full bg-[#667A91]" style={{ width: String(width) + '%' }} /></div></div><span className="w-8 text-right text-[9px] text-[#68778B]">{Math.min(99, Number(product.quantity || 0) * 3)}%</span></div>;
           })}
         </div>
       </section>
 
       <button type="button" onClick={() => onNavigate('chat')} className="mt-4 flex w-full items-center gap-3 rounded-2xl border border-[#E6EAF1] bg-[#F7F9FC] p-4 text-left">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#EAF0F8] text-[#304C70]"><Sparkles className="h-5 w-5" /></div>
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#F0F3F7] text-[#607089]"><Sparkles className="h-5 w-5" /></div>
         <div className="min-w-0 flex-1"><p className="text-[12px] font-semibold text-[#1D2B3F]">BisnisKu AI</p><p className="mt-0.5 text-[9px] text-[#78879B]">Tanya apa saja tentang bisnismu, dapatkan insight & saran.</p></div>
-        <span className="rounded-full bg-[#172E4D] px-3 py-2 text-[9px] font-semibold text-white">Mulai Chat</span>
+        <span className="rounded-full bg-[#667A91] px-3 py-2 text-[9px] font-semibold text-[#172033]">Mulai Chat</span>
       </button>
     </div>
   );
