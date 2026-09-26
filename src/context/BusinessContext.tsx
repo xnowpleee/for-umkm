@@ -1602,6 +1602,8 @@ export function BusinessProvider({
       delete updatePayload.id;
       delete updatePayload.business_id;
       delete updatePayload.user_id;
+      // The database uses image_url; "image" is only a UI compatibility alias.
+      delete updatePayload.image;
 
       if (
         'hpp' in
