@@ -323,7 +323,7 @@ export function ReportsPage() {
 
             <div className="flex justify-between py-2">
               <span className="text-[#7D899B]">2. Beban Pokok Penjualan (HPP Modal)</span>
-              <span className="font-semibold text-red-400 tabular-nums">-{formatRupiah(reportData.totalHpp)}</span>
+              <span className="font-semibold text-[#A96D73] tabular-nums">-{formatRupiah(reportData.totalHpp)}</span>
             </div>
 
             <div className="flex justify-between py-2 bg-[#F7F9FC] px-3 rounded-lg">
@@ -333,7 +333,7 @@ export function ReportsPage() {
 
             <div className="flex justify-between py-2">
               <span className="text-[#7D899B]">3. Beban Pengeluaran Operasional</span>
-              <span className="font-semibold text-red-400 tabular-nums">-{formatRupiah(reportData.totalExpenses)}</span>
+              <span className="font-semibold text-[#A96D73] tabular-nums">-{formatRupiah(reportData.totalExpenses)}</span>
             </div>
 
             <div className="flex justify-between py-2.5 bg-[#F7F9FC] px-3 rounded-lg border border-[#E4E8EE]">
@@ -341,7 +341,7 @@ export function ReportsPage() {
                 <span className="font-bold text-sm text-[#172033]">Laba Bersih Usaha</span>
                 <p className="text-[10px] text-[#7D899B]">Hasil akhir setelah dikurangi seluruh biaya</p>
               </div>
-              <span className={`text-base font-bold tabular-nums ${reportData.labaBersih >= 0 ? 'text-[#172E4D]' : 'text-red-400'}`}>
+              <span className={`text-base font-bold tabular-nums ${reportData.labaBersih >= 0 ? 'text-[#172E4D]' : 'text-[#A96D73]'}`}>
                 {formatRupiah(reportData.labaBersih)}
               </span>
             </div>
