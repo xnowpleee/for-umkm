@@ -78,6 +78,9 @@
 /* POS catalog: mobile 2 products per row, desktop 3 products per row. */
 .bk-terminal-page [class*="max-h-[580px]"][class*="overflow-y-auto"] { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; padding: .55rem; align-content: start; }
 .bk-terminal-page [class*="max-h-[580px]"][class*="overflow-y-auto"] > * { min-width: 0; border-top: 0 !important; border-bottom: 0 !important; border-left: 1px solid rgba(34,48,61,.58); border-right: 1px solid rgba(34,48,61,.58); border-radius: 10px; background: rgba(13,21,29,.38); }
+.bk-terminal-page [class*="max-h-[580px]"][class*="overflow-y-auto"] > * { flex-direction: column; align-items: stretch; gap: .7rem; }
+.bk-terminal-page [class*="max-h-[580px]"][class*="overflow-y-auto"] > * > div { width: 100%; min-width: 0; }
+.bk-terminal-page [class*="max-h-[580px]"][class*="overflow-y-auto"] > * > div:last-child { margin-top: 0; padding-top: .5rem; }
 .bk-terminal-page [class*="max-h-[580px]"][class*="overflow-y-auto"] > *:hover { background: rgba(17,24,39,.62); }
 @media (min-width: 1024px) { .bk-terminal-page [class*="max-h-[580px]"][class*="overflow-y-auto"] { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
