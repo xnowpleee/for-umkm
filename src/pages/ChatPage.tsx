@@ -557,10 +557,10 @@ export function ChatPage() {
 
               {/* Message bubble: User is lighter surface (#16202B), Assistant is dark card (#111827) */}
               <div
-                className={`max-w-[94%] sm:max-w-[82%] border-y px-3.5 py-3 text-[11px] leading-relaxed relative group ${
+                className={`w-full max-w-[96%] border-b px-2.5 py-2 text-[11px] leading-relaxed relative group ${
                   isUser
-                    ? 'bg-[#16202B] border border-[#263744] text-[#E5E7EB]'
-                    : 'bg-[#0D151D] border-[#263744] text-[#E5E7EB]'
+                    ? 'ml-auto max-w-[88%] bg-[#16202B]/70 border-[#263744] text-[#E5E7EB]'
+                    : 'border-[#263744] text-[#E5E7EB]'
                 }`}
               >
                 <div className="allow-select">
