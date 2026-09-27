@@ -278,8 +278,8 @@ export function ReportsPage() {
             </div>
             <span className="text-[9px] uppercase tracking-[0.12em] text-[#526579]">{period === 'monthly' ? '30 hari' : '7 hari'}</span>
           </div>
-          <div className="h-[92px] w-full">
-            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-full w-full overflow-visible">
+          <div className="bk-soft-grid h-[92px] w-full overflow-hidden border-y border-[#1B2934]">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-full w-full overflow-visible"><g className="bk-chart-grid">{[24,48,72].map(y => <line key={y} x1="0" x2="100" y1={y} y2={y} />)}</g>
               <polyline points={analysisLine} fill="none" stroke="#38B8D8" strokeWidth="1.5" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
               {analysisPoints.map((p, i) => <circle key={p.key} cx={p.x} cy={p.y} r={i === analysisPoints.length - 1 ? 2 : 1.2} fill="#0D151D" stroke="#38B8D8" strokeWidth=".7" vectorEffect="non-scaling-stroke"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
             </svg>
