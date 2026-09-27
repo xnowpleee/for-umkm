@@ -271,7 +271,7 @@ export function ReportsPage() {
           </div>
         </div>
 
-        <section className="rounded-lg border border-[#22303D] bg-[#111827] p-4">
+        <section className="p-4 lg:pr-5">
           <div className="mb-3 flex items-center justify-between gap-3">
             <div>
               <h2 className="text-sm font-bold text-[#E5E7EB]">Analisis Omzet</h2>
@@ -279,7 +279,7 @@ export function ReportsPage() {
             </div>
             <span className="text-[9px] uppercase tracking-[0.12em] text-[#526579]">{period === 'monthly' ? '30 hari' : '7 hari'}</span>
           </div>
-          <div className="h-[150px] w-full">
+          <div className="h-[104px] w-full">
             <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-full w-full overflow-visible">
               <defs><linearGradient id="reportChartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#0EA5E9" stopOpacity=".18" /><stop offset="100%" stopColor="#0EA5E9" stopOpacity="0" /></linearGradient></defs>
               {[20,40,60,80].map(y => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#22303D" strokeWidth=".6" vectorEffect="non-scaling-stroke" />)}
@@ -293,7 +293,7 @@ export function ReportsPage() {
           </div>
         </section>
 
-        <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-[#22303D] border-y border-[#22303D]">
           {[
             { label: 'Omzet', value: reportData.totalOmzet, icon: DollarSign, note: `${reportData.txCount} transaksi` },
             { label: 'HPP / Modal', value: reportData.totalHpp, icon: ShoppingBag, note: 'Modal penjualan' },
@@ -304,7 +304,7 @@ export function ReportsPage() {
             const isProfit = item.label === 'Laba Bersih';
             const isNegative = item.value < 0;
             return (
-              <div key={item.label} className="min-w-0 rounded-lg border border-[#22303D] bg-[#111827] px-3.5 py-3">
+              <div key={item.label} className="min-w-0 px-3.5 py-3">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-[10px] font-medium text-[#94A3B8]">{item.label}</span>
                   <Icon className="h-3.5 w-3.5 text-[#94A0B1]" />
@@ -318,7 +318,7 @@ export function ReportsPage() {
           })}
         </div>
 
-        <div className="grid gap-3 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr] lg:divide-x lg:divide-[#22303D] border-y border-[#22303D]">
           <section className="rounded-lg border border-[#22303D] bg-[#111827] p-4">
             <div className="mb-3 flex items-center justify-between">
               <div>
@@ -337,7 +337,7 @@ export function ReportsPage() {
                 <span className="text-[#94A3B8]">HPP / Modal</span>
                 <span className="font-semibold tabular-nums text-[#B85C5C]">-{formatRupiah(reportData.totalHpp)}</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg bg-[#111827] px-3 py-2.5 text-xs">
+              <div className="flex items-center justify-between border-t border-[#22303D] px-0 py-2.5 text-xs">
                 <span className="font-semibold text-[#E5E7EB]">Laba Kotor</span>
                 <span className="font-bold tabular-nums text-[#0EA5E9]">{formatRupiah(reportData.labaKotor)}</span>
               </div>
@@ -363,7 +363,7 @@ export function ReportsPage() {
               <p className="mt-0.5 text-[10px] text-[#94A3B8]">Angka utama periode ini</p>
             </div>
             <div className="space-y-2">
-              <div className="flex items-center justify-between rounded-lg bg-[#111827] px-3 py-2.5">
+              <div className="flex items-center justify-between border-t border-[#22303D] px-0 py-2.5">
                 <span className="text-[11px] text-[#94A3B8]">Transaksi</span>
                 <span className="text-xs font-bold text-[#E5E7EB]">{reportData.txCount}</span>
               </div>
@@ -379,7 +379,7 @@ export function ReportsPage() {
           </section>
         </div>
 
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-0 md:grid-cols-2 md:divide-x md:divide-[#22303D] border-y border-[#22303D]">
           {[
             { title: 'Produk Terlaris', desc: 'Berdasarkan jumlah terjual', data: reportData.produkTerlaris, value: (p: any) => `${p.quantity} porsi`, extra: (p: any) => formatRupiah(p.revenue), positive: false },
             { title: 'Paling Menguntungkan', desc: 'Berdasarkan laba kotor', data: reportData.produkPalingMenguntungkan, value: (p: any) => `+${formatRupiah(p.grossProfit)}`, extra: () => '', positive: true },
