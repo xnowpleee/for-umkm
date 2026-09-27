@@ -273,8 +273,8 @@ export function ExpensesPage() {
       )}
 
       {/* Summary 4-Column Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-[#263744] border-y border-[#263744]">
-        <div className="p-4">
+      <div className="flex flex-wrap border-y border-[#263744]">
+        <div className="w-1/2 border-b border-[#263744] px-4 py-3 first:pl-0 sm:w-1/4 sm:border-b-0">
           <div className="flex items-center justify-between text-xs text-[#94A3B8] mb-2 font-medium">
             <span>Total Bulan Ini</span>
             <ArrowDownCircle className="w-4 h-4 text-[#94A3B8]" />
@@ -348,7 +348,7 @@ export function ExpensesPage() {
       </div>
 
       {/* Expenses Table */}
-      <div className="rounded-xl bg-[#111827] border border-[#263744] overflow-hidden">
+      <div className="border-y border-[#263744] overflow-hidden">
         {filteredExpenses.length === 0 ? (
           <div className="p-12 text-center text-xs text-[#94A3B8]">
             <ArrowDownCircle className="w-8 h-8 mx-auto mb-2 opacity-30" />
