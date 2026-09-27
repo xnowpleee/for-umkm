@@ -3,6 +3,7 @@ import { useBusiness } from '../context/BusinessContext';
 import { ChatMessage } from '../types';
 import { supabase, getSupabaseConfig } from '../lib/supabase';
 import { getApiBaseUrl } from '../lib/api';
+import { getTodayDateString } from '../utils/formatters';
 import {
   Send,
   User,
@@ -352,7 +353,7 @@ export function ChatPage() {
         is_low_stock: p.stock <= p.min_stock,
       }));
 
-      const todayStr = new Date().toISOString().split('T')[0];
+      const todayStr = getTodayDateString();
       const businessContext = {
         business_profile: {
           name: profile.business_name,
