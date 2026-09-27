@@ -51,7 +51,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
   const linePoints = chartPoints.map(p => p.x + ',' + p.y).join(' ');
 
   return (
-    <div className="min-h-full pb-24 text-[#E5E7EB]">
+    <div className="bk-terminal-page min-h-full pb-24 text-[#E5E7EB]">
       <header className="mb-4 flex items-center justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-[#64748B]">Dashboard</p>
