@@ -151,6 +151,27 @@ export function ReportsPage() {
     };
   }, [transactions, expenses, period]);
 
+  const analysisTrend = useMemo(() => {
+    const days = period === 'daily' ? 7 : period === 'weekly' ? 7 : 30;
+    const now = new Date();
+    return Array.from({ length: days }, (_, index) => {
+      const d = new Date(now);
+      d.setDate(now.getDate() - (days - 1 - index));
+      const key = toLocalDateString(d.toISOString());
+      const omzet = transactions.filter(t => toLocalDateString(t.date) === key).reduce((sum, t) => sum + Number(t.total_amount || 0), 0);
+      return { key, label: d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short' }), omzet };
+    });
+  }, [transactions, period]);
+
+  const analysisMax = Math.max(...analysisTrend.map(d => d.omzet), 1);
+  const analysisPoints = analysisTrend.map((d, i) => ({
+    ...d,
+    x: analysisTrend.length === 1 ? 50 : (i / (analysisTrend.length - 1)) * 100,
+    y: 92 - (d.omzet / analysisMax) * 68,
+  }));
+  const analysisLine = analysisPoints.map(p => p.x + ',' + p.y).join(' ');
+  const analysisArea = analysisPoints.length ? '0,100 ' + analysisLine + ' 100,100' : '';
+
   const handleShareWhatsApp = () => {
     const text =
       `*LAPORAN KEUANGAN ${profile.business_name?.toUpperCase() || 'BISNISKU'}*\n` +
@@ -202,7 +223,7 @@ export function ReportsPage() {
         </div>
 
         <div className="flex items-center gap-1.5 overflow-x-auto">
-          <div className="flex shrink-0 rounded-lg border border-[#263744] bg-white p-0.5">
+          <div className="flex shrink-0 rounded-lg border border-[#263744] bg-[#111827] p-0.5">
             {([
               ['daily', 'Hari Ini'],
               ['weekly', '7 Hari'],
@@ -223,7 +244,7 @@ export function ReportsPage() {
             type="button"
             disabled={isExporting}
             onClick={handleDownloadReportImage}
-            className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-[#263744] bg-white px-2.5 text-[11px] font-medium text-[#E5E7EB] hover:bg-[#111827] disabled:opacity-50"
+            className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-[#263744] bg-[#111827] px-2.5 text-[11px] font-medium text-[#E5E7EB] hover:bg-[#111827] disabled:opacity-50"
           >
             {isExporting ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Download className="h-3.5 w-3.5" />}
             <span className="hidden sm:inline">Simpan</span>
@@ -240,7 +261,7 @@ export function ReportsPage() {
       </div>
 
       <div ref={reportContainerRef} className="space-y-3">
-        <div className="rounded-xl border border-[#263744] bg-white px-4 py-3">
+        <div className="rounded-lg border border-[#22303D] bg-[#111827] px-4 py-3">
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#94A3B8]">Periode laporan</p>
@@ -249,6 +270,28 @@ export function ReportsPage() {
             <Calendar className="h-4 w-4 shrink-0 text-[#94A3B8]" />
           </div>
         </div>
+
+        <section className="rounded-lg border border-[#22303D] bg-[#111827] p-4">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <div>
+              <h2 className="text-sm font-bold text-[#E5E7EB]">Analisis Omzet</h2>
+              <p className="mt-0.5 text-[10px] text-[#94A3B8]">Pergerakan omzet dari transaksi yang tercatat.</p>
+            </div>
+            <span className="text-[9px] uppercase tracking-[0.12em] text-[#526579]">{period === 'monthly' ? '30 hari' : '7 hari'}</span>
+          </div>
+          <div className="h-[150px] w-full">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-full w-full overflow-visible">
+              <defs><linearGradient id="reportChartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#0EA5E9" stopOpacity=".18" /><stop offset="100%" stopColor="#0EA5E9" stopOpacity="0" /></linearGradient></defs>
+              {[20,40,60,80].map(y => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#22303D" strokeWidth=".6" vectorEffect="non-scaling-stroke" />)}
+              <polygon points={analysisArea} fill="url(#reportChartFill)" />
+              <polyline points={analysisLine} fill="none" stroke="#22D3EE" strokeWidth="1.8" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
+              {analysisPoints.map((p, i) => <circle key={p.key} cx={p.x} cy={p.y} r={i === analysisPoints.length - 1 ? 2 : 1.2} fill="#0EA5E9" stroke="#B9F2FF" strokeWidth=".7" vectorEffect="non-scaling-stroke"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
+            </svg>
+          </div>
+          <div className="mt-1 flex justify-between gap-2 text-[8px] text-[#526579]">
+            {analysisPoints.filter((_, i) => i === 0 || i === analysisPoints.length - 1 || i % (analysisPoints.length > 14 ? 5 : 1) === 0).map(p => <span key={p.key}>{p.label}</span>)}
+          </div>
+        </section>
 
         <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4">
           {[
@@ -261,7 +304,7 @@ export function ReportsPage() {
             const isProfit = item.label === 'Laba Bersih';
             const isNegative = item.value < 0;
             return (
-              <div key={item.label} className="min-w-0 rounded-xl border border-[#263744] bg-white px-3.5 py-3">
+              <div key={item.label} className="min-w-0 rounded-lg border border-[#22303D] bg-[#111827] px-3.5 py-3">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-[10px] font-medium text-[#94A3B8]">{item.label}</span>
                   <Icon className="h-3.5 w-3.5 text-[#94A0B1]" />
@@ -276,7 +319,7 @@ export function ReportsPage() {
         </div>
 
         <div className="grid gap-3 lg:grid-cols-[1.15fr_0.85fr]">
-          <section className="rounded-xl border border-[#263744] bg-white p-4">
+          <section className="rounded-lg border border-[#22303D] bg-[#111827] p-4">
             <div className="mb-3 flex items-center justify-between">
               <div>
                 <h2 className="text-sm font-bold text-[#E5E7EB]">Laba Rugi</h2>
@@ -314,7 +357,7 @@ export function ReportsPage() {
             </div>
           </section>
 
-          <section className="rounded-xl border border-[#263744] bg-white p-4">
+          <section className="rounded-lg border border-[#22303D] bg-[#111827] p-4">
             <div className="mb-3">
               <h2 className="text-sm font-bold text-[#E5E7EB]">Ringkasan</h2>
               <p className="mt-0.5 text-[10px] text-[#94A3B8]">Angka utama periode ini</p>
@@ -341,7 +384,7 @@ export function ReportsPage() {
             { title: 'Produk Terlaris', desc: 'Berdasarkan jumlah terjual', data: reportData.produkTerlaris, value: (p: any) => `${p.quantity} porsi`, extra: (p: any) => formatRupiah(p.revenue), positive: false },
             { title: 'Paling Menguntungkan', desc: 'Berdasarkan laba kotor', data: reportData.produkPalingMenguntungkan, value: (p: any) => `+${formatRupiah(p.grossProfit)}`, extra: () => '', positive: true },
           ].map((section) => (
-            <section key={section.title} className="rounded-xl border border-[#263744] bg-white p-4">
+            <section key={section.title} className="rounded-lg border border-[#22303D] bg-[#111827] p-4">
               <div className="mb-3">
                 <h2 className="text-sm font-bold text-[#E5E7EB]">{section.title}</h2>
                 <p className="mt-0.5 text-[10px] text-[#94A3B8]">{section.desc}</p>
