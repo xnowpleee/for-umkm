@@ -1499,6 +1499,7 @@ export function BusinessProvider({
     try {
       const payload: any = {
         business_id: bizId,
+        user_id: authUser.id,
         name: data.name.trim(),
         category: data.category,
         cost_price: Number(data.hpp || 0),
