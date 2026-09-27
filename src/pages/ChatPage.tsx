@@ -490,9 +490,9 @@ export function ChatPage() {
   };
 
   return (
-    <div className="bk-terminal-page flex min-h-0 h-[calc(100dvh-7.25rem)] md:h-[calc(100dvh-3.75rem)] max-h-full flex-col max-w-4xl mx-auto pb-14 md:pb-0 overflow-hidden">
+    <div className="flex min-h-0 h-full max-h-full flex-col max-w-4xl mx-auto pb-14 md:pb-0 overflow-hidden">
       {/* Chat Header */}
-      <div className="relative z-20 flex min-h-[56px] h-[56px] items-center justify-between border-b border-[#22303D] py-2 shrink-0">
+      <div className="relative z-20 flex min-h-[52px] h-[52px] items-center justify-between border-b border-[#22303D] py-1.5 shrink-0">
         <div className="min-w-0 flex items-center gap-2.5">
           <Logo size={32} />
           <div>
