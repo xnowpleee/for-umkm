@@ -26,7 +26,7 @@ export function Navbar({ activeTab, onTabChange, onOpenQuickTxModal, onOpenQuick
           </button>}
           {onOpenQuickTxModal && <button type="button" onClick={onOpenQuickTxModal}
             className="flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] font-semibold text-white bg-[#0EA5E9] hover:bg-[#0284C7] shadow-[0_0_16px_rgba(14,165,233,.14)]">
-            <Plus className="w-3.5 h-3.5"/><span className="hidden xs:inline">Kasir / Jual</span><span className="xs:hidden">Jual</span>
+            <Plus className="w-3.5 h-3.5"/><span className="hidden sm:inline">Kasir / Jual</span><span className="sm:hidden">Jual</span>
           </button>}
           <div className="relative">
             <button type="button" onClick={() => setUserMenuOpen(!userMenuOpen)} className="flex items-center gap-1.5 p-1 border border-[#2A3947] bg-[#111A23] text-xs text-[#94A3B8]">
