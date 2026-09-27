@@ -2857,10 +2857,18 @@ export function BusinessProvider({
             (
               sum,
               t
-            ) =>
-              sum +
-              (t.total_hpp ||
-                0),
+            ) => {
+              const directHpp = Number(t.total_hpp || 0);
+              if (directHpp > 0) return sum + directHpp;
+              if (Array.isArray(t.items) && t.items.length > 0) {
+                return sum + t.items.reduce(
+                  (itemSum: number, item: any) =>
+                    itemSum + Number(item.subtotal_hpp || (Number(item.quantity || 0) * Number(item.unit_hpp || 0))),
+                  0
+                );
+              }
+              return sum;
+            },
             0
           );
 
