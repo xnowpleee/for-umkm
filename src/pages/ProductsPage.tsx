@@ -306,7 +306,7 @@ export function ProductsPage() {
         </div>
       ) : (
         /* Products List / Grid */
-        <div className="grid grid-cols-2 xl:grid-cols-3 divide-x divide-y divide-[#263744] border-y border-[#263744]">
+        <div className="divide-y divide-[#263744] border-y border-[#263744]">
           {filteredProducts.map(product => {
             const { profit, margin } = calculateProfit(product.selling_price, product.hpp);
             const isLowStock = product.stock <= product.min_stock;
@@ -315,7 +315,7 @@ export function ProductsPage() {
             return (
               <div
                 key={product.id}
-                className="p-2.5 sm:p-3 transition-colors hover:bg-[#0D151D]/60 flex flex-col justify-between"
+                className="px-0 py-3 transition-colors hover:bg-[#0D151D]/60 flex flex-col justify-between"
               >
                 <div>
                   {/* Category & Status */}
