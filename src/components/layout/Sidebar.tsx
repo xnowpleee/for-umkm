@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavTab } from './BottomNav';
 import { useBusiness } from '../../context/BusinessContext';
-import { LayoutDashboard, Package, Receipt, ArrowDownCircle, BarChart3, BotMessageSquare, Settings as SettingsIcon, Store, AlertTriangle, LogOut } from 'lucide-react';
+import { LayoutDashboard, Package, Receipt, ArrowDownCircle, BarChart3, BotMessageSquare, Settings as SettingsIcon, AlertTriangle, LogOut } from 'lucide-react';
+import { Logo } from '../common/Logo';
 
 interface SidebarProps { activeTab: NavTab; onTabChange: (tab: NavTab) => void; }
 
@@ -12,7 +13,7 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
     { id: 'products' as NavTab, label: 'Produk', icon: Package, badge: dashboardSummary.lowStockProducts.length > 0 ? dashboardSummary.lowStockProducts.length : undefined },
     { id: 'transactions' as NavTab, label: 'Transaksi', icon: Receipt },
     { id: 'expenses' as NavTab, label: 'Pengeluaran', icon: ArrowDownCircle },
-    { id: 'chat' as NavTab, label: 'BisnisKu AI', icon: BotMessageSquare },
+    { id: 'chat' as NavTab, label: 'Assistant', icon: BotMessageSquare },
     { id: 'reports' as NavTab, label: 'Laporan', icon: BarChart3 },
     { id: 'settings' as NavTab, label: 'Pengaturan Usaha', icon: SettingsIcon },
   ];
@@ -20,7 +21,7 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
   return <aside className="hidden lg:flex flex-col w-[228px] min-h-[calc(100vh-57px)] bg-[#0D151D] border-r border-[#22303D] p-3 shrink-0 select-none">
     <div className="px-3 pt-2 pb-3 mb-2 border-b border-[#192631]">
       <div className="flex items-center gap-2.5">
-        <div className="p-1.5 rounded-lg bg-[#111827] border border-[#22303D] text-[#22D3EE] shrink-0"><Store className="w-4 h-4" /></div>
+        <Logo size={30} />
         <div className="min-w-0">
           <h4 className="text-xs font-semibold text-[#E5E7EB] truncate">{profile.business_name || 'Kedai UMKM'}</h4>
           <p className="text-[10px] text-[#64748B] truncate mt-0.5">{profile.business_type || 'F&B / Kuliner'}</p>
