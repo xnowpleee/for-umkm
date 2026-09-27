@@ -1036,9 +1036,12 @@ export function BusinessProvider({
                 true,
             });
 
-            await loadOrCreateUserBusiness(
-              sbUser
-            );
+            // Jangan melakukan query Supabase lain secara langsung di dalam
+            // onAuthStateChange callback. Supabase dapat menahan lock auth dan
+            // membuat login terlihat macet / data tidak pernah selesai dimuat.
+            window.setTimeout(() => {
+              void loadOrCreateUserBusiness(sbUser);
+            }, 0);
           } else {
             setUser({
               name: '',
