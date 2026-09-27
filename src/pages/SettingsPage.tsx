@@ -348,7 +348,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
       {/* Profile Form */}
       {activeTab === 'profile' && (
         <form onSubmit={handleSaveProfile} className="max-w-2xl space-y-4">
-          <div className="p-4 sm:p-5 rounded-xl bg-[#111827] border border-[#263744] space-y-3.5">
+          <div className="space-y-4 border-y border-[#263744] py-4">
             {/* Logo Toko */}
             <div>
               <label className="block text-xs font-medium text-[#94A3B8] mb-1">
