@@ -314,7 +314,7 @@ export function ReportsPage() {
           })}
         </div>
 
-        <div className="border-y border-[#22303D]">
+        <div className="border-y border-[#22303D] lg:grid lg:grid-cols-2 lg:divide-x lg:divide-[#22303D]">
           <section className="px-0 py-3.5 lg:pr-6">
             <div className="mb-3 flex items-center justify-between">
               <div>
@@ -353,7 +353,7 @@ export function ReportsPage() {
             </div>
           </section>
 
-          <section className="border-t border-[#22303D] px-0 py-3.5 lg:border-l lg:pl-6 lg:pr-0">
+          <section className="border-t border-[#22303D] px-0 py-3.5 lg:border-t-0 lg:pl-6 lg:pr-0">
             <div className="mb-3">
               <h2 className="text-sm font-bold text-[#E5E7EB]">Ringkasan</h2>
               <p className="mt-0.5 text-[10px] text-[#94A3B8]">Angka utama periode ini</p>
@@ -367,7 +367,7 @@ export function ReportsPage() {
                 <span className="text-[11px] text-[#94A3B8]">Laba Kotor</span>
                 <span className="text-xs font-bold text-[#E5E7EB]">{formatRupiah(reportData.labaKotor)}</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg bg-[#111827] px-3 py-2.5">
+              <div className="flex items-center justify-between px-0 py-2.5">
                 <span className="text-[11px] text-[#94A3B8]">Pengeluaran</span>
                 <span className="text-xs font-bold text-[#B85C5C]">{formatRupiah(reportData.totalExpenses)}</span>
               </div>
