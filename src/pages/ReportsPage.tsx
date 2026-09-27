@@ -193,213 +193,180 @@ export function ReportsPage() {
   };
 
   return (
-    <div className="space-y-2.5 pb-24 md:pb-8">
-      {/* Header and Period Filter */}
-      <div className="flex flex-col gap-2 pt-0.5 sm:flex-row sm:items-center sm:justify-between">
+    <div className="pb-24 md:pb-8">
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-base sm:text-2xl font-bold tracking-tight text-[#172033]">
-            Laporan
-          </h1>
-          <p className="text-[9px] text-[#7D899B] mt-0.5">
-            Rekap omzet, HPP, laba bersih, dan pengeluaran {profile.business_name || 'usaha'}.
-          </p>
+          <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7D899B]">Keuangan</p>
+          <h1 className="text-xl font-bold tracking-tight text-[#172033]">Laporan</h1>
+          <p className="mt-1 text-xs text-[#7D899B]">Ringkasan performa usaha yang mudah dibaca.</p>
         </div>
 
-        <div className="flex max-w-full items-center gap-1.5 overflow-x-auto select-none scrollbar-none">
-          {/* Period Selector Tabs */}
-          <div className="shrink-0 p-0.5 bg-[#FFFFFF] border border-[#E4E8EE] rounded-lg flex items-center">
-            <button
-              type="button"
-              onClick={() => setPeriod('daily')}
-              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                period === 'daily'
-                  ? 'bg-[#E4E8EE] text-[#172033]'
-                  : 'text-[#7D899B] hover:text-[#172033]'
-              }`}
-            >
-              Hari Ini
-            </button>
-            <button
-              type="button"
-              onClick={() => setPeriod('weekly')}
-              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                period === 'weekly'
-                  ? 'bg-[#E4E8EE] text-[#172033]'
-                  : 'text-[#7D899B] hover:text-[#172033]'
-              }`}
-            >
-              7 Hari
-            </button>
-            <button
-              type="button"
-              onClick={() => setPeriod('monthly')}
-              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                period === 'monthly'
-                  ? 'bg-[#E4E8EE] text-[#172033]'
-                  : 'text-[#7D899B] hover:text-[#172033]'
-              }`}
-            >
-              Bulan Ini
-            </button>
+        <div className="flex items-center gap-1.5 overflow-x-auto">
+          <div className="flex shrink-0 rounded-lg border border-[#E4E8EE] bg-white p-0.5">
+            {([
+              ['daily', 'Hari Ini'],
+              ['weekly', '7 Hari'],
+              ['monthly', 'Bulan Ini'],
+            ] as const).map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                onClick={() => setPeriod(value)}
+                className={`rounded-md px-3 py-1.5 text-[11px] font-semibold transition-colors ${period === value ? 'bg-[#172E4D] text-white' : 'text-[#7D899B] hover:text-[#172033]'}`}
+              >
+                {label}
+              </button>
+            ))}
           </div>
 
-          {/* Share / Image Export Buttons */}
           <button
             type="button"
             disabled={isExporting}
             onClick={handleDownloadReportImage}
-            className="flex shrink-0 items-center gap-1 px-2.5 py-1.5 text-[10px] font-medium text-[#172033] bg-[#FFFFFF] hover:bg-[#F1F4F8] border border-[#E4E8EE] rounded-lg transition-colors disabled:opacity-50"
-            title="Simpan Laporan sebagai Gambar"
+            className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-[#E4E8EE] bg-white px-2.5 text-[11px] font-medium text-[#172033] hover:bg-[#F7F9FC] disabled:opacity-50"
           >
-            {isExporting ? (
-              <Loader2 className="w-3.5 h-3.5 animate-spin text-[#172E4D]" />
-            ) : (
-              <Download className="w-3.5 h-3.5 text-[#172E4D]" />
-            )}
-            <span className="hidden sm:inline">Simpan Gambar</span>
+            {isExporting ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Download className="h-3.5 w-3.5" />}
+            <span className="hidden sm:inline">Simpan</span>
           </button>
-
           <button
             type="button"
             onClick={handleShareWhatsApp}
-            className="flex shrink-0 items-center gap-1 px-2.5 py-1.5 text-[10px] font-semibold text-[#FFFFFF] bg-[#172E4D] hover:bg-[#213D61] rounded-lg transition-colors active:scale-[0.98]"
-            title="Bagikan Ringkasan ke WhatsApp"
+            className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg bg-[#172E4D] px-3 text-[11px] font-semibold text-white hover:bg-[#213D61]"
           >
-            <Share2 className="w-3.5 h-3.5" />
-            <span>Bagikan</span>
+            <Share2 className="h-3.5 w-3.5" />
+            Bagikan
           </button>
         </div>
       </div>
 
-      {/* Main Report Content (Exportable Container) */}
-      <div ref={reportContainerRef} className="space-y-2.5">
-        {/* Core Financial KPI Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
-          <StatCard
-            title="Total Omzet"
-            value={formatRupiah(reportData.totalOmzet)}
-            subtitle={`${reportData.txCount} transaksi berhasil`}
-            icon={<DollarSign className="w-4 h-4 text-[#7D899B]" />}
-          />
-
-          <StatCard
-            title="Total HPP (Modal)"
-            value={formatRupiah(reportData.totalHpp)}
-            subtitle="Modal bahan & produksi"
-            icon={<ShoppingBag className="w-4 h-4 text-[#7D899B]" />}
-          />
-
-          <StatCard
-            title="Total Pengeluaran"
-            value={formatRupiah(reportData.totalExpenses)}
-            subtitle="Beban operasional & lain"
-            icon={<ArrowDownCircle className="w-4 h-4 text-[#7D899B]" />}
-          />
-
-          <StatCard
-            title="Laba Bersih"
-            value={formatRupiah(reportData.labaBersih)}
-            subtitle="Omzet - HPP - Pengeluaran"
-            icon={<TrendingUp className="w-4 h-4 text-[#7D899B]" />}
-            trend={{
-              value: reportData.labaBersih >= 0 ? 'Surplus' : 'Defisit',
-              isPositive: reportData.labaBersih >= 0,
-              label: 'Hasil Bersih',
-            }}
-          />
+      <div ref={reportContainerRef} className="space-y-3">
+        <div className="rounded-xl border border-[#E4E8EE] bg-white px-4 py-3">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#7D899B]">Periode laporan</p>
+              <p className="mt-0.5 text-sm font-semibold text-[#172033]">{reportData.periodLabel}</p>
+            </div>
+            <Calendar className="h-4 w-4 shrink-0 text-[#7D899B]" />
+          </div>
         </div>
 
-        {/* Laba Rugi Operasional */}
-        <div className="p-3.5 sm:p-4 rounded-lg bg-[#FFFFFF] border border-[#E4E8EE]">
-          <h3 className="text-sm font-semibold text-[#172033] mb-2.5">
-            Ringkasan Laba Rugi ({reportData.periodLabel})
-          </h3>
+        <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4">
+          {[
+            { label: 'Omzet', value: reportData.totalOmzet, icon: DollarSign, note: `${reportData.txCount} transaksi` },
+            { label: 'HPP / Modal', value: reportData.totalHpp, icon: ShoppingBag, note: 'Modal penjualan' },
+            { label: 'Pengeluaran', value: reportData.totalExpenses, icon: ArrowDownCircle, note: 'Biaya operasional' },
+            { label: 'Laba Bersih', value: reportData.labaBersih, icon: TrendingUp, note: reportData.labaBersih >= 0 ? 'Surplus' : 'Defisit' },
+          ].map((item) => {
+            const Icon = item.icon;
+            const isProfit = item.label === 'Laba Bersih';
+            const isNegative = item.value < 0;
+            return (
+              <div key={item.label} className="min-w-0 rounded-xl border border-[#E4E8EE] bg-white px-3.5 py-3">
+                <div className="mb-2 flex items-center justify-between">
+                  <span className="text-[10px] font-medium text-[#7D899B]">{item.label}</span>
+                  <Icon className="h-3.5 w-3.5 text-[#94A0B1]" />
+                </div>
+                <div className={`truncate text-[15px] font-bold tracking-tight sm:text-base ${isProfit ? (isNegative ? 'text-[#B85C5C]' : 'text-[#2F8F5B]') : 'text-[#172033]'}`}>
+                  {formatRupiah(item.value)}
+                </div>
+                <p className="mt-1 text-[9px] text-[#9AA5B5]">{item.note}</p>
+              </div>
+            );
+          })}
+        </div>
 
-          <div className="space-y-2 text-xs divide-y divide-[#E4E8EE]">
-            <div className="flex justify-between py-2">
-              <span className="text-[#7D899B]">1. Pendapatan Penjualan (Omzet)</span>
-              <span className="font-semibold text-[#172033] tabular-nums">{formatRupiah(reportData.totalOmzet)}</span>
-            </div>
-
-            <div className="flex justify-between py-2">
-              <span className="text-[#7D899B]">2. Beban Pokok Penjualan (HPP Modal)</span>
-              <span className="font-semibold text-[#A96D73] tabular-nums">-{formatRupiah(reportData.totalHpp)}</span>
-            </div>
-
-            <div className="flex justify-between py-2 bg-[#F7F9FC] px-3 rounded-lg">
-              <span className="font-semibold text-[#172033]">Laba Kotor (Omzet - HPP)</span>
-              <span className="font-semibold text-[#172E4D] tabular-nums">{formatRupiah(reportData.labaKotor)}</span>
-            </div>
-
-            <div className="flex justify-between py-2">
-              <span className="text-[#7D899B]">3. Beban Pengeluaran Operasional</span>
-              <span className="font-semibold text-[#A96D73] tabular-nums">-{formatRupiah(reportData.totalExpenses)}</span>
-            </div>
-
-            <div className="flex justify-between py-2.5 bg-[#F7F9FC] px-3 rounded-lg border border-[#E4E8EE]">
+        <div className="grid gap-3 lg:grid-cols-[1.15fr_0.85fr]">
+          <section className="rounded-xl border border-[#E4E8EE] bg-white p-4">
+            <div className="mb-3 flex items-center justify-between">
               <div>
-                <span className="font-bold text-sm text-[#172033]">Laba Bersih Usaha</span>
-                <p className="text-[10px] text-[#7D899B]">Hasil akhir setelah dikurangi seluruh biaya</p>
+                <h2 className="text-sm font-bold text-[#172033]">Laba Rugi</h2>
+                <p className="mt-0.5 text-[10px] text-[#7D899B]">Alur uang dari omzet sampai hasil bersih</p>
               </div>
-              <span className={`text-base font-bold tabular-nums ${reportData.labaBersih >= 0 ? 'text-[#172E4D]' : 'text-[#A96D73]'}`}>
-                {formatRupiah(reportData.labaBersih)}
-              </span>
+              <TrendingUp className="h-4 w-4 text-[#7D899B]" />
             </div>
-          </div>
+
+            <div className="divide-y divide-[#EDF0F4]">
+              <div className="flex items-center justify-between py-2.5 text-xs">
+                <span className="text-[#7D899B]">Omzet Penjualan</span>
+                <span className="font-semibold tabular-nums text-[#172033]">{formatRupiah(reportData.totalOmzet)}</span>
+              </div>
+              <div className="flex items-center justify-between py-2.5 text-xs">
+                <span className="text-[#7D899B]">HPP / Modal</span>
+                <span className="font-semibold tabular-nums text-[#B85C5C]">-{formatRupiah(reportData.totalHpp)}</span>
+              </div>
+              <div className="flex items-center justify-between rounded-lg bg-[#F7F9FC] px-3 py-2.5 text-xs">
+                <span className="font-semibold text-[#172033]">Laba Kotor</span>
+                <span className="font-bold tabular-nums text-[#172E4D]">{formatRupiah(reportData.labaKotor)}</span>
+              </div>
+              <div className="flex items-center justify-between py-2.5 text-xs">
+                <span className="text-[#7D899B]">Pengeluaran Operasional</span>
+                <span className="font-semibold tabular-nums text-[#B85C5C]">-{formatRupiah(reportData.totalExpenses)}</span>
+              </div>
+              <div className="mt-1 flex items-center justify-between border-t border-[#E4E8EE] pt-3">
+                <div>
+                  <p className="text-xs font-bold text-[#172033]">Laba Bersih</p>
+                  <p className="mt-0.5 text-[9px] text-[#9AA5B5]">Setelah HPP dan pengeluaran</p>
+                </div>
+                <span className={`text-sm font-bold tabular-nums ${reportData.labaBersih >= 0 ? 'text-[#2F8F5B]' : 'text-[#B85C5C]'}`}>
+                  {formatRupiah(reportData.labaBersih)}
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-xl border border-[#E4E8EE] bg-white p-4">
+            <div className="mb-3">
+              <h2 className="text-sm font-bold text-[#172033]">Ringkasan</h2>
+              <p className="mt-0.5 text-[10px] text-[#7D899B]">Angka utama periode ini</p>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between rounded-lg bg-[#F7F9FC] px-3 py-2.5">
+                <span className="text-[11px] text-[#7D899B]">Transaksi</span>
+                <span className="text-xs font-bold text-[#172033]">{reportData.txCount}</span>
+              </div>
+              <div className="flex items-center justify-between rounded-lg bg-[#F7F9FC] px-3 py-2.5">
+                <span className="text-[11px] text-[#7D899B]">Laba Kotor</span>
+                <span className="text-xs font-bold text-[#172033]">{formatRupiah(reportData.labaKotor)}</span>
+              </div>
+              <div className="flex items-center justify-between rounded-lg bg-[#F7F9FC] px-3 py-2.5">
+                <span className="text-[11px] text-[#7D899B]">Pengeluaran</span>
+                <span className="text-xs font-bold text-[#B85C5C]">{formatRupiah(reportData.totalExpenses)}</span>
+              </div>
+            </div>
+          </section>
         </div>
 
-        {/* 2-Column: Top Products by Revenue & Profitability */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Produk Terlaris */}
-          <div className="p-4 sm:p-5 rounded-xl bg-[#FFFFFF] border border-[#E4E8EE]">
-            <h3 className="text-sm font-semibold text-[#172033] mb-3">
-              Menu Paling Laku (Kuantitas Terjual)
-            </h3>
-            {reportData.produkTerlaris.length === 0 ? (
-              <p className="text-xs text-[#7D899B] py-4 text-center">Belum ada data penjualan pada periode ini.</p>
-            ) : (
-              <div className="space-y-2.5">
-                {reportData.produkTerlaris.map((p, idx) => (
-                  <div key={p.name} className="flex items-center justify-between text-xs py-1 border-b border-[#E4E8EE] last:border-none">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="w-4 text-center font-semibold text-[#7D899B] tabular-nums">{idx + 1}</span>
-                      <span className="font-medium text-[#172033] truncate">{p.name}</span>
-                    </div>
-                    <div className="text-right shrink-0">
-                      <span className="font-semibold text-[#172033] tabular-nums">{p.quantity} porsi</span>
-                      <span className="text-[10px] text-[#7D899B] ml-2 tabular-nums">({formatRupiah(p.revenue)})</span>
-                    </div>
-                  </div>
-                ))}
+        <div className="grid gap-3 md:grid-cols-2">
+          {[
+            { title: 'Produk Terlaris', desc: 'Berdasarkan jumlah terjual', data: reportData.produkTerlaris, value: (p: any) => `${p.quantity} porsi`, extra: (p: any) => formatRupiah(p.revenue), positive: false },
+            { title: 'Paling Menguntungkan', desc: 'Berdasarkan laba kotor', data: reportData.produkPalingMenguntungkan, value: (p: any) => `+${formatRupiah(p.grossProfit)}`, extra: () => '', positive: true },
+          ].map((section) => (
+            <section key={section.title} className="rounded-xl border border-[#E4E8EE] bg-white p-4">
+              <div className="mb-3">
+                <h2 className="text-sm font-bold text-[#172033]">{section.title}</h2>
+                <p className="mt-0.5 text-[10px] text-[#7D899B]">{section.desc}</p>
               </div>
-            )}
-          </div>
-
-          {/* Produk Paling Menguntungkan */}
-          <div className="p-4 sm:p-5 rounded-xl bg-[#FFFFFF] border border-[#E4E8EE]">
-            <h3 className="text-sm font-semibold text-[#172033] mb-3">
-              Menu Paling Menguntungkan (Laba Kotor)
-            </h3>
-            {reportData.produkPalingMenguntungkan.length === 0 ? (
-              <p className="text-xs text-[#7D899B] py-4 text-center">Belum ada data penjualan pada periode ini.</p>
-            ) : (
-              <div className="space-y-2.5">
-                {reportData.produkPalingMenguntungkan.map((p, idx) => (
-                  <div key={p.name} className="flex items-center justify-between text-xs py-1 border-b border-[#E4E8EE] last:border-none">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="w-4 text-center font-semibold text-[#7D899B] tabular-nums">{idx + 1}</span>
-                      <span className="font-medium text-[#172033] truncate">{p.name}</span>
+              {section.data.length === 0 ? (
+                <p className="py-5 text-center text-[11px] text-[#9AA5B5]">Belum ada data penjualan pada periode ini.</p>
+              ) : (
+                <div className="divide-y divide-[#EDF0F4]">
+                  {section.data.map((p: any, idx: number) => (
+                    <div key={p.name} className="flex items-center gap-3 py-2">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[#F1F4F8] text-[9px] font-bold text-[#7D899B]">{idx + 1}</span>
+                      <span className="min-w-0 flex-1 truncate text-[11px] font-medium text-[#172033]">{p.name}</span>
+                      <div className="shrink-0 text-right">
+                        <p className={`text-[11px] font-bold tabular-nums ${section.positive ? 'text-[#2F8F5B]' : 'text-[#172033]'}`}>{section.value(p)}</p>
+                        {section.extra(p) && <p className="text-[9px] text-[#9AA5B5]">{section.extra(p)}</p>}
+                      </div>
                     </div>
-                    <span className="font-semibold text-[#172E4D] shrink-0 tabular-nums">
-                      +{formatRupiah(p.grossProfit)}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+                  ))}
+                </div>
+              )}
+            </section>
+          ))}
         </div>
       </div>
     </div>
   );
+
 }
