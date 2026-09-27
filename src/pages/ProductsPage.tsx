@@ -184,10 +184,10 @@ export function ProductsPage() {
       {/* Header & Quick Action */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-1">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#172033]">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#E5E7EB]">
             Katalog Produk & Menu
           </h1>
-          <p className="text-xs text-[#7D899B] mt-0.5">
+          <p className="text-xs text-[#94A3B8] mt-0.5">
             Kelola harga jual, modal HPP, dan pantau stok bahan / porsi.
           </p>
         </div>
@@ -207,7 +207,7 @@ export function ProductsPage() {
         <div
           className={`p-3 rounded-lg border text-xs flex items-center justify-between transition-all ${
             toast.type === 'success'
-              ? 'bg-[#172E4D]/10 border-[#172E4D]/30 text-[#172E4D]'
+              ? 'bg-[#172E4D]/10 border-[#172E4D]/30 text-[#67D5F5]'
               : 'bg-[#FBF5F5] border-[#E7D2D4] text-[#A96D73]'
           }`}
         >
@@ -240,7 +240,7 @@ export function ProductsPage() {
             placeholder="Cari produk / menu..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 text-xs bg-[#FFFFFF] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D] transition-colors"
+            className="w-full pl-9 pr-3 py-2 text-xs bg-[#111827] border border-[#263744] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D] transition-colors"
           />
         </div>
 
@@ -265,11 +265,11 @@ export function ProductsPage() {
 
       {/* Loading Skeleton */}
       {isLoadingData && products.length === 0 ? (
-        <div className="grid grid-cols-2 xl:grid-cols-3 gap-2 sm:gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2.5 sm:gap-3.5">
           {[1, 2, 3, 4, 5, 6].map(i => (
             <div key={i} className="p-4 rounded-xl bg-[#FFFFFF] border border-[#E4E8EE] animate-pulse space-y-3">
               <div className="flex items-center justify-between">
-                <div className="h-3 w-20 bg-[#EEF2F7] rounded" />
+                <div className="h-3 w-20 bg-[#16202B] rounded" />
                 <div className="h-3 w-16 bg-[#EEF2F7] rounded" />
               </div>
               <div className="h-4 w-36 bg-[#EEF2F7] rounded" />
@@ -279,7 +279,7 @@ export function ProductsPage() {
                 <div className="h-7 bg-[#E4E8EE]/50 rounded" />
                 <div className="h-7 bg-[#E4E8EE]/50 rounded" />
               </div>
-              <div className="flex items-center justify-between pt-2 border-t border-[#E4E8EE]">
+              <div className="flex items-center justify-between pt-2 border-t border-[#22303D]">
                 <div className="h-6 w-24 bg-[#EEF2F7] rounded" />
                 <div className="h-6 w-14 bg-[#EEF2F7] rounded" />
               </div>
@@ -315,7 +315,7 @@ export function ProductsPage() {
             return (
               <div
                 key={product.id}
-                className="p-2.5 sm:p-3 rounded-lg bg-[#FFFFFF] border border-[#E4E8EE] hover:border-[#D5DCE5] transition-all flex flex-col justify-between"
+                className="p-2.5 sm:p-3 rounded-[10px] bg-[#111827] border border-[#263744] hover:border-[#D5DCE5] transition-all flex flex-col justify-between"
               >
                 <div>
                   {/* Category & Status */}
@@ -357,7 +357,7 @@ export function ProductsPage() {
                   </div>
 
                   {/* Price & Profit Specs */}
-                  <div className="grid grid-cols-2 gap-x-2 gap-y-1.5 my-2 p-2 rounded-md bg-[#EEF2F7] border border-[#E4E8EE] text-[10px]">
+                  <div className="grid grid-cols-2 gap-x-2 gap-y-1.5 my-2 p-2 rounded-md bg-[#0D151D] border border-[#22303D] text-[10px]">
                     <div>
                       <p className="text-[8px] sm:text-[9px] text-[#7D899B]">Harga Jual</p>
                       <p className="font-semibold text-[10px] sm:text-[11px] text-[#172033] tabular-nums">{formatRupiah(product.selling_price)}</p>
@@ -383,7 +383,7 @@ export function ProductsPage() {
                     <button
                       type="button"
                       onClick={() => adjustStock(product.id, -1)}
-                      className="w-6 h-6 rounded-md bg-[#EEF2F7] hover:bg-[#E4E8EE] active:scale-95 text-[#172033] flex items-center justify-center font-bold text-[10px] transition-all"
+                      className="w-6 h-6 rounded-md bg-[#16202B] hover:bg-[#1B2A37] active:scale-95 text-[#172033] flex items-center justify-center font-bold text-[10px] transition-all"
                       title="Kurangi 1 Stok"
                     >
                       -
