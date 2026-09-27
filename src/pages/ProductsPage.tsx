@@ -306,7 +306,7 @@ export function ProductsPage() {
         </div>
       ) : (
         /* Products List / Grid */
-        <div className="grid grid-cols-2 xl:grid-cols-3 gap-2 sm:gap-3">
+        <div className="grid grid-cols-2 xl:grid-cols-3 divide-x divide-y divide-[#263744] border-y border-[#263744]">
           {filteredProducts.map(product => {
             const { profit, margin } = calculateProfit(product.selling_price, product.hpp);
             const isLowStock = product.stock <= product.min_stock;
@@ -315,7 +315,7 @@ export function ProductsPage() {
             return (
               <div
                 key={product.id}
-                className="p-2.5 sm:p-3 rounded-[10px] bg-[#111827] border border-[#263744] hover:border-[#D5DCE5] transition-all flex flex-col justify-between"
+                className="p-2.5 sm:p-3 transition-colors hover:bg-[#0D151D]/60 flex flex-col justify-between"
               >
                 <div>
                   {/* Category & Status */}
@@ -357,7 +357,7 @@ export function ProductsPage() {
                   </div>
 
                   {/* Price & Profit Specs */}
-                  <div className="grid grid-cols-2 gap-x-2 gap-y-1.5 my-2 p-2 rounded-md bg-[#0D151D] border border-[#22303D] text-[10px]">
+                  <div className="grid grid-cols-2 gap-x-2 gap-y-1.5 my-2 py-2 border-y border-[#22303D] text-[10px]">
                     <div>
                       <p className="text-[8px] sm:text-[9px] text-[#94A3B8]">Harga Jual</p>
                       <p className="font-semibold text-[10px] sm:text-[11px] text-[#E5E7EB] tabular-nums">{formatRupiah(product.selling_price)}</p>
