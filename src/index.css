@@ -32,8 +32,7 @@
   }
 
   body {
-    background-image: linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px);
-    background-size: 100% 36px;
+    background-image: none;
   }
 
   #root { min-height: 100vh; }
