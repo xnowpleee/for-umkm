@@ -31,10 +31,7 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  body {
-    background-image: none;
-  }
-
+  body { background-image: none; }
   #root { min-height: 100vh; }
 
   h1,h2,h3,h4,h5,h6,label,th,.no-select {
@@ -59,38 +56,21 @@
 }
 
 .tabular-nums { font-variant-numeric: tabular-nums; }
-
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: var(--bk-bg); }
 ::-webkit-scrollbar-thumb { background: #334454; border-radius: 999px; }
-
 .pb-safe { padding-bottom: max(env(safe-area-inset-bottom, 0px), 0.75rem); }
 .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
-
-.bk-panel {
-  background: var(--bk-surface);
-  border: 1px solid var(--bk-border);
-}
-
+.bk-panel { background: var(--bk-surface); border: 1px solid var(--bk-border); }
 .bk-divider { border-color: var(--bk-border-soft); }
 
-@media print {
-  @page { size:auto; margin:0; }
-  html,body { background:#fff!important; color:#000!important; margin:0!important; padding:0!important; width:100%!important; height:auto!important; }
-  body * { visibility:hidden; }
-  #printable-thermal-receipt,#printable-thermal-receipt * { visibility:visible; }
-  #printable-thermal-receipt { position:absolute; left:0; top:0; width:100%!important; max-width:80mm!important; padding:3mm 4mm!important; margin:0 auto!important; box-shadow:none!important; border:none!important; font-size:10pt!important; line-height:1.25!important; color:#000!important; background:#fff!important; }
-  #printable-thermal-receipt.thermal-58mm { max-width:58mm!important; font-size:8.5pt!important; padding:2mm 2.5mm!important; }
-}
-
-/* Soft financial-terminal grid: subtle, continuous, never boxy. */
+/* Soft financial-terminal texture: continuous and extremely low contrast. */
 .bk-soft-grid {
   background-image:
     linear-gradient(rgba(148,163,184,.018) 1px, transparent 1px),
     linear-gradient(90deg, rgba(148,163,184,.014) 1px, transparent 1px);
   background-size: 32px 32px, 64px 64px;
 }
-
 .bk-chart-grid line {
   stroke: #263744;
   stroke-opacity: .52;
@@ -98,17 +78,11 @@
   vector-effect: non-scaling-stroke;
 }
 
-@supports (padding: env(safe-area-inset-top)) {
-  .bk-safe-top { padding-top: env(safe-area-inset-top); }
-  .bk-safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
-}
-
-
-/* Soft-grid component system: subtle grouped containers, not heavy cards. */
+/* Core soft-grid grouping system: rounded grouping, not rigid card walls. */
 .bk-grid-panel {
   position: relative;
   background: linear-gradient(180deg, rgba(17,24,39,.72), rgba(13,21,29,.72));
-  border: 1px solid rgba(34,48,61,.95);
+  border: 1px solid rgba(34,48,61,.92);
   border-radius: 14px;
   overflow: hidden;
   box-shadow: inset 0 1px 0 rgba(148,163,184,.035);
@@ -119,21 +93,21 @@
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(148,163,184,.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148,163,184,.010) 1px, transparent 1px);
+    linear-gradient(rgba(148,163,184,.010) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148,163,184,.008) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 .bk-grid-section {
   position: relative;
-  border: 1px solid rgba(34,48,61,.9);
-  background: rgba(13,21,29,.52);
+  border: 1px solid rgba(34,48,61,.82);
+  background: rgba(13,21,29,.48);
   border-radius: 12px;
   box-shadow: inset 0 1px 0 rgba(148,163,184,.025);
 }
 .bk-grid-section > * { position: relative; z-index: 1; }
 .bk-grid-cell {
-  background: rgba(17,24,39,.58);
-  border: 1px solid rgba(34,48,61,.82);
+  background: rgba(17,24,39,.52);
+  border: 1px solid rgba(34,48,61,.76);
   border-radius: 10px;
 }
 .bk-grid-control {
@@ -145,4 +119,64 @@
 .bk-grid-control:focus-within {
   border-color: rgba(14,165,233,.75);
   box-shadow: 0 0 0 1px rgba(14,165,233,.12), inset 0 1px 0 rgba(148,163,184,.035);
+}
+
+/* Existing pages use Tailwind surfaces heavily. Soften only those surfaces
+   inside BisnisKu terminal pages; controls keep their compact shape while
+   cards/groups gain the same rounded visual language. */
+.bk-terminal-page [class*="bg-[#111827]"][class*="border-[#263744]"],
+.bk-terminal-page [class*="bg-[#16202B]"][class*="border-[#263744]"],
+.bk-terminal-page [class*="bg-[#0D151D]"][class*="border-[#263744]"],
+.bk-terminal-page [class*="bg-[#111827]"][class*="border-[#22303D]"],
+.bk-terminal-page [class*="bg-[#0D151D]"][class*="border-[#22303D"] {
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 rgba(148,163,184,.025);
+}
+
+/* Grouped sections should read as one soft container instead of many hard boxes. */
+.bk-terminal-page .divide-y,
+.bk-terminal-page .divide-x {
+  border-color: rgba(34,48,61,.58);
+}
+.bk-terminal-page .divide-y > * + *,
+.bk-terminal-page .divide-x > * + * {
+  border-color: rgba(34,48,61,.58);
+}
+
+/* Search/filter/input controls: rounded but deliberately smaller than panels. */
+.bk-terminal-page input:not([type="checkbox"]):not([type="radio"]),
+.bk-terminal-page select,
+.bk-terminal-page textarea {
+  border-radius: 10px;
+}
+
+/* Avoid sharp corners on existing button groups while preserving their sizing. */
+.bk-terminal-page button[class*="border-[#263744]"],
+.bk-terminal-page button[class*="border-[#22303D"] {
+  border-radius: 10px;
+}
+
+/* Don't let soft grouping become oversized on narrow screens. */
+@media (max-width: 640px) {
+  .bk-grid-panel { border-radius: 12px; }
+  .bk-grid-section { border-radius: 10px; }
+  .bk-terminal-page [class*="bg-[#111827]"][class*="border-[#263744]"],
+  .bk-terminal-page [class*="bg-[#16202B]"][class*="border-[#263744]"],
+  .bk-terminal-page [class*="bg-[#0D151D]"][class*="border-[#263744]"] {
+    border-radius: 10px;
+  }
+}
+
+@supports (padding: env(safe-area-inset-top)) {
+  .bk-safe-top { padding-top: env(safe-area-inset-top); }
+  .bk-safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+}
+
+@media print {
+  @page { size:auto; margin:0; }
+  html,body { background:#fff!important; color:#000!important; margin:0!important; padding:0!important; width:100%!important; height:auto!important; }
+  body * { visibility:hidden; }
+  #printable-thermal-receipt,#printable-thermal-receipt * { visibility:visible; }
+  #printable-thermal-receipt { position:absolute; left:0; top:0; width:100%!important; max-width:80mm!important; padding:3mm 4mm!important; margin:0 auto!important; box-shadow:none!important; border:none!important; font-size:10pt!important; line-height:1.25!important; color:#000!important; background:#fff!important; }
+  #printable-thermal-receipt.thermal-58mm { max-width:58mm!important; font-size:8.5pt!important; padding:2mm 2.5mm!important; }
 }
