@@ -83,51 +83,22 @@
   #printable-thermal-receipt.thermal-58mm { max-width:58mm!important; font-size:8.5pt!important; padding:2mm 2.5mm!important; }
 }
 
-
-/* BisnisKu terminal redesign — presentation layer only */
-.bk-terminal-page {
-  --bk-line: #22303D;
-  --bk-line-soft: #192631;
-  --bk-panel: #0D151D;
-  --bk-panel-2: #111827;
-}
-.bk-terminal-page [class*="rounded-xl"][class*="border"],
-.bk-terminal-page [class*="rounded-2xl"][class*="border"] {
-  border-radius: 4px !important;
-  box-shadow: none !important;
-}
-.bk-terminal-page [class*="bg-[#111827]"][class*="border"],
-.bk-terminal-page [class*="bg-[#0D151D]"][class*="border"] {
-  background: transparent !important;
-  border-color: var(--bk-line) !important;
-}
-.bk-terminal-page [class*="shadow-"] { box-shadow: none !important; }
-.bk-terminal-page [class*="min-h-[500px]"],
-.bk-terminal-page [class*="min-h-[520px]"],
-.bk-terminal-page [class*="min-h-[560px]"] { min-height: auto !important; }
-.bk-terminal-page [class*="divide-y"] > * { border-color: var(--bk-line-soft) !important; }
-.bk-terminal-page [class*="divide-x"] > * { border-color: var(--bk-line-soft) !important; }
-
-@media (max-width: 640px) {
-  .bk-terminal-page [class*="grid-cols-2"],
-  .bk-terminal-page [class*="grid-cols-3"],
-  .bk-terminal-page [class*="grid-cols-4"] {
-    grid-template-columns: 1fr !important;
-  }
-  .bk-terminal-page [class*="grid-cols-12"] {
-    grid-template-columns: 1fr !important;
-  }
-  .bk-terminal-page [class*="gap-5"] { gap: .75rem !important; }
-  .bk-terminal-page [class*="gap-4"] { gap: .625rem !important; }
-  .bk-terminal-page [class*="p-5"] { padding: .75rem !important; }
-  .bk-terminal-page [class*="p-4"] { padding: .75rem !important; }
-  .bk-terminal-page [class*="p-3"] { padding: .625rem !important; }
+/* Soft financial-terminal grid: subtle, continuous, never boxy. */
+.bk-soft-grid {
+  background-image:
+    linear-gradient(rgba(148,163,184,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148,163,184,.014) 1px, transparent 1px);
+  background-size: 32px 32px, 64px 64px;
 }
 
-.bk-terminal-page .bk-section-label {
-  color: #526579;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
+.bk-chart-grid line {
+  stroke: #263744;
+  stroke-opacity: .52;
+  stroke-width: .7;
+  vector-effect: non-scaling-stroke;
+}
+
+@supports (padding: env(safe-area-inset-top)) {
+  .bk-safe-top { padding-top: env(safe-area-inset-top); }
+  .bk-safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
 }
