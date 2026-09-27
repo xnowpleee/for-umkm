@@ -357,7 +357,7 @@ export function ProductsPage() {
                   </div>
 
                   {/* Price & Profit Specs */}
-                  <div className="grid grid-cols-2 gap-x-2 gap-y-1.5 my-2 py-2 border-y border-[#22303D] text-[10px]">
+                  <div className="my-2 flex flex-wrap gap-x-5 gap-y-1.5 border-y border-[#22303D] py-2 text-[10px]">
                     <div>
                       <p className="text-[8px] sm:text-[9px] text-[#94A3B8]">Harga Jual</p>
                       <p className="font-semibold text-[10px] sm:text-[11px] text-[#E5E7EB] tabular-nums">{formatRupiah(product.selling_price)}</p>
@@ -366,11 +366,11 @@ export function ProductsPage() {
                       <p className="text-[8px] sm:text-[9px] text-[#94A3B8]">HPP (Modal)</p>
                       <p className="font-medium text-[10px] sm:text-[11px] text-[#94A3B8] tabular-nums">{formatRupiah(product.hpp)}</p>
                     </div>
-                    <div className="pt-1 border-t border-[#263744] min-w-0">
+                    <div className="min-w-[90px]">
                       <p className="text-[8px] sm:text-[9px] text-[#94A3B8]">Laba / Porsi</p>
                       <p className="font-semibold text-[10px] sm:text-[11px] text-[#0EA5E9] tabular-nums truncate">+{formatRupiah(profit)}</p>
                     </div>
-                    <div className="pt-1 border-t border-[#263744] min-w-0">
+                    <div className="min-w-[70px]">
                       <p className="text-[8px] sm:text-[9px] text-[#94A3B8]">Margin</p>
                       <p className="font-semibold text-[10px] sm:text-[11px] text-[#0EA5E9] tabular-nums">{margin}%</p>
                     </div>
