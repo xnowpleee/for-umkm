@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavTab } from './BottomNav';
 import { useBusiness } from '../../context/BusinessContext';
-import { LayoutDashboard, Package, Receipt, ArrowDownCircle, BarChart3, BotMessageSquare, Settings as SettingsIcon, Store, AlertTriangle } from 'lucide-react';
+import { LayoutDashboard, Package, Receipt, ArrowDownCircle, BarChart3, BotMessageSquare, Settings as SettingsIcon, Store, AlertTriangle, LogOut } from 'lucide-react';
 
 interface SidebarProps { activeTab: NavTab; onTabChange: (tab: NavTab) => void; }
 
 export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
-  const { profile, dashboardSummary } = useBusiness();
+  const { profile, dashboardSummary, logout } = useBusiness();
   const navItems = [
     { id: 'dashboard' as NavTab, label: 'Dashboard', icon: LayoutDashboard },
     { id: 'products' as NavTab, label: 'Produk', icon: Package, badge: dashboardSummary.lowStockProducts.length > 0 ? dashboardSummary.lowStockProducts.length : undefined },
@@ -51,6 +51,6 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
       })}
     </div>
 
-    <div className="px-3 pt-3 border-t border-[#192631] text-[9px] text-[#4F6174] tracking-wide">BISNISKU • BUSINESS OS</div>
+    <div className="pt-3 border-t border-[#192631] mt-2 space-y-1"><button type="button" onClick={() => logout()} className="w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium text-[#7E8EA1] hover:text-[#F87171] hover:bg-[#171C22]"><LogOut className="w-4 h-4"/><span>Keluar</span></button><div className="px-3 pt-1 text-[9px] text-[#4F6174] tracking-wide">BISNISKU • BUSINESS OS</div></div>
   </aside>;
 }
