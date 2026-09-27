@@ -103,22 +103,22 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         </div>
       </section>
 
-      <section className="mt-3 grid grid-cols-3 border-y border-[#263744]">
+      <section className="mt-3 flex border-y border-[#263744]">
         {[
           ['Transaksi', String(transactionsCountToday), 'hari ini', Receipt],
           ['Item Terjual', String(topProductsToday.reduce((sum: number, p: any) => sum + Number(p.quantity || 0), 0)), 'item', Package],
           ['Rata-rata', formatRupiah(average), '/ transaksi', CircleDollarSign],
         ].map(function(item: any) {
           const Icon = item[3];
-          return <div key={item[0]} className="min-w-0 px-2.5 py-3 sm:px-4"><Icon className="h-3.5 w-3.5 text-[#60758A]" /><p className="mt-2 truncate text-[9px] text-[#64748B]">{item[0]}</p><p className="mt-1 truncate text-[12px] font-semibold text-[#E5E7EB] tabular-nums">{item[1]}</p><p className="mt-0.5 truncate text-[8px] text-[#526579]">{item[2]}</p></div>;
+          return <div key={item[0]} className="min-w-0 flex-1 px-2.5 py-3 sm:px-4 first:pl-0 last:pr-0"><Icon className="h-3.5 w-3.5 text-[#60758A]" /><p className="mt-2 truncate text-[9px] text-[#64748B]">{item[0]}</p><p className="mt-1 truncate text-[12px] font-semibold text-[#E5E7EB] tabular-nums">{item[1]}</p><p className="mt-0.5 truncate text-[8px] text-[#526579]">{item[2]}</p></div>;
         })}
       </section>
 
-      <section className="mt-3 border-y border-[#263744] p-3.5 sm:p-4">
+      <section className="mt-3 border-y border-[#263744] py-3.5 sm:py-4">
         <div className="mb-3 flex items-center gap-2"><Wallet className="h-4 w-4 text-[#22D3EE]" /><h2 className="text-[12px] font-semibold text-[#E5E7EB]">Ringkasan Keuangan</h2><span className="ml-auto text-[8px] uppercase tracking-[.12em] text-[#526579]">Hari ini</span></div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y divide-[#263744] sm:divide-y-0">
+        <div className="flex flex-wrap">
           {[['Omzet', omzetToday, 'text-[#E5E7EB]'], ['Laba', estimatedProfitToday, 'text-[#34D399]'], ['HPP', hppToday, 'text-[#CBD5E1]'], ['Pengeluaran', expensesToday, 'text-[#F87171]']].map(function(item: any) {
-            return <div key={item[0]} className="px-3 py-2.5 first:pl-0 sm:py-1.5"><p className="text-[9px] text-[#64748B]">{item[0]}</p><p className={'mt-1 text-[12px] font-semibold tabular-nums ' + item[2]}>{formatRupiah(Number(item[1]))}</p></div>;
+            return <div key={item[0]} className="w-1/2 border-b border-[#263744] px-3 py-2.5 first:pl-0 sm:w-1/4 sm:border-b-0 sm:py-1.5"><p className="text-[9px] text-[#64748B]">{item[0]}</p><p className={'mt-1 text-[12px] font-semibold tabular-nums ' + item[2]}>{formatRupiah(Number(item[1]))}</p></div>;
           })}
         </div>
       </section>
