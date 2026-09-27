@@ -81,19 +81,19 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
             <div className="hidden sm:block text-right"><p className="text-[9px] uppercase tracking-[0.12em] text-[#526579]">Status</p><p className="mt-1 flex items-center justify-end gap-1 text-[9px] font-medium text-[#34D399]"><span className="h-1.5 w-1.5 rounded-full bg-[#34D399] shadow-[0_0_8px_rgba(52,211,153,.55)]" /> LIVE</p></div>
           </div>
 
-          <div className="mt-5">
+          <div className="mt-4">
             <div className="mb-1 flex items-center justify-between text-[8px] uppercase tracking-[0.12em] text-[#526579]">
               <span>Analisis omzet</span>
               <span>{days} titik data</span>
             </div>
-            <div className="relative h-[132px] w-full">
+            <div className="relative h-[104px] w-full">
               <div className="absolute inset-y-0 left-0 flex flex-col justify-between pr-2 text-[7px] text-[#526579]">
                 <span>{formatRupiah(maxOmzet)}</span><span>{formatRupiah(maxOmzet / 2)}</span><span>Rp0</span>
               </div>
               <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="ml-9 h-full w-[calc(100%-2.25rem)] overflow-visible">
                 {[0, 50, 100].map(y => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#263744" strokeWidth=".55" strokeDasharray="2 3" vectorEffect="non-scaling-stroke" />)}
                 {chartPoints.map((p, i) => i > 0 ? <line key={'v'+p.date} x1={p.x} x2={p.x} y1="0" y2="100" stroke="#1B2935" strokeWidth=".45" vectorEffect="non-scaling-stroke" /> : null)}
-                <polyline points={linePoints} fill="none" stroke="#22D3EE" strokeWidth="1.6" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
+                <polyline points={linePoints} fill="none" stroke="#22D3EE" strokeWidth="1.45" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
                 {chartPoints.map((p, i) => <circle key={p.date} cx={p.x} cy={p.y} r={i === chartPoints.length - 1 ? 2.3 : 1.15} fill="#080F14" stroke="#22D3EE" strokeWidth=".9" vectorEffect="non-scaling-stroke"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
               </svg>
             </div>
@@ -117,9 +117,9 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
 
       <section className="mt-3 border-y border-[#263744] p-3.5 sm:p-4">
         <div className="mb-3 flex items-center gap-2"><Wallet className="h-4 w-4 text-[#22D3EE]" /><h2 className="text-[12px] font-semibold text-[#E5E7EB]">Ringkasan Keuangan</h2><span className="ml-auto text-[8px] uppercase tracking-[.12em] text-[#526579]">Hari ini</span></div>
-        <div className="grid grid-cols-2 divide-x divide-y divide-[#263744] sm:grid-cols-4 sm:divide-y-0">
+        <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y divide-[#263744] sm:divide-y-0">
           {[['Omzet', omzetToday, 'text-[#E5E7EB]'], ['Laba', estimatedProfitToday, 'text-[#34D399]'], ['HPP', hppToday, 'text-[#CBD5E1]'], ['Pengeluaran', expensesToday, 'text-[#F87171]']].map(function(item: any) {
-            return <div key={item[0]} className="px-2 py-2.5 first:pl-0 sm:py-1.5"><p className="text-[9px] text-[#64748B]">{item[0]}</p><p className={'mt-1 text-[12px] font-semibold tabular-nums ' + item[2]}>{formatRupiah(Number(item[1]))}</p></div>;
+            return <div key={item[0]} className="px-3 py-2.5 first:pl-0 sm:py-1.5"><p className="text-[9px] text-[#64748B]">{item[0]}</p><p className={'mt-1 text-[12px] font-semibold tabular-nums ' + item[2]}>{formatRupiah(Number(item[1]))}</p></div>;
           })}
         </div>
       </section>
@@ -163,11 +163,6 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         </div>
       </section>
 
-      <button type="button" onClick={() => onNavigate('chat') className="mt-3 flex w-full items-center gap-3 border-y border-[#214052] py-3.5 text-left transition-colors hover:bg-[#0E202B]">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-[#123247] text-[#22D3EE]"><Sparkles className="h-4 w-4" /></div>
-        <div className="min-w-0 flex-1"><p className="text-[11px] font-semibold text-[#E5E7EB]">BisnisKu AI</p><p className="mt-0.5 text-[9px] text-[#718096]">Insight dan saran bisnis dari data usahamu.</p></div>
-        <span className="shrink-0 text-[9px] font-semibold text-[#67D5F5]">Buka AI <ChevronRight className="inline h-3 w-3" /></span>
-      </button>
     </div>
   );
 }
