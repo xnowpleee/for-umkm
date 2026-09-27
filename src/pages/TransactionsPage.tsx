@@ -446,9 +446,9 @@ export function TransactionsPage() {
 
             {/* Products Selector Grid */}
             {isLoadingData && products.length === 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              <div className="divide-y divide-[#263744] border-y border-[#263744]">
                 {[1, 2, 3, 4, 5, 6].map(i => (
-                  <div key={i} className="p-3 rounded-xl bg-[#111827] border border-[#263744] animate-pulse h-28 space-y-2">
+                  <div key={i} className="h-16 animate-pulse flex items-center gap-3 px-2">
                     <div className="h-3 w-16 bg-[#16202B] rounded" />
                     <div className="h-4 w-24 bg-[#16202B] rounded" />
                     <div className="h-3 w-20 bg-[#16202B] rounded mt-4" />
@@ -456,7 +456,7 @@ export function TransactionsPage() {
                 ))}
               </div>
             ) : filteredProducts.length === 0 ? (
-              <div className="p-8 text-center rounded-xl bg-[#111827] border border-[#263744]">
+              <div className="py-10 text-center border-y border-[#263744]">
                 <Package className="w-8 h-8 text-[#94A3B8] mx-auto mb-2 opacity-40" />
                 <p className="text-xs text-[#94A3B8]">
                   {searchProductQuery
@@ -540,7 +540,7 @@ export function TransactionsPage() {
 
           {/* Right Column: Order Cart & Checkout (Col 5) */}
           <div className="lg:col-span-5">
-            <div className="p-4 sm:p-5 rounded-xl bg-[#111827] border border-[#263744] sticky top-20 flex flex-col justify-between min-h-[500px]">
+            <div className="sticky top-20 flex flex-col justify-between border-y border-[#263744] py-3.5 sm:py-4">
               <div>
                 {/* Cart Header */}
                 <div className="flex items-center justify-between pb-3 border-b border-[#263744]">
@@ -743,7 +743,7 @@ export function TransactionsPage() {
 
                 {/* Cash Payment Details (When Cash is Selected) */}
                 {paymentMethod === 'cash' && (
-                  <div className="p-2.5 rounded-lg bg-[#111827] border border-[#263744] space-y-2">
+                  <div className="border-y border-[#263744] py-2.5 space-y-2">
                     <div className="flex items-center justify-between">
                       <label className="text-[11px] font-medium text-[#94A3B8]">
                         Uang Tunai Diterima:
