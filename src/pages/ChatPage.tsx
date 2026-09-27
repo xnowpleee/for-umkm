@@ -34,7 +34,7 @@ function renderFormattedInline(text: string, isUser = false): React.ReactNode {
       parts.push(
         <strong
           key={`b-${keyIndex++}`}
-          className={`font-semibold ${isUser ? 'text-[#172033]' : 'text-[#172033]'}`}
+          className={`font-semibold ${isUser ? 'text-[#E5E7EB]' : 'text-[#E5E7EB]'}`}
         >
           {token.slice(2, -2)}
         </strong>
@@ -45,8 +45,8 @@ function renderFormattedInline(text: string, isUser = false): React.ReactNode {
           key={`c-${keyIndex++}`}
           className={`px-1 py-0.5 rounded font-mono text-[11px] ${
             isUser
-              ? 'bg-[#FFFFFF] text-[#172E4D] border border-[#E4E8EE]'
-              : 'bg-[#EEF2F7] text-[#172E4D] border border-[#E4E8EE]'
+              ? 'bg-[#111827] text-[#0EA5E9] border border-[#263744]'
+              : 'bg-[#16202B] text-[#0EA5E9] border border-[#263744]'
           }`}
         >
           {token.slice(1, -1)}
@@ -56,7 +56,7 @@ function renderFormattedInline(text: string, isUser = false): React.ReactNode {
       parts.push(
         <em
           key={`i-${keyIndex++}`}
-          className={`italic ${isUser ? 'text-[#172033]' : 'text-[#7D899B]'}`}
+          className={`italic ${isUser ? 'text-[#E5E7EB]' : 'text-[#94A3B8]'}`}
         >
           {token.slice(1, -1)}
         </em>
@@ -116,7 +116,7 @@ function MarkdownContent({ content, isUser = false }: MarkdownContentProps) {
     // Horizontal Rule
     if (trimmed === '---' || trimmed === '***' || trimmed === '___') {
       flushList(`hr-${index}`);
-      elements.push(<hr key={`hr-${index}`} className="my-2 border-[#E4E8EE]" />);
+      elements.push(<hr key={`hr-${index}`} className="my-2 border-[#263744]" />);
       return;
     }
 
@@ -124,7 +124,7 @@ function MarkdownContent({ content, isUser = false }: MarkdownContentProps) {
     if (trimmed.startsWith('#### ')) {
       flushList(`h4-${index}`);
       elements.push(
-        <h5 key={`h4-${index}`} className="text-xs font-bold text-[#172E4D] mt-2 mb-1">
+        <h5 key={`h4-${index}`} className="text-xs font-bold text-[#0EA5E9] mt-2 mb-1">
           {renderFormattedInline(trimmed.slice(5), isUser)}
         </h5>
       );
@@ -133,7 +133,7 @@ function MarkdownContent({ content, isUser = false }: MarkdownContentProps) {
     if (trimmed.startsWith('### ')) {
       flushList(`h3-${index}`);
       elements.push(
-        <h4 key={`h3-${index}`} className="text-xs sm:text-sm font-bold text-[#172033] mt-2 mb-1">
+        <h4 key={`h3-${index}`} className="text-xs sm:text-sm font-bold text-[#E5E7EB] mt-2 mb-1">
           {renderFormattedInline(trimmed.slice(4), isUser)}
         </h4>
       );
@@ -142,7 +142,7 @@ function MarkdownContent({ content, isUser = false }: MarkdownContentProps) {
     if (trimmed.startsWith('## ')) {
       flushList(`h2-${index}`);
       elements.push(
-        <h3 key={`h2-${index}`} className="text-sm sm:text-base font-bold text-[#172033] mt-2.5 mb-1.5">
+        <h3 key={`h2-${index}`} className="text-sm sm:text-base font-bold text-[#E5E7EB] mt-2.5 mb-1.5">
           {renderFormattedInline(trimmed.slice(3), isUser)}
         </h3>
       );
@@ -151,7 +151,7 @@ function MarkdownContent({ content, isUser = false }: MarkdownContentProps) {
     if (trimmed.startsWith('# ')) {
       flushList(`h1-${index}`);
       elements.push(
-        <h2 key={`h1-${index}`} className="text-base sm:text-lg font-bold text-[#172033] mt-3 mb-1.5">
+        <h2 key={`h1-${index}`} className="text-base sm:text-lg font-bold text-[#E5E7EB] mt-3 mb-1.5">
           {renderFormattedInline(trimmed.slice(2), isUser)}
         </h2>
       );
@@ -167,8 +167,8 @@ function MarkdownContent({ content, isUser = false }: MarkdownContentProps) {
       }
       listItems.push(
         <li key={`li-${index}`} className="flex items-start gap-2 text-xs leading-relaxed">
-          <span className="text-[#172E4D] mt-1 text-[10px] select-none">•</span>
-          <span className="flex-1 text-[#172033]">
+          <span className="text-[#0EA5E9] mt-1 text-[10px] select-none">•</span>
+          <span className="flex-1 text-[#E5E7EB]">
             {renderFormattedInline(bulletMatch[1], isUser)}
           </span>
         </li>
@@ -185,10 +185,10 @@ function MarkdownContent({ content, isUser = false }: MarkdownContentProps) {
       }
       listItems.push(
         <li key={`li-${index}`} className="flex items-start gap-2 text-xs leading-relaxed">
-          <span className="text-[#7D899B] font-mono text-[11px] select-none shrink-0 w-4 text-right">
+          <span className="text-[#94A3B8] font-mono text-[11px] select-none shrink-0 w-4 text-right">
             {numberMatch[1]}.
           </span>
-          <span className="flex-1 text-[#172033]">
+          <span className="flex-1 text-[#E5E7EB]">
             {renderFormattedInline(numberMatch[2], isUser)}
           </span>
         </li>
@@ -199,7 +199,7 @@ function MarkdownContent({ content, isUser = false }: MarkdownContentProps) {
     // Regular Paragraph line
     flushList(`p-${index}`);
     elements.push(
-      <p key={`p-${index}`} className="text-xs leading-relaxed text-[#172033]">
+      <p key={`p-${index}`} className="text-xs leading-relaxed text-[#E5E7EB]">
         {renderFormattedInline(trimmed, isUser)}
       </p>
     );
@@ -491,14 +491,14 @@ export function ChatPage() {
   return (
     <div className="flex min-h-0 h-full max-h-full flex-col max-w-4xl mx-auto pb-16 md:pb-0 overflow-hidden">
       {/* Chat Header */}
-      <div className="relative z-20 flex min-h-[52px] h-[52px] items-center justify-between border-b border-[#E7EBF1] bg-[#FBFCFE] py-2.5 shrink-0">
+      <div className="relative z-20 flex min-h-[52px] h-[52px] items-center justify-between border-b border-[#22303D] bg-[#0D151D] py-2.5 shrink-0">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#172E4D]" />
-            <h1 className="text-sm font-semibold text-[#172033]">Asisten AI</h1>
-            <span className="rounded bg-[#EEF2F7] px-1.5 py-0.5 text-[7px] font-medium text-[#304C70]">Beta</span>
+            <span className="h-2 w-2 rounded-full bg-[#0EA5E9]" />
+            <h1 className="text-sm font-semibold text-[#E5E7EB]">Asisten AI</h1>
+            <span className="rounded bg-[#16202B] px-1.5 py-0.5 text-[7px] font-medium text-[#0EA5E9]">Beta</span>
           </div>
-          <p className="mt-0.5 text-[9px] text-[#7D899B]">Analisis bisnis berdasarkan data usahamu.</p>
+          <p className="mt-0.5 text-[9px] text-[#94A3B8]">Analisis bisnis berdasarkan data usahamu.</p>
         </div>
 
         <button
@@ -517,7 +517,7 @@ export function ChatPage() {
             } catch {}
             setChatError(null);
           }}
-          className="p-1.5 text-[#7D899B] hover:text-[#172033] hover:bg-[#F1F4F8] rounded-lg transition-colors text-xs flex items-center gap-1 select-none"
+          className="p-1.5 text-[#94A3B8] hover:text-[#E5E7EB] hover:bg-[#16202B] rounded-lg transition-colors text-xs flex items-center gap-1 select-none"
           title="Bersihkan Percakapan"
         >
           <RefreshCw className="w-3.5 h-3.5" />
@@ -545,42 +545,42 @@ export function ChatPage() {
               <div
                 className={`hidden w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-xs ${
                   isUser
-                    ? 'bg-[#EEF2F7] border border-[#E4E8EE] text-[#172033]'
-                    : 'bg-[#FFFFFF] border border-[#E4E8EE] text-[#172E4D]'
+                    ? 'bg-[#16202B] border border-[#263744] text-[#E5E7EB]'
+                    : 'bg-[#111827] border border-[#263744] text-[#0EA5E9]'
                 }`}
               >
-                {isUser ? <User className="w-3.5 h-3.5" /> : <span className="h-1.5 w-1.5 rounded-full bg-[#172E4D]" />}
+                {isUser ? <User className="w-3.5 h-3.5" /> : <span className="h-1.5 w-1.5 rounded-full bg-[#0EA5E9]" />}
               </div>
 
-              {/* Message bubble: User is lighter surface (#EEF2F7), Assistant is dark card (#FFFFFF) */}
+              {/* Message bubble: User is lighter surface (#16202B), Assistant is dark card (#111827) */}
               <div
                 className={`max-w-[94%] sm:max-w-[82%] rounded-xl px-3.5 py-3 text-[11px] leading-relaxed relative group ${
                   isUser
-                    ? 'bg-[#EEF2F7] border border-[#E4E8EE] text-[#172033]'
-                    : 'bg-[#FCFDFE] border border-[#E4E8EE] text-[#172033]'
+                    ? 'bg-[#16202B] border border-[#263744] text-[#E5E7EB]'
+                    : 'bg-[#0D151D] border border-[#263744] text-[#E5E7EB]'
                 }`}
               >
                 <div className="allow-select">
-                  {!isUser && msg.id.startsWith('msg-welcome') && <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-full border border-[#E4E8EE] bg-[#F1F4F8]"><span className="h-2.5 w-2.5 rounded-full bg-[#172E4D]" /></div>}
+                  {!isUser && msg.id.startsWith('msg-welcome') && <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-full border border-[#263744] bg-[#16202B]"><span className="h-2.5 w-2.5 rounded-full bg-[#0EA5E9]" /></div>}
                   <MarkdownContent content={msg.content} isUser={isUser} />
                   {!isUser && msg.id.startsWith('msg-welcome') && <div className="mt-3 grid grid-cols-2 gap-1.5">
-                    {samplePrompts.map((prompt, idx) => <button key={idx} type="button" disabled={isLoading} onClick={() => handleSendMessage(prompt)} className="rounded-lg border border-[#E4E8EE] bg-[#F7F9FC] px-2.5 py-2 text-left text-[9px] font-medium text-[#7D899B] transition-colors hover:border-[#304C70] hover:text-[#172033] disabled:opacity-50">{prompt}</button>)}
+                    {samplePrompts.map((prompt, idx) => <button key={idx} type="button" disabled={isLoading} onClick={() => handleSendMessage(prompt)} className="rounded-lg border border-[#263744] bg-[#111827] px-2.5 py-2 text-left text-[9px] font-medium text-[#94A3B8] transition-colors hover:border-[#0EA5E9] hover:text-[#E5E7EB] disabled:opacity-50">{prompt}</button>)}
                   </div>}
                 </div>
 
                 {/* Salin / Copy button for assistant responses */}
                 {!isUser && msg.content && !msg.id.startsWith('msg-welcome') && (
-                  <div className="pt-1.5 mt-1.5 border-t border-[#E4E8EE]/60 flex items-center justify-end select-none">
+                  <div className="pt-1.5 mt-1.5 border-t border-[#263744]/60 flex items-center justify-end select-none">
                     <button
                       type="button"
                       onClick={() => handleCopyMessage(msg.id, msg.content)}
-                      className="flex items-center gap-1 text-[9px] font-medium text-[#7D899B] hover:text-[#172E4D] transition-colors py-0.5 px-1.5 rounded hover:bg-[#EEF2F7]"
+                      className="flex items-center gap-1 text-[9px] font-medium text-[#94A3B8] hover:text-[#0EA5E9] transition-colors py-0.5 px-1.5 rounded hover:bg-[#16202B]"
                       title="Salin jawaban Asisten"
                     >
                       {isCopied ? (
                         <>
-                          <Check className="w-3 h-3 text-[#172E4D]" />
-                          <span className="text-[#172E4D]">Tersalin</span>
+                          <Check className="w-3 h-3 text-[#0EA5E9]" />
+                          <span className="text-[#0EA5E9]">Tersalin</span>
                         </>
                       ) : (
                         <>
@@ -599,9 +599,9 @@ export function ChatPage() {
         {/* Loading Indicator */}
         {isLoading && (
           <div className="flex items-start gap-2.5">
-            <div className="mt-1 h-1.5 w-1.5 rounded-full bg-[#172E4D] animate-pulse shrink-0" />
-            <div className="bg-[#FCFDFE] border border-[#E4E8EE] rounded-lg px-3 py-2 text-[10px] text-[#7D899B] flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#172E4D] animate-ping" />
+            <div className="mt-1 h-1.5 w-1.5 rounded-full bg-[#0EA5E9] animate-pulse shrink-0" />
+            <div className="bg-[#0D151D] border border-[#263744] rounded-lg px-3 py-2 text-[10px] text-[#94A3B8] flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#0EA5E9] animate-ping" />
               <span>Asisten sedang menganalisis data bisnismu...</span>
             </div>
           </div>
@@ -624,7 +624,7 @@ export function ChatPage() {
           e.preventDefault();
           handleSendMessage();
         }}
-        className="flex items-center gap-1.5 pt-2 border-t border-[#E4E8EE] shrink-0"
+        className="flex items-center gap-1.5 pt-2 border-t border-[#263744] shrink-0"
       >
         <input
           type="text"
@@ -632,12 +632,12 @@ export function ChatPage() {
           value={inputMessage}
           onChange={e => setInputMessage(e.target.value)}
           disabled={isLoading}
-          className="flex-1 px-3 py-2 text-[11px] bg-[#FCFDFE] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D] transition-colors"
+          className="flex-1 px-3 py-2 text-[11px] bg-[#0D151D] border border-[#263744] rounded-lg text-[#E5E7EB] placeholder-[#94A3B8] focus:outline-hidden focus:border-[#0EA5E9] transition-colors"
         />
         <button
           type="submit"
           disabled={isLoading || !inputMessage.trim()}
-          className="px-3.5 py-2 bg-[#172E4D] hover:bg-[#213D61] text-[#FFFFFF] font-semibold rounded-lg text-xs flex items-center gap-1.5 transition-all disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 shrink-0 select-none"
+          className="px-3.5 py-2 bg-[#0EA5E9] hover:bg-[#0284C7] text-[#111827] font-semibold rounded-lg text-xs flex items-center gap-1.5 transition-all disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 shrink-0 select-none"
         >
           <Send className="w-3.5 h-3.5" />
           <span className="hidden sm:inline">Kirim</span>
