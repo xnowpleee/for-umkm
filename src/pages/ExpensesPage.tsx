@@ -221,7 +221,7 @@ export function ExpensesPage() {
   };
 
   return (
-    <div className="space-y-5 pb-24 md:pb-8">
+    <div className="bk-grid-page space-y-5 pb-24 md:pb-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-1">
         <div>
@@ -273,7 +273,7 @@ export function ExpensesPage() {
       )}
 
       {/* Summary 4-Column Grid */}
-      <div className="flex flex-wrap border-y border-[#263744]">
+      <div className="bk-grid-section flex flex-wrap">
         <div className="w-1/2 border-b border-[#263744] px-4 py-3 first:pl-0 sm:w-1/4 sm:border-b-0">
           <div className="flex items-center justify-between text-xs text-[#94A3B8] mb-2 font-medium">
             <span>Total Bulan Ini</span>
@@ -348,7 +348,7 @@ export function ExpensesPage() {
       </div>
 
       {/* Expenses Table */}
-      <div className="border-y border-[#263744] overflow-hidden">
+      <div className="bk-grid-panel overflow-hidden">
         {filteredExpenses.length === 0 ? (
           <div className="p-12 text-center text-xs text-[#94A3B8]">
             <ArrowDownCircle className="w-8 h-8 mx-auto mb-2 opacity-30" />
