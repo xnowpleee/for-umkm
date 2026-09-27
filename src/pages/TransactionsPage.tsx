@@ -341,7 +341,7 @@ export function TransactionsPage() {
   };
 
   return (
-    <div className="space-y-5 pb-24 md:pb-8">
+    <div className="bk-terminal-page space-y-5 pb-24 md:pb-8">
       {/* Page Title & View Switcher */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-1">
         <div>
