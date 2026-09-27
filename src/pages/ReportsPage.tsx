@@ -278,12 +278,11 @@ export function ReportsPage() {
             </div>
             <span className="text-[9px] uppercase tracking-[0.12em] text-[#526579]">{period === 'monthly' ? '30 hari' : '7 hari'}</span>
           </div>
-          <div className="h-[104px] w-full">
+          <div className="h-[92px] w-full">
             <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-full w-full overflow-visible">
-                            {[20,40,60,80].map(y => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#22303D" strokeWidth=".6" vectorEffect="non-scaling-stroke" />)}
-              <polygon points={analysisArea} fill="url(#reportChartFill)" />
-              <polyline points={analysisLine} fill="none" stroke="#22D3EE" strokeWidth="1.8" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
-              {analysisPoints.map((p, i) => <circle key={p.key} cx={p.x} cy={p.y} r={i === analysisPoints.length - 1 ? 2 : 1.2} fill="#0EA5E9" stroke="#B9F2FF" strokeWidth=".7" vectorEffect="non-scaling-stroke"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
+              {[25,50,75].map(y => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#1C2934" strokeWidth=".55" vectorEffect="non-scaling-stroke" />)}
+              <polyline points={analysisLine} fill="none" stroke="#38B8D8" strokeWidth="1.5" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
+              {analysisPoints.map((p, i) => <circle key={p.key} cx={p.x} cy={p.y} r={i === analysisPoints.length - 1 ? 2 : 1.2} fill="#0D151D" stroke="#38B8D8" strokeWidth=".7" vectorEffect="non-scaling-stroke"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
             </svg>
           </div>
           <div className="mt-1 flex justify-between gap-2 text-[8px] text-[#526579]">
