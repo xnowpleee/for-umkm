@@ -500,7 +500,8 @@ export function ChatPage() {
               <h1 className="text-sm font-semibold text-[#E5E7EB]">BisnisKu Assistant</h1>
               <span className="border border-[#214052] bg-[#0E202B] px-1.5 py-0.5 text-[7px] font-semibold text-[#22D3EE]">AI</span>
             </div>
-          <p className="mt-0.5 text-[9px] text-[#94A3B8]">Analisis bisnis berdasarkan data usahamu.</p>
+            <p className="mt-0.5 text-[9px] text-[#94A3B8]">Analisis bisnis berdasarkan data usahamu.</p>
+          </div>
         </div>
 
         <button
