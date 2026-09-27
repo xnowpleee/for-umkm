@@ -92,7 +92,6 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
                 <span>{formatRupiah(maxOmzet)}</span><span>{formatRupiah(maxOmzet / 2)}</span><span>Rp0</span>
               </div>
               <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} preserveAspectRatio="xMidYMid meet" className="ml-9 h-full w-[calc(100%-2.25rem)] overflow-visible">
-                {[26, 57, 88].map(y => <line key={y} x1="12" x2="348" y1={y} y2={y} stroke="#263744" strokeWidth="1" strokeDasharray="3 5" />)}
                 <polyline points={linePoints} fill="none" stroke="#22D3EE" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
                 {chartPoints.map((p, i) => <circle key={p.date} cx={p.x} cy={p.y} r={i === chartPoints.length - 1 ? 3 : 2} fill="#080F14" stroke="#22D3EE" strokeWidth="1.5"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
               </svg>
