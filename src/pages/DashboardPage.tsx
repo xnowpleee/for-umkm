@@ -31,7 +31,9 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
     return rows;
   }, [days, transactions]);
 
-  const maxOmzet = Math.max(...trend.map(x => x.omzet), 1);
+  const rangeOmzet = useMemo(() => trend.reduce((sum, point) => sum + point.omzet, 0), [trend]);
+  const chartMaxOmzet = Math.max(...trend.map(x => x.omzet), 1);
+  const chartScaleMax = chartMaxOmzet * 1.15;
   const average = transactionsCountToday ? omzetToday / transactionsCountToday : 0;
   const hppToday = Math.max(omzetToday - estimatedProfitToday - expensesToday, 0);
   const margin = omzetToday ? (estimatedProfitToday / omzetToday) * 100 : 0;
@@ -45,7 +47,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
   const chartHeight = 108;
   const chartPoints = trend.map((point, index) => {
     const x = trend.length === 1 ? chartWidth / 2 : 12 + (index / (trend.length - 1)) * (chartWidth - 24);
-    const y = 88 - (point.omzet / maxOmzet) * 62;
+    const y = 88 - (point.omzet / chartScaleMax) * 62;
     return { ...point, x, y };
   });
   const linePoints = chartPoints.map(p => p.x + ',' + p.y).join(' ');
@@ -83,7 +85,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="flex items-center gap-1.5 text-[9px] uppercase tracking-[0.13em] text-[#718096]"><CircleDollarSign className="h-3.5 w-3.5 text-[#22D3EE]" /> Omzet {range.toLowerCase()} <Eye className="ml-0.5 h-3 w-3 opacity-60" /></div>
-              <p className="mt-2 text-[27px] font-bold leading-none tracking-tight text-[#F1F5F9] tabular-nums">{formatRupiah(omzetToday)}</p>
+              <p className="mt-2 text-[27px] font-bold leading-none tracking-tight text-[#F1F5F9] tabular-nums">{formatRupiah(rangeOmzet)}</p>
               <div className={'mt-2 flex items-center gap-1 text-[9px] font-semibold ' + (margin > 0 ? 'text-[#34D399]' : margin < 0 ? 'text-[#F87171]' : 'text-[#718096]')}><ArrowUpRight className="h-3 w-3" /> Margin laba {margin.toFixed(0)}%</div>
             </div>
             <div className="hidden text-right sm:block"><p className="text-[9px] uppercase tracking-[0.12em] text-[#526579]">Status</p><p className="mt-1 flex items-center justify-end gap-1 text-[9px] font-medium text-[#34D399]"><span className="h-1.5 w-1.5 rounded-full bg-[#34D399] shadow-[0_0_8px_rgba(52,211,153,.55)]" /> LIVE</p></div>
@@ -92,11 +94,11 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
           <div className="mt-4">
             <div className="mb-1 flex items-center justify-between text-[8px] uppercase tracking-[0.12em] text-[#526579]"><span>Analisis omzet</span><span>{days} titik data</span></div>
             <div className="bk-soft-grid relative h-[112px] w-full overflow-hidden rounded-[14px] bg-[#080F14]/25">
-              <div className="absolute inset-y-0 left-0 z-10 flex flex-col justify-between pr-2 text-[7px] text-[#526579]"><span>{formatRupiah(maxOmzet)}</span><span>{formatRupiah(maxOmzet / 2)}</span><span>Rp0</span></div>
-              <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} preserveAspectRatio="xMidYMid meet" className="ml-9 h-full w-[calc(100%-2.25rem)] overflow-visible">
+              <div className="absolute inset-y-0 left-0 z-10 flex flex-col justify-between pr-2 text-[7px] text-[#526579]"><span>{formatRupiah(chartScaleMax)}</span><span>{formatRupiah(chartScaleMax / 2)}</span><span>Rp0</span></div>
+              <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} preserveAspectRatio="none" className="ml-9 h-full w-[calc(100%-2.25rem)] overflow-visible">
                 <g className="bk-chart-grid">{[26,57,88].map(y => <line key={y} x1="12" x2="348" y1={y} y2={y} />)}</g>
-                <polyline points={linePoints} fill="none" stroke="#22D3EE" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                {chartPoints.map((p, i) => <circle key={p.date} cx={p.x} cy={p.y} r={i === chartPoints.length - 1 ? 3 : 2} fill="#080F14" stroke="#22D3EE" strokeWidth="1.5"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
+                <polyline points={linePoints} fill="none" stroke="#22D3EE" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+                {chartPoints.map((p, i) => <circle key={p.date} cx={p.x} cy={p.y} r={i === chartPoints.length - 1 ? 3 : 2} fill="#080F14" stroke="#22D3EE" strokeWidth="1.5" vectorEffect="non-scaling-stroke"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
               </svg>
             </div>
             <div className="ml-9 mt-1 flex justify-between text-[8px] text-[#526579]">{trend.filter((_, i) => days === 30 ? i === 0 || i === trend.length - 1 || i % 5 === 0 : true).slice(0, days === 30 ? 7 : days).map(p => <span key={p.date}>{days === 30 ? p.date.slice(8) : p.label}</span>)}</div>
