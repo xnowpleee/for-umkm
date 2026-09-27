@@ -271,7 +271,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
       )}
 
       {/* Account Info Card */}
-      <div className="p-3.5 rounded-xl bg-[#111827] border border-[#263744] flex items-center justify-between">
+      <div className="bk-grid-panel p-3.5 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <div className="p-2 rounded-lg bg-[#16202B] text-[#0EA5E9]">
             <UserCheck className="w-4 h-4" />
@@ -348,7 +348,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
       {/* Profile Form */}
       {activeTab === 'profile' && (
         <form onSubmit={handleSaveProfile} className="max-w-2xl space-y-4">
-          <div className="space-y-4 border-y border-[#263744] py-4">
+          <div className="bk-grid-section space-y-4 p-4">
             {/* Logo Toko */}
             <div>
               <label className="block text-xs font-medium text-[#94A3B8] mb-1">
@@ -514,7 +514,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
       {/* Supabase PostgreSQL Integration */}
       {activeTab === 'supabase' && (
         <div className="max-w-2xl space-y-4">
-          <div className="p-4 sm:p-5 rounded-xl bg-[#111827] border border-[#263744] space-y-3.5">
+          <div className="bk-grid-panel p-4 sm:p-5 space-y-3.5">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="text-sm font-semibold text-[#E5E7EB] flex items-center gap-2">
@@ -601,7 +601,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
           </div>
 
           {/* SQL Schema helper box */}
-          <div className="p-4 sm:p-5 rounded-xl bg-[#111827] border border-[#263744] space-y-3">
+          <div className="bk-grid-panel p-4 sm:p-5 space-y-3">
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="text-xs font-semibold text-[#E5E7EB]">
@@ -636,7 +636,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
       {/* Backup & Reset */}
       {activeTab === 'backup' && (
         <div className="max-w-2xl space-y-4">
-          <div className="p-4 sm:p-5 rounded-xl bg-[#111827] border border-[#263744] space-y-3">
+          <div className="bk-grid-panel p-4 sm:p-5 space-y-3">
             <h3 className="text-sm font-semibold text-[#E5E7EB]">
               Cadangkan & Pulihkan Data
             </h3>
@@ -696,7 +696,7 @@ CREATE POLICY "Allow authenticated users access to expenses" ON public.expenses 
       {/* About BisnisKu Tab */}
       {activeTab === 'about' && (
         <div className="max-w-2xl space-y-4">
-          <div className="p-6 rounded-xl bg-[#111827] border border-[#263744] text-center space-y-4">
+          <div className="bk-grid-panel p-6 text-center space-y-4">
             <div className="text-[#0EA5E9] flex items-center justify-center mx-auto">
               <Logo size={52} />
             </div>
