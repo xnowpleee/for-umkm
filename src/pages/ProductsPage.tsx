@@ -180,7 +180,7 @@ export function ProductsPage() {
   };
 
   return (
-    <div className="space-y-5 pb-24 md:pb-8">
+    <div className="bk-terminal-page space-y-5 pb-24 md:pb-8">
       {/* Header & Quick Action */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-1">
         <div>
