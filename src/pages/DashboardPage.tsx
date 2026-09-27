@@ -69,7 +69,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         <button type="button" onClick={onOpenQuickTx} className="flex items-center gap-1.5 border border-[#0EA5E9]/30 bg-[#0E2533] px-2.5 py-1.5 text-[9px] font-semibold text-[#67D5F5] active:scale-[.98]"><Plus className="h-3.5 w-3.5" /> Transaksi Baru</button>
       </div>
 
-      <section className="relative overflow-hidden border border-[#263744] bg-[#111827] p-4 sm:p-5">
+      <section className="relative overflow-hidden border border-[#263744] bg-[#111827] p-4 sm:p-5 rounded-[10px]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_5%,rgba(14,165,233,.10),transparent_32%)] pointer-events-none" />
         <div className="relative">
           <div className="flex items-start justify-between gap-4">
@@ -96,18 +96,18 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         </div>
       </section>
 
-      <section className="mt-3 grid grid-cols-3 divide-x divide-[#263744] border border-[#263744] bg-[#0D151D]">
+      <section className="mt-3 grid grid-cols-3 gap-px border border-[#263744] bg-[#263744]">
         {[
           ['Transaksi', String(transactionsCountToday), 'hari ini', Receipt],
           ['Item Terjual', String(topProductsToday.reduce((sum: number, p: any) => sum + Number(p.quantity || 0), 0)), 'item', Package],
           ['Rata-rata', formatRupiah(average), '/ transaksi', CircleDollarSign],
         ].map(function(item: any) {
           const Icon = item[3];
-          return <div key={item[0]} className="min-w-0 px-2.5 py-3 sm:px-4"><Icon className="h-3.5 w-3.5 text-[#60758A]" /><p className="mt-2 truncate text-[9px] text-[#64748B]">{item[0]}</p><p className="mt-1 truncate text-[12px] font-semibold text-[#E5E7EB] tabular-nums">{item[1]}</p><p className="mt-0.5 truncate text-[8px] text-[#526579]">{item[2]}</p></div>;
+          return <div key={item[0]} className="min-w-0 bg-[#0D151D] px-2.5 py-3 sm:px-4"><Icon className="h-3.5 w-3.5 text-[#60758A]" /><p className="mt-2 truncate text-[9px] text-[#64748B]">{item[0]}</p><p className="mt-1 truncate text-[12px] font-semibold text-[#E5E7EB] tabular-nums">{item[1]}</p><p className="mt-0.5 truncate text-[8px] text-[#526579]">{item[2]}</p></div>;
         })}
       </section>
 
-      <section className="mt-3 border border-[#263744] bg-[#111827] p-3.5 sm:p-4">
+      <section className="mt-3 border border-[#263744] bg-[#111827] p-3.5 rounded-[10px] sm:p-4 rounded-[10px]">
         <div className="mb-3 flex items-center gap-2"><Wallet className="h-4 w-4 text-[#22D3EE]" /><h2 className="text-[12px] font-semibold text-[#E5E7EB]">Ringkasan Keuangan</h2><span className="ml-auto text-[8px] uppercase tracking-[.12em] text-[#526579]">Hari ini</span></div>
         <div className="grid grid-cols-2 divide-x divide-y divide-[#263744] sm:grid-cols-4 sm:divide-y-0">
           {[['Omzet', omzetToday, 'text-[#E5E7EB]'], ['Laba', estimatedProfitToday, 'text-[#34D399]'], ['HPP', hppToday, 'text-[#CBD5E1]'], ['Pengeluaran', expensesToday, 'text-[#F87171]']].map(function(item: any) {
@@ -145,7 +145,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         </div>
       </section>
 
-      <button type="button" onClick={() => onNavigate('chat')} className="mt-3 flex w-full items-center gap-3 border border-[#214052] bg-[#0E202B] p-3.5 text-left transition-colors hover:bg-[#102936]">
+      <button type="button" onClick={() => onNavigate('chat')} className="mt-3 flex w-full items-center gap-3 border border-[#214052] bg-[#0E202B] p-3.5 rounded-[10px] text-left transition-colors hover:bg-[#102936]">
         <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-[#123247] text-[#22D3EE]"><Sparkles className="h-4 w-4" /></div>
         <div className="min-w-0 flex-1"><p className="text-[11px] font-semibold text-[#E5E7EB]">BisnisKu AI</p><p className="mt-0.5 text-[9px] text-[#718096]">Insight dan saran bisnis dari data usahamu.</p></div>
         <span className="shrink-0 text-[9px] font-semibold text-[#67D5F5]">Buka AI <ChevronRight className="inline h-3 w-3" /></span>
