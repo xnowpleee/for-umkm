@@ -213,7 +213,7 @@ export function ReportsPage() {
   };
 
   return (
-    <div className="bk-terminal-page pb-24 md:pb-8">
+    <div className="bk-terminal-page bk-grid-page pb-24 md:pb-8">
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#94A3B8]">Keuangan</p>
@@ -260,7 +260,7 @@ export function ReportsPage() {
       </div>
 
       <div ref={reportContainerRef} className="space-y-3">
-        <div className="rounded-lg border border-[#22303D] bg-[#111827] px-4 py-3">
+        <div className="bk-grid-panel px-4 py-3">
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#94A3B8]">Periode laporan</p>
@@ -289,7 +289,7 @@ export function ReportsPage() {
           </div>
         </section>
 
-        <div className="flex flex-wrap border-y border-[#22303D]">
+        <div className="bk-grid-section flex flex-wrap">
           {[
             { label: 'Omzet', value: reportData.totalOmzet, icon: DollarSign, note: `${reportData.txCount} transaksi` },
             { label: 'HPP / Modal', value: reportData.totalHpp, icon: ShoppingBag, note: 'Modal penjualan' },
@@ -314,7 +314,7 @@ export function ReportsPage() {
           })}
         </div>
 
-        <div className="border-y border-[#22303D] lg:grid lg:grid-cols-2 lg:divide-x lg:divide-[#22303D]">
+        <div className="bk-grid-section lg:grid lg:grid-cols-2 lg:divide-x lg:divide-[#22303D]">
           <section className="px-0 py-3.5 lg:pr-6">
             <div className="mb-3 flex items-center justify-between">
               <div>
@@ -375,7 +375,7 @@ export function ReportsPage() {
           </section>
         </div>
 
-        <div className="border-y border-[#22303D]">
+        <div className="bk-grid-section">
           {[
             { title: 'Produk Terlaris', desc: 'Berdasarkan jumlah terjual', data: reportData.produkTerlaris, value: (p: any) => `${p.quantity} porsi`, extra: (p: any) => formatRupiah(p.revenue), positive: false },
             { title: 'Paling Menguntungkan', desc: 'Berdasarkan laba kotor', data: reportData.produkPalingMenguntungkan, value: (p: any) => `+${formatRupiah(p.grossProfit)}`, extra: () => '', positive: true },
