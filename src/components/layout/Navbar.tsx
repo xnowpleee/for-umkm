@@ -35,10 +35,10 @@ export function Navbar({ activeTab, onTabChange, onOpenQuickTxModal, onOpenQuick
               <ChevronDown className="w-3 h-3 text-[#60758A]"/>
             </button>
             {userMenuOpen && <><div className="fixed inset-0 z-40" onClick={() => setUserMenuOpen(false)}/><div className="absolute right-0 mt-2 w-56 bg-[#111827] border border-[#2A3947] shadow-2xl z-50 py-1 divide-y divide-[#22303D]">
-              <div className="px-3.5 py-2.5"><p className="text-xs font-semibold text-[#E5E7EB] truncate">{profile.business_name || 'Kedai Usaha'}</p><p className="text-[10px] text-[#64748B] truncate mt-0.5">{user.email || 'Akun Supabase'}</p></div>
+              <div className="px-3.5 py-2.5"><p className="text-xs font-semibold text-[#E5E7EB] truncate">{profile.business_name || 'Kedai Usaha'}</p><p className="text-[10px] text-[#718096] truncate mt-0.5">{user.email || 'Akun Supabase'}</p></div>
               <div className="py-1">
-                <button type="button" onClick={() => { onTabChange('settings'); setUserMenuOpen(false); }} className="w-full text-left px-3.5 py-2 text-xs text-[#AAB7C5] hover:bg-[#16222D] flex items-center gap-2.5"><SettingsIcon className="w-3.5 h-3.5 text-[#718096]"/><span>Pengaturan Usaha</span></button>
-                <button type="button" onClick={() => { onTabChange('expenses'); setUserMenuOpen(false); }} className="w-full text-left px-3.5 py-2 text-xs text-[#AAB7C5] hover:bg-[#16222D] flex items-center gap-2.5 sm:hidden"><Receipt className="w-3.5 h-3.5 text-[#718096]"/><span>Catatan Pengeluaran</span></button>
+                <button type="button" onClick={() => { onTabChange('settings'); setUserMenuOpen(false); }} className="w-full text-left px-3.5 py-2 text-xs text-[#B8C4D0] hover:bg-[#16222D] flex items-center gap-2.5"><SettingsIcon className="w-3.5 h-3.5 text-[#718096]"/><span>Pengaturan Usaha</span></button>
+                <button type="button" onClick={() => { onTabChange('expenses'); setUserMenuOpen(false); }} className="w-full text-left px-3.5 py-2 text-xs text-[#B8C4D0] hover:bg-[#16222D] flex items-center gap-2.5 sm:hidden"><Receipt className="w-3.5 h-3.5 text-[#718096]"/><span>Catatan Pengeluaran</span></button>
               </div>
               <div className="py-1"><button type="button" onClick={async () => { setUserMenuOpen(false); await logout(); onOpenAuthModal?.(); }} className="w-full text-left px-3.5 py-2 text-xs text-[#F87171] hover:bg-[#24181A] flex items-center gap-2.5"><LogOut className="w-3.5 h-3.5"/><span>Keluar Akun</span></button></div>
             </div></>}
