@@ -87,11 +87,11 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
               <span>Analisis omzet</span>
               <span>{days} titik data</span>
             </div>
-            <div className="relative h-[112px] w-full overflow-hidden">
+            <div className="bk-soft-grid relative h-[112px] w-full overflow-hidden border-y border-[#1B2934]">
               <div className="absolute inset-y-0 left-0 z-10 flex flex-col justify-between pr-2 text-[7px] text-[#526579]">
                 <span>{formatRupiah(maxOmzet)}</span><span>{formatRupiah(maxOmzet / 2)}</span><span>Rp0</span>
               </div>
-              <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} preserveAspectRatio="xMidYMid meet" className="ml-9 h-full w-[calc(100%-2.25rem)] overflow-visible">
+              <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} preserveAspectRatio="xMidYMid meet" className="ml-9 h-full w-[calc(100%-2.25rem)] overflow-visible"><g className="bk-chart-grid">{[26,57,88].map(y => <line key={y} x1="12" x2="348" y1={y} y2={y} />)}</g>
                 <polyline points={linePoints} fill="none" stroke="#22D3EE" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
                 {chartPoints.map((p, i) => <circle key={p.date} cx={p.x} cy={p.y} r={i === chartPoints.length - 1 ? 3 : 2} fill="#080F14" stroke="#22D3EE" strokeWidth="1.5"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
               </svg>
