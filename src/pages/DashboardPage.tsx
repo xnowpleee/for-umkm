@@ -41,9 +41,11 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
     return productImage(match);
   };
 
+  const chartWidth = 360;
+  const chartHeight = 108;
   const chartPoints = trend.map((point, index) => {
-    const x = trend.length === 1 ? 50 : (index / (trend.length - 1)) * 100;
-    const y = 92 - (point.omzet / maxOmzet) * 68;
+    const x = trend.length === 1 ? chartWidth / 2 : 12 + (index / (trend.length - 1)) * (chartWidth - 24);
+    const y = 88 - (point.omzet / maxOmzet) * 62;
     return { ...point, x, y };
   });
   const linePoints = chartPoints.map(p => p.x + ',' + p.y).join(' ');
@@ -85,15 +87,14 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
               <span>Analisis omzet</span>
               <span>{days} titik data</span>
             </div>
-            <div className="relative h-[104px] w-full">
-              <div className="absolute inset-y-0 left-0 flex flex-col justify-between pr-2 text-[7px] text-[#526579]">
+            <div className="relative h-[112px] w-full overflow-hidden">
+              <div className="absolute inset-y-0 left-0 z-10 flex flex-col justify-between pr-2 text-[7px] text-[#526579]">
                 <span>{formatRupiah(maxOmzet)}</span><span>{formatRupiah(maxOmzet / 2)}</span><span>Rp0</span>
               </div>
-              <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="ml-9 h-full w-[calc(100%-2.25rem)] overflow-visible">
-                {[0, 50, 100].map(y => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#263744" strokeWidth=".55" strokeDasharray="2 3" vectorEffect="non-scaling-stroke" />)}
-                {chartPoints.map((p, i) => i > 0 ? <line key={'v'+p.date} x1={p.x} x2={p.x} y1="0" y2="100" stroke="#1B2935" strokeWidth=".45" vectorEffect="non-scaling-stroke" /> : null)}
-                <polyline points={linePoints} fill="none" stroke="#22D3EE" strokeWidth="1.45" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
-                {chartPoints.map((p, i) => <circle key={p.date} cx={p.x} cy={p.y} r={i === chartPoints.length - 1 ? 2.3 : 1.15} fill="#080F14" stroke="#22D3EE" strokeWidth=".9" vectorEffect="non-scaling-stroke"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
+              <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} preserveAspectRatio="xMidYMid meet" className="ml-9 h-full w-[calc(100%-2.25rem)] overflow-visible">
+                {[26, 57, 88].map(y => <line key={y} x1="12" x2="348" y1={y} y2={y} stroke="#263744" strokeWidth="1" strokeDasharray="3 5" />)}
+                <polyline points={linePoints} fill="none" stroke="#22D3EE" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                {chartPoints.map((p, i) => <circle key={p.date} cx={p.x} cy={p.y} r={i === chartPoints.length - 1 ? 3 : 2} fill="#080F14" stroke="#22D3EE" strokeWidth="1.5"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
               </svg>
             </div>
             <div className="ml-9 mt-1 flex justify-between text-[8px] text-[#526579]">
