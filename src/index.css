@@ -82,3 +82,52 @@
   #printable-thermal-receipt { position:absolute; left:0; top:0; width:100%!important; max-width:80mm!important; padding:3mm 4mm!important; margin:0 auto!important; box-shadow:none!important; border:none!important; font-size:10pt!important; line-height:1.25!important; color:#000!important; background:#fff!important; }
   #printable-thermal-receipt.thermal-58mm { max-width:58mm!important; font-size:8.5pt!important; padding:2mm 2.5mm!important; }
 }
+
+
+/* BisnisKu terminal redesign — presentation layer only */
+.bk-terminal-page {
+  --bk-line: #22303D;
+  --bk-line-soft: #192631;
+  --bk-panel: #0D151D;
+  --bk-panel-2: #111827;
+}
+.bk-terminal-page [class*="rounded-xl"][class*="border"],
+.bk-terminal-page [class*="rounded-2xl"][class*="border"] {
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+.bk-terminal-page [class*="bg-[#111827]"][class*="border"],
+.bk-terminal-page [class*="bg-[#0D151D]"][class*="border"] {
+  background: transparent !important;
+  border-color: var(--bk-line) !important;
+}
+.bk-terminal-page [class*="shadow-"] { box-shadow: none !important; }
+.bk-terminal-page [class*="min-h-[500px]"],
+.bk-terminal-page [class*="min-h-[520px]"],
+.bk-terminal-page [class*="min-h-[560px]"] { min-height: auto !important; }
+.bk-terminal-page [class*="divide-y"] > * { border-color: var(--bk-line-soft) !important; }
+.bk-terminal-page [class*="divide-x"] > * { border-color: var(--bk-line-soft) !important; }
+
+@media (max-width: 640px) {
+  .bk-terminal-page [class*="grid-cols-2"],
+  .bk-terminal-page [class*="grid-cols-3"],
+  .bk-terminal-page [class*="grid-cols-4"] {
+    grid-template-columns: 1fr !important;
+  }
+  .bk-terminal-page [class*="grid-cols-12"] {
+    grid-template-columns: 1fr !important;
+  }
+  .bk-terminal-page [class*="gap-5"] { gap: .75rem !important; }
+  .bk-terminal-page [class*="gap-4"] { gap: .625rem !important; }
+  .bk-terminal-page [class*="p-5"] { padding: .75rem !important; }
+  .bk-terminal-page [class*="p-4"] { padding: .75rem !important; }
+  .bk-terminal-page [class*="p-3"] { padding: .625rem !important; }
+}
+
+.bk-terminal-page .bk-section-label {
+  color: #526579;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
