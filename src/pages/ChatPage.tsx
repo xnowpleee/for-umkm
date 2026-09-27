@@ -567,7 +567,7 @@ export function ChatPage() {
                 <div className="allow-select">
                   {!isUser && msg.id.startsWith('msg-welcome') && <div className="mb-2 flex h-9 w-9 items-center justify-center border border-[#214052] bg-[#0E202B]"><span className="h-2.5 w-2.5 rounded-full bg-[#0EA5E9]" /></div>}
                   <MarkdownContent content={msg.content} isUser={isUser} />
-                  {!isUser && msg.id.startsWith('msg-welcome') && <div className="mt-3 grid grid-cols-2 divide-x divide-[#263744] border-y border-[#263744]">
+                  {!isUser && msg.id.startsWith('msg-welcome') && <div className="bk-grid-section mt-3 grid grid-cols-2 divide-x divide-[#263744]">
                     {samplePrompts.map((prompt, idx) => <button key={idx} type="button" disabled={isLoading} onClick={() => handleSendMessage(prompt)} className="px-2.5 py-2 text-left text-[9px] font-medium text-[#94A3B8] transition-colors hover:bg-[#111A23] hover:text-[#E5E7EB] disabled:opacity-50">{prompt}</button>)}
                   </div>}
                 </div>
