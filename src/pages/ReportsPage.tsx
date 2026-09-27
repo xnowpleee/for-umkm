@@ -280,7 +280,6 @@ export function ReportsPage() {
           </div>
           <div className="h-[92px] w-full">
             <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-full w-full overflow-visible">
-              {[25,50,75].map(y => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#1C2934" strokeWidth=".55" vectorEffect="non-scaling-stroke" />)}
               <polyline points={analysisLine} fill="none" stroke="#38B8D8" strokeWidth="1.5" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
               {analysisPoints.map((p, i) => <circle key={p.key} cx={p.x} cy={p.y} r={i === analysisPoints.length - 1 ? 2 : 1.2} fill="#0D151D" stroke="#38B8D8" strokeWidth=".7" vectorEffect="non-scaling-stroke"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
             </svg>
@@ -315,8 +314,8 @@ export function ReportsPage() {
           })}
         </div>
 
-        <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr] lg:divide-x lg:divide-[#22303D] border-y border-[#22303D]">
-          <section className="rounded-lg border border-[#22303D] bg-[#111827] p-4">
+        <div className="border-y border-[#22303D]">
+          <section className="px-0 py-3.5 lg:pr-6">
             <div className="mb-3 flex items-center justify-between">
               <div>
                 <h2 className="text-sm font-bold text-[#E5E7EB]">Laba Rugi</h2>
@@ -354,17 +353,17 @@ export function ReportsPage() {
             </div>
           </section>
 
-          <section className="rounded-lg border border-[#22303D] bg-[#111827] p-4">
+          <section className="border-t border-[#22303D] px-0 py-3.5 lg:border-l lg:pl-6 lg:pr-0">
             <div className="mb-3">
               <h2 className="text-sm font-bold text-[#E5E7EB]">Ringkasan</h2>
               <p className="mt-0.5 text-[10px] text-[#94A3B8]">Angka utama periode ini</p>
             </div>
-            <div className="space-y-2">
+            <div className="divide-y divide-[#22303D]">
               <div className="flex items-center justify-between border-t border-[#22303D] px-0 py-2.5">
                 <span className="text-[11px] text-[#94A3B8]">Transaksi</span>
                 <span className="text-xs font-bold text-[#E5E7EB]">{reportData.txCount}</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg bg-[#111827] px-3 py-2.5">
+              <div className="flex items-center justify-between px-0 py-2.5">
                 <span className="text-[11px] text-[#94A3B8]">Laba Kotor</span>
                 <span className="text-xs font-bold text-[#E5E7EB]">{formatRupiah(reportData.labaKotor)}</span>
               </div>
@@ -376,12 +375,12 @@ export function ReportsPage() {
           </section>
         </div>
 
-        <div className="grid gap-0 md:grid-cols-2 md:divide-x md:divide-[#22303D] border-y border-[#22303D]">
+        <div className="border-y border-[#22303D]">
           {[
             { title: 'Produk Terlaris', desc: 'Berdasarkan jumlah terjual', data: reportData.produkTerlaris, value: (p: any) => `${p.quantity} porsi`, extra: (p: any) => formatRupiah(p.revenue), positive: false },
             { title: 'Paling Menguntungkan', desc: 'Berdasarkan laba kotor', data: reportData.produkPalingMenguntungkan, value: (p: any) => `+${formatRupiah(p.grossProfit)}`, extra: () => '', positive: true },
           ].map((section) => (
-            <section key={section.title} className="rounded-lg border border-[#22303D] bg-[#111827] p-4">
+            <section key={section.title} className="border-b border-[#22303D] px-0 py-3.5 last:border-b-0 md:py-4">
               <div className="mb-3">
                 <h2 className="text-sm font-bold text-[#E5E7EB]">{section.title}</h2>
                 <p className="mt-0.5 text-[10px] text-[#94A3B8]">{section.desc}</p>
@@ -392,7 +391,7 @@ export function ReportsPage() {
                 <div className="divide-y divide-[#22303D]">
                   {section.data.map((p: any, idx: number) => (
                     <div key={p.name} className="flex items-center gap-3 py-2">
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[#16202B] text-[9px] font-bold text-[#94A3B8]">{idx + 1}</span>
+                      <span className="w-5 shrink-0 text-[9px] font-bold text-[#526579] tabular-nums">{String(idx + 1).padStart(2,'0')}</span>
                       <span className="min-w-0 flex-1 truncate text-[11px] font-medium text-[#E5E7EB]">{p.name}</span>
                       <div className="shrink-0 text-right">
                         <p className={`text-[11px] font-bold tabular-nums ${section.positive ? 'text-[#2F8F5B]' : 'text-[#E5E7EB]'}`}>{section.value(p)}</p>
