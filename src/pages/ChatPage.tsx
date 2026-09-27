@@ -490,7 +490,7 @@ export function ChatPage() {
   };
 
   return (
-    <div className="flex min-h-0 h-full max-h-full flex-col max-w-4xl mx-auto pb-16 md:pb-0 overflow-hidden">
+    <div className="flex min-h-0 h-[calc(100dvh-7.25rem)] md:h-[calc(100dvh-3.75rem)] max-h-full flex-col max-w-4xl mx-auto pb-14 md:pb-0 overflow-hidden">
       {/* Chat Header */}
       <div className="relative z-20 flex min-h-[56px] h-[56px] items-center justify-between border-b border-[#22303D] py-2 shrink-0">
         <div className="min-w-0 flex items-center gap-2.5">
@@ -529,7 +529,7 @@ export function ChatPage() {
       </div>
 
       {/* Messages Scroll Area */}
-      <div ref={messagesScrollRef} className="flex-1 min-h-0 overflow-y-auto py-2.5 space-y-2.5 pr-1 overscroll-contain">
+      <div ref={messagesScrollRef} className="flex-1 min-h-0 overflow-y-auto py-1.5 space-y-1 pr-1 overscroll-contain">
         {messages.map(msg => {
           if (messages.length > 1 && msg.id.startsWith('msg-welcome')) return null;
           const isUser = msg.role === 'user';
@@ -627,7 +627,7 @@ export function ChatPage() {
           e.preventDefault();
           handleSendMessage();
         }}
-        className="flex items-center gap-1.5 pt-2 border-t border-[#263744] shrink-0"
+        className="flex items-center gap-1.5 pt-1.5 border-t border-[#263744] bg-[#080F14] shrink-0"
       >
         <input
           type="text"
@@ -635,12 +635,12 @@ export function ChatPage() {
           value={inputMessage}
           onChange={e => setInputMessage(e.target.value)}
           disabled={isLoading}
-          className="flex-1 px-3 py-2 text-[11px] bg-[#0D151D] border border-[#263744] rounded-lg text-[#E5E7EB] placeholder-[#94A3B8] focus:outline-hidden focus:border-[#0EA5E9] transition-colors"
+          className="flex-1 px-3 py-2 text-[11px] bg-[#0D151D] border border-[#263744] text-[#E5E7EB] placeholder-[#94A3B8] focus:outline-hidden focus:border-[#0EA5E9] transition-colors"
         />
         <button
           type="submit"
           disabled={isLoading || !inputMessage.trim()}
-          className="px-3.5 py-2 bg-[#0EA5E9] hover:bg-[#0284C7] text-[#111827] font-semibold rounded-lg text-xs flex items-center gap-1.5 transition-all disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 shrink-0 select-none"
+          className="px-3.5 py-2 bg-[#0EA5E9] hover:bg-[#0284C7] text-[#111827] font-semibold text-xs flex items-center gap-1.5 transition-all disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 shrink-0 select-none"
         >
           <Send className="w-3.5 h-3.5" />
           <span className="hidden sm:inline">Kirim</span>
