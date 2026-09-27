@@ -341,7 +341,7 @@ export function TransactionsPage() {
   };
 
   return (
-    <div className="bk-terminal-page space-y-5 pb-24 md:pb-8">
+    <div className="bk-terminal-page bk-grid-page space-y-5 pb-24 md:pb-8">
       {/* Page Title & View Switcher */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-1">
         <div>
@@ -410,7 +410,7 @@ export function TransactionsPage() {
 
       {activeView === 'pos' ? (
         /* KASIR / POS MODE */
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 bk-grid-layout">
           {/* Left Column: Product Selector (Col 7) */}
           <div className="lg:col-span-7 space-y-3">
             {/* Search and Category Filters */}
@@ -465,7 +465,7 @@ export function TransactionsPage() {
                 </p>
               </div>
             ) : (
-              <div className="divide-y divide-[#263744] border-y border-[#263744] max-h-[580px] overflow-y-auto pr-1">
+              <div className="bk-grid-panel divide-y divide-[#263744] max-h-[580px] overflow-y-auto pr-1">
                 {filteredProducts.map(product => {
                   const inCart = cart.find(c => c.product.id === product.id);
                   const isOutOfStock = product.stock <= 0;
@@ -540,7 +540,7 @@ export function TransactionsPage() {
 
           {/* Right Column: Order Cart & Checkout (Col 5) */}
           <div className="lg:col-span-5">
-            <div className="sticky top-20 flex flex-col justify-between border-y border-[#263744] py-3.5 sm:py-4">
+            <div className="bk-grid-panel sticky top-20 flex flex-col justify-between p-3.5 sm:p-4">
               <div>
                 {/* Cart Header */}
                 <div className="flex items-center justify-between pb-3 border-b border-[#263744]">
@@ -645,7 +645,7 @@ export function TransactionsPage() {
               </div>
 
               {/* Checkout Form */}
-              <form onSubmit={handleCheckout} className="pt-3 border-t border-[#263744] space-y-3">
+              <form onSubmit={handleCheckout} className="bk-grid-section p-3 space-y-3">
                 {/* Customer name and notes */}
                 <div className="grid grid-cols-2 gap-2">
                   <input
@@ -667,7 +667,7 @@ export function TransactionsPage() {
                 {/* Payment Method Selector */}
                 <div>
                   <p className="text-[11px] font-medium text-[#94A3B8] mb-1.5">Metode Pembayaran:</p>
-                  <div className="grid grid-cols-4 gap-1.5 text-xs font-semibold">
+                  <div className="bk-grid-cell grid grid-cols-4 gap-1.5 p-1.5 text-xs font-semibold">
                     <button
                       type="button"
                       onClick={() => setPaymentMethod('qris')}
@@ -743,7 +743,7 @@ export function TransactionsPage() {
 
                 {/* Cash Payment Details (When Cash is Selected) */}
                 {paymentMethod === 'cash' && (
-                  <div className="border-y border-[#263744] py-2.5 space-y-2">
+                  <div className="bk-grid-cell p-2.5 space-y-2">
                     <div className="flex items-center justify-between">
                       <label className="text-[11px] font-medium text-[#94A3B8]">
                         Uang Tunai Diterima:
@@ -800,7 +800,7 @@ export function TransactionsPage() {
                 )}
 
                 {/* Subtotal & Profit preview */}
-                <div className="p-2.5 rounded-lg bg-[#16202B] border border-[#263744] space-y-1 text-xs">
+                <div className="bk-grid-panel p-2.5 space-y-1 text-xs">
                   <div className="flex justify-between text-[#94A3B8]">
                     <span>Subtotal Barang</span>
                     <span className="font-semibold text-[#E5E7EB] tabular-nums">{formatRupiah(cartSummary.rawSubtotal)}</span>
