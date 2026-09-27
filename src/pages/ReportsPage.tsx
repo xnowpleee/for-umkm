@@ -213,7 +213,7 @@ export function ReportsPage() {
   };
 
   return (
-    <div className="pb-24 md:pb-8">
+    <div className="bk-terminal-page pb-24 md:pb-8">
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#94A3B8]">Keuangan</p>
