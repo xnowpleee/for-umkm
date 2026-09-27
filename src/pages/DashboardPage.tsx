@@ -69,7 +69,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         <button type="button" onClick={onOpenQuickTx} className="flex items-center gap-1.5 border border-[#0EA5E9]/30 bg-[#0E2533] px-2.5 py-1.5 text-[9px] font-semibold text-[#67D5F5] active:scale-[.98]"><Plus className="h-3.5 w-3.5" /> Transaksi Baru</button>
       </div>
 
-      <section className="relative overflow-hidden border border-[#263744] bg-[#111827] p-4 sm:p-5 rounded-[10px]">
+      <section className="relative overflow-hidden border-y border-[#263744] bg-[#0D151D] py-4 sm:py-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_5%,rgba(14,165,233,.10),transparent_32%)] pointer-events-none" />
         <div className="relative">
           <div className="flex items-start justify-between gap-4">
@@ -96,7 +96,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         </div>
       </section>
 
-      <section className="mt-3 grid grid-cols-3 gap-px border border-[#263744] bg-[#263744]">
+      <section className="mt-3 grid grid-cols-3 border-y border-[#263744] bg-[#0D151D]">
         {[
           ['Transaksi', String(transactionsCountToday), 'hari ini', Receipt],
           ['Item Terjual', String(topProductsToday.reduce((sum: number, p: any) => sum + Number(p.quantity || 0), 0)), 'item', Package],
@@ -107,7 +107,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         })}
       </section>
 
-      <section className="mt-3 border border-[#263744] bg-[#111827] p-3.5 rounded-[10px] sm:p-4 rounded-[10px]">
+      <section className="mt-3 border-y border-[#263744] bg-[#0D151D] p-3.5 sm:p-4">
         <div className="mb-3 flex items-center gap-2"><Wallet className="h-4 w-4 text-[#22D3EE]" /><h2 className="text-[12px] font-semibold text-[#E5E7EB]">Ringkasan Keuangan</h2><span className="ml-auto text-[8px] uppercase tracking-[.12em] text-[#526579]">Hari ini</span></div>
         <div className="grid grid-cols-2 divide-x divide-y divide-[#263744] sm:grid-cols-4 sm:divide-y-0">
           {[['Omzet', omzetToday, 'text-[#E5E7EB]'], ['Laba', estimatedProfitToday, 'text-[#34D399]'], ['HPP', hppToday, 'text-[#CBD5E1]'], ['Pengeluaran', expensesToday, 'text-[#F87171]']].map(function(item: any) {
@@ -116,33 +116,42 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         </div>
       </section>
 
-      <section className="mt-3 grid gap-3 lg:grid-cols-2">
-        <div className="border border-[#263744] bg-[#111827] p-3.5">
-          <div className="flex items-center gap-2"><ShoppingBag className="h-4 w-4 text-[#22D3EE]" /><h2 className="text-[12px] font-semibold text-[#E5E7EB]">Produk Terlaris</h2><button type="button" onClick={() => onNavigate('products')} className="ml-auto text-[9px] text-[#67D5F5]">Lihat semua</button></div>
-          <div className="mt-3 divide-y divide-[#1D2A35]">
-            {topProductsToday.length === 0 ? <p className="py-6 text-center text-[9px] text-[#64748B]">Belum ada penjualan hari ini.</p> : topProductsToday.slice(0, 4).map(function(product: any, index) {
-              return <div key={product.name || index} className="flex items-center gap-2.5 py-2 first:pt-0 last:pb-0">
-                <span className="w-4 text-[9px] font-semibold text-[#526579] tabular-nums">{String(index + 1).padStart(2, '0')}</span>
-                {getTopProductImage(product) ? <img src={getTopProductImage(product)} alt="" className="h-8 w-8 rounded object-cover border border-[#2A3947]" loading="lazy" onError={e => { e.currentTarget.style.display = 'none'; }} /> : <div className="h-8 w-8 rounded bg-[#16222D] border border-[#2A3947] flex items-center justify-center"><Package className="h-3.5 w-3.5 text-[#60758A]" /></div>}
-                <div className="min-w-0 flex-1"><p className="truncate text-[10px] font-medium text-[#DCE3EA]">{product.name}</p><p className="mt-0.5 text-[8px] text-[#64748B]">{product.quantity} pcs terjual</p></div>
-                <span className="text-[11px] font-semibold text-[#E5E7EB] tabular-nums">{product.quantity}</span>
-              </div>;
-            })}
+      <section className="mt-4 border-y border-[#263744] bg-[#0D151D]">
+        <div className="grid lg:grid-cols-2 lg:divide-x lg:divide-[#22303D]">
+          <div className="px-0 py-3.5 lg:pr-5">
+            <div className="flex items-center gap-2">
+              <ShoppingBag className="h-4 w-4 text-[#22D3EE]" />
+              <h2 className="text-[12px] font-semibold text-[#E5E7EB]">Produk Terlaris</h2>
+              <button type="button" onClick={() => onNavigate('products')} className="ml-auto text-[9px] text-[#67D5F5]">Lihat semua</button>
+            </div>
+            <div className="mt-2 divide-y divide-[#1D2A35]">
+              {topProductsToday.length === 0 ? <p className="py-5 text-center text-[9px] text-[#64748B]">Belum ada penjualan hari ini.</p> : topProductsToday.slice(0, 4).map(function(product: any, index) {
+                return <div key={product.name || index} className="flex items-center gap-2.5 py-2">
+                  <span className="w-4 text-[9px] font-semibold text-[#526579] tabular-nums">{String(index + 1).padStart(2, '0')}</span>
+                  {getTopProductImage(product) ? <img src={getTopProductImage(product)} alt="" className="h-8 w-8 rounded object-cover border border-[#2A3947]" loading="lazy" onError={e => { e.currentTarget.style.display = 'none'; }} /> : <div className="h-8 w-8 bg-[#16222D] border border-[#2A3947] flex items-center justify-center"><Package className="h-3.5 w-3.5 text-[#60758A]" /></div>}
+                  <div className="min-w-0 flex-1"><p className="truncate text-[10px] font-medium text-[#DCE3EA]">{product.name}</p><p className="mt-0.5 text-[8px] text-[#64748B]">{product.quantity} pcs terjual</p></div>
+                  <span className="text-[11px] font-semibold text-[#E5E7EB] tabular-nums">{product.quantity}</span>
+                </div>;
+              })}
+            </div>
           </div>
-        </div>
 
-        <div className="border border-[#263744] bg-[#111827] p-3.5">
-          <div className="flex items-center gap-2"><TriangleAlert className="h-4 w-4 text-[#FBBF24]" /><h2 className="text-[12px] font-semibold text-[#E5E7EB]">Stok Menipis</h2><span className="ml-auto text-[9px] text-[#FBBF24]">{lowStockProducts.length} produk</span></div>
-          <div className="mt-3 divide-y divide-[#1D2A35]">
-            {lowStockProducts.length === 0 ? <p className="py-6 text-center text-[9px] text-[#64748B]">Semua stok masih aman.</p> : lowStockProducts.slice(0, 3).map(function(product: any, index: number) {
-              return <button key={product.id || product.name || index} type="button" onClick={() => onNavigate('products')} className="flex w-full items-center gap-2.5 py-2 first:pt-0 last:pb-0 text-left">
-                {productImage(product) ? <img src={productImage(product)} alt="" className="h-8 w-8 rounded object-cover border border-[#2A3947]" /> : <div className="flex h-8 w-8 items-center justify-center rounded bg-[#241F18] border border-[#453B27]"><Package className="h-3.5 w-3.5 text-[#FBBF24]" /></div>}
-                <div className="min-w-0 flex-1"><p className="truncate text-[10px] font-medium text-[#DCE3EA]">{product.name}</p><p className="mt-0.5 text-[8px] text-[#64748B]">Minimum {product.min_stock ?? 0} {product.unit}</p></div>
-                <span className="text-[10px] font-semibold text-[#FBBF24] tabular-nums">{product.stock} {product.unit}</span>
-              </button>;
-            })}
+          <div className="px-0 py-3.5 lg:pl-5">
+            <div className="flex items-center gap-2">
+              <TriangleAlert className="h-4 w-4 text-[#FBBF24]" />
+              <h2 className="text-[12px] font-semibold text-[#E5E7EB]">Stok Menipis</h2>
+              <span className="ml-auto text-[9px] text-[#FBBF24]">{lowStockProducts.length} produk</span>
+            </div>
+            <div className="mt-2 divide-y divide-[#1D2A35]">
+              {lowStockProducts.length === 0 ? <p className="py-5 text-center text-[9px] text-[#64748B]">Semua stok masih aman.</p> : lowStockProducts.slice(0, 4).map(function(product: any, index: number) {
+                return <button key={product.id || product.name || index} type="button" onClick={() => onNavigate('products')} className="flex w-full items-center gap-2.5 py-2 text-left">
+                  {productImage(product) ? <img src={productImage(product)} alt="" className="h-8 w-8 rounded object-cover border border-[#2A3947]" /> : <div className="flex h-8 w-8 items-center justify-center bg-[#241F18] border border-[#453B27]"><Package className="h-3.5 w-3.5 text-[#FBBF24]" /></div>}
+                  <div className="min-w-0 flex-1"><p className="truncate text-[10px] font-medium text-[#DCE3EA]">{product.name}</p><p className="mt-0.5 text-[8px] text-[#64748B]">Minimum {product.min_stock ?? 0} {product.unit}</p></div>
+                  <span className="text-[10px] font-semibold text-[#FBBF24] tabular-nums">{product.stock} {product.unit}</span>
+                </button>;
+              })}
+            </div>
           </div>
-        </div>
       </section>
 
       <button type="button" onClick={() => onNavigate('chat')} className="mt-3 flex w-full items-center gap-3 border border-[#214052] bg-[#0E202B] p-3.5 rounded-[10px] text-left transition-colors hover:bg-[#102936]">
