@@ -59,7 +59,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
             <div>
               <div className="flex items-center gap-1.5 text-[11px] text-[#6F7D91]"><CircleDollarSign className="h-3.5 w-3.5" />Total Omzet<Eye className="ml-1 h-3.5 w-3.5 opacity-70" /></div>
               <p className="mt-2 text-[28px] font-bold leading-none tracking-tight tabular-nums">{formatRupiah(omzetToday)}</p>
-              <div className="mt-2 text-[10px] text-[#8996A8]">Margin laba {margin.toFixed(0)}%</div>
+              <div className={"mt-2 text-[10px] font-semibold " + (margin > 0 ? "text-[#2F8F5B]" : margin < 0 ? "text-[#B85C5C]" : "text-[#8996A8]")}>Margin laba {margin.toFixed(0)}%</div>
             </div>
             <button type="button" onClick={onOpenQuickTx} className="flex shrink-0 items-center gap-1.5 rounded-full bg-[#F8FAFC] border border-[#DDE4EC] px-3.5 py-2.5 text-[10px] font-semibold text-[#304C70] shadow-sm active:scale-[.98]">Transaksi Baru <Plus className="h-3.5 w-3.5" /></button>
           </div>
