@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, Package, BotMessageSquare, BarChart3, Plus } from 'lucide-react';
+import { LayoutDashboard, Receipt, MoreHorizontal, BarChart3, Plus } from 'lucide-react';
 
 export type NavTab = 'dashboard' | 'products' | 'transactions' | 'reports' | 'chat' | 'expenses' | 'settings';
 
@@ -8,9 +8,9 @@ interface BottomNavProps { activeTab: NavTab; onTabChange: (tab: NavTab) => void
 export function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
   const tabs = [
     { id: 'dashboard' as NavTab, label: 'Beranda', icon: LayoutDashboard },
-    { id: 'products' as NavTab, label: 'Produk', icon: Package },
-    { id: 'chat' as NavTab, label: 'AI', icon: BotMessageSquare },
+    { id: 'transactions' as NavTab, label: 'Transaksi', icon: Receipt },
     { id: 'reports' as NavTab, label: 'Laporan', icon: BarChart3 },
+    { id: 'settings' as NavTab, label: 'Lainnya', icon: MoreHorizontal },
   ];
 
   const renderTab = (tab: any) => {
