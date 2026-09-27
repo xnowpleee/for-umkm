@@ -175,7 +175,7 @@ export function ReportsPage() {
     try {
       const canvas = await html2canvas(reportContainerRef.current, {
         scale: 2,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#111827',
         logging: false,
         useCORS: true,
       });
@@ -196,13 +196,13 @@ export function ReportsPage() {
     <div className="pb-24 md:pb-8">
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7D899B]">Keuangan</p>
-          <h1 className="text-xl font-bold tracking-tight text-[#172033]">Laporan</h1>
-          <p className="mt-1 text-xs text-[#7D899B]">Ringkasan performa usaha yang mudah dibaca.</p>
+          <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#94A3B8]">Keuangan</p>
+          <h1 className="text-xl font-bold tracking-tight text-[#E5E7EB]">Laporan</h1>
+          <p className="mt-1 text-xs text-[#94A3B8]">Ringkasan performa usaha yang mudah dibaca.</p>
         </div>
 
         <div className="flex items-center gap-1.5 overflow-x-auto">
-          <div className="flex shrink-0 rounded-lg border border-[#E4E8EE] bg-white p-0.5">
+          <div className="flex shrink-0 rounded-lg border border-[#263744] bg-white p-0.5">
             {([
               ['daily', 'Hari Ini'],
               ['weekly', '7 Hari'],
@@ -212,7 +212,7 @@ export function ReportsPage() {
                 key={value}
                 type="button"
                 onClick={() => setPeriod(value)}
-                className={`rounded-md px-3 py-1.5 text-[11px] font-semibold transition-colors ${period === value ? 'bg-[#172E4D] text-white' : 'text-[#7D899B] hover:text-[#172033]'}`}
+                className={`rounded-md px-3 py-1.5 text-[11px] font-semibold transition-colors ${period === value ? 'bg-[#0EA5E9] text-white' : 'text-[#94A3B8] hover:text-[#E5E7EB]'}`}
               >
                 {label}
               </button>
@@ -223,7 +223,7 @@ export function ReportsPage() {
             type="button"
             disabled={isExporting}
             onClick={handleDownloadReportImage}
-            className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-[#E4E8EE] bg-white px-2.5 text-[11px] font-medium text-[#172033] hover:bg-[#F7F9FC] disabled:opacity-50"
+            className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-[#263744] bg-white px-2.5 text-[11px] font-medium text-[#E5E7EB] hover:bg-[#111827] disabled:opacity-50"
           >
             {isExporting ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Download className="h-3.5 w-3.5" />}
             <span className="hidden sm:inline">Simpan</span>
@@ -231,7 +231,7 @@ export function ReportsPage() {
           <button
             type="button"
             onClick={handleShareWhatsApp}
-            className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg bg-[#172E4D] px-3 text-[11px] font-semibold text-white hover:bg-[#213D61]"
+            className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg bg-[#0EA5E9] px-3 text-[11px] font-semibold text-white hover:bg-[#0284C7]"
           >
             <Share2 className="h-3.5 w-3.5" />
             Bagikan
@@ -240,13 +240,13 @@ export function ReportsPage() {
       </div>
 
       <div ref={reportContainerRef} className="space-y-3">
-        <div className="rounded-xl border border-[#E4E8EE] bg-white px-4 py-3">
+        <div className="rounded-xl border border-[#263744] bg-white px-4 py-3">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#7D899B]">Periode laporan</p>
-              <p className="mt-0.5 text-sm font-semibold text-[#172033]">{reportData.periodLabel}</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#94A3B8]">Periode laporan</p>
+              <p className="mt-0.5 text-sm font-semibold text-[#E5E7EB]">{reportData.periodLabel}</p>
             </div>
-            <Calendar className="h-4 w-4 shrink-0 text-[#7D899B]" />
+            <Calendar className="h-4 w-4 shrink-0 text-[#94A3B8]" />
           </div>
         </div>
 
@@ -261,12 +261,12 @@ export function ReportsPage() {
             const isProfit = item.label === 'Laba Bersih';
             const isNegative = item.value < 0;
             return (
-              <div key={item.label} className="min-w-0 rounded-xl border border-[#E4E8EE] bg-white px-3.5 py-3">
+              <div key={item.label} className="min-w-0 rounded-xl border border-[#263744] bg-white px-3.5 py-3">
                 <div className="mb-2 flex items-center justify-between">
-                  <span className="text-[10px] font-medium text-[#7D899B]">{item.label}</span>
+                  <span className="text-[10px] font-medium text-[#94A3B8]">{item.label}</span>
                   <Icon className="h-3.5 w-3.5 text-[#94A0B1]" />
                 </div>
-                <div className={`truncate text-[15px] font-bold tracking-tight sm:text-base ${isProfit ? (isNegative ? 'text-[#B85C5C]' : 'text-[#2F8F5B]') : 'text-[#172033]'}`}>
+                <div className={`truncate text-[15px] font-bold tracking-tight sm:text-base ${isProfit ? (isNegative ? 'text-[#B85C5C]' : 'text-[#2F8F5B]') : 'text-[#E5E7EB]'}`}>
                   {formatRupiah(item.value)}
                 </div>
                 <p className="mt-1 text-[9px] text-[#9AA5B5]">{item.note}</p>
@@ -276,35 +276,35 @@ export function ReportsPage() {
         </div>
 
         <div className="grid gap-3 lg:grid-cols-[1.15fr_0.85fr]">
-          <section className="rounded-xl border border-[#E4E8EE] bg-white p-4">
+          <section className="rounded-xl border border-[#263744] bg-white p-4">
             <div className="mb-3 flex items-center justify-between">
               <div>
-                <h2 className="text-sm font-bold text-[#172033]">Laba Rugi</h2>
-                <p className="mt-0.5 text-[10px] text-[#7D899B]">Alur uang dari omzet sampai hasil bersih</p>
+                <h2 className="text-sm font-bold text-[#E5E7EB]">Laba Rugi</h2>
+                <p className="mt-0.5 text-[10px] text-[#94A3B8]">Alur uang dari omzet sampai hasil bersih</p>
               </div>
-              <TrendingUp className="h-4 w-4 text-[#7D899B]" />
+              <TrendingUp className="h-4 w-4 text-[#94A3B8]" />
             </div>
 
-            <div className="divide-y divide-[#EDF0F4]">
+            <div className="divide-y divide-[#22303D]">
               <div className="flex items-center justify-between py-2.5 text-xs">
-                <span className="text-[#7D899B]">Omzet Penjualan</span>
-                <span className="font-semibold tabular-nums text-[#172033]">{formatRupiah(reportData.totalOmzet)}</span>
+                <span className="text-[#94A3B8]">Omzet Penjualan</span>
+                <span className="font-semibold tabular-nums text-[#E5E7EB]">{formatRupiah(reportData.totalOmzet)}</span>
               </div>
               <div className="flex items-center justify-between py-2.5 text-xs">
-                <span className="text-[#7D899B]">HPP / Modal</span>
+                <span className="text-[#94A3B8]">HPP / Modal</span>
                 <span className="font-semibold tabular-nums text-[#B85C5C]">-{formatRupiah(reportData.totalHpp)}</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg bg-[#F7F9FC] px-3 py-2.5 text-xs">
-                <span className="font-semibold text-[#172033]">Laba Kotor</span>
-                <span className="font-bold tabular-nums text-[#172E4D]">{formatRupiah(reportData.labaKotor)}</span>
+              <div className="flex items-center justify-between rounded-lg bg-[#111827] px-3 py-2.5 text-xs">
+                <span className="font-semibold text-[#E5E7EB]">Laba Kotor</span>
+                <span className="font-bold tabular-nums text-[#0EA5E9]">{formatRupiah(reportData.labaKotor)}</span>
               </div>
               <div className="flex items-center justify-between py-2.5 text-xs">
-                <span className="text-[#7D899B]">Pengeluaran Operasional</span>
+                <span className="text-[#94A3B8]">Pengeluaran Operasional</span>
                 <span className="font-semibold tabular-nums text-[#B85C5C]">-{formatRupiah(reportData.totalExpenses)}</span>
               </div>
-              <div className="mt-1 flex items-center justify-between border-t border-[#E4E8EE] pt-3">
+              <div className="mt-1 flex items-center justify-between border-t border-[#263744] pt-3">
                 <div>
-                  <p className="text-xs font-bold text-[#172033]">Laba Bersih</p>
+                  <p className="text-xs font-bold text-[#E5E7EB]">Laba Bersih</p>
                   <p className="mt-0.5 text-[9px] text-[#9AA5B5]">Setelah HPP dan pengeluaran</p>
                 </div>
                 <span className={`text-sm font-bold tabular-nums ${reportData.labaBersih >= 0 ? 'text-[#2F8F5B]' : 'text-[#B85C5C]'}`}>
@@ -314,22 +314,22 @@ export function ReportsPage() {
             </div>
           </section>
 
-          <section className="rounded-xl border border-[#E4E8EE] bg-white p-4">
+          <section className="rounded-xl border border-[#263744] bg-white p-4">
             <div className="mb-3">
-              <h2 className="text-sm font-bold text-[#172033]">Ringkasan</h2>
-              <p className="mt-0.5 text-[10px] text-[#7D899B]">Angka utama periode ini</p>
+              <h2 className="text-sm font-bold text-[#E5E7EB]">Ringkasan</h2>
+              <p className="mt-0.5 text-[10px] text-[#94A3B8]">Angka utama periode ini</p>
             </div>
             <div className="space-y-2">
-              <div className="flex items-center justify-between rounded-lg bg-[#F7F9FC] px-3 py-2.5">
-                <span className="text-[11px] text-[#7D899B]">Transaksi</span>
-                <span className="text-xs font-bold text-[#172033]">{reportData.txCount}</span>
+              <div className="flex items-center justify-between rounded-lg bg-[#111827] px-3 py-2.5">
+                <span className="text-[11px] text-[#94A3B8]">Transaksi</span>
+                <span className="text-xs font-bold text-[#E5E7EB]">{reportData.txCount}</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg bg-[#F7F9FC] px-3 py-2.5">
-                <span className="text-[11px] text-[#7D899B]">Laba Kotor</span>
-                <span className="text-xs font-bold text-[#172033]">{formatRupiah(reportData.labaKotor)}</span>
+              <div className="flex items-center justify-between rounded-lg bg-[#111827] px-3 py-2.5">
+                <span className="text-[11px] text-[#94A3B8]">Laba Kotor</span>
+                <span className="text-xs font-bold text-[#E5E7EB]">{formatRupiah(reportData.labaKotor)}</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg bg-[#F7F9FC] px-3 py-2.5">
-                <span className="text-[11px] text-[#7D899B]">Pengeluaran</span>
+              <div className="flex items-center justify-between rounded-lg bg-[#111827] px-3 py-2.5">
+                <span className="text-[11px] text-[#94A3B8]">Pengeluaran</span>
                 <span className="text-xs font-bold text-[#B85C5C]">{formatRupiah(reportData.totalExpenses)}</span>
               </div>
             </div>
@@ -341,21 +341,21 @@ export function ReportsPage() {
             { title: 'Produk Terlaris', desc: 'Berdasarkan jumlah terjual', data: reportData.produkTerlaris, value: (p: any) => `${p.quantity} porsi`, extra: (p: any) => formatRupiah(p.revenue), positive: false },
             { title: 'Paling Menguntungkan', desc: 'Berdasarkan laba kotor', data: reportData.produkPalingMenguntungkan, value: (p: any) => `+${formatRupiah(p.grossProfit)}`, extra: () => '', positive: true },
           ].map((section) => (
-            <section key={section.title} className="rounded-xl border border-[#E4E8EE] bg-white p-4">
+            <section key={section.title} className="rounded-xl border border-[#263744] bg-white p-4">
               <div className="mb-3">
-                <h2 className="text-sm font-bold text-[#172033]">{section.title}</h2>
-                <p className="mt-0.5 text-[10px] text-[#7D899B]">{section.desc}</p>
+                <h2 className="text-sm font-bold text-[#E5E7EB]">{section.title}</h2>
+                <p className="mt-0.5 text-[10px] text-[#94A3B8]">{section.desc}</p>
               </div>
               {section.data.length === 0 ? (
                 <p className="py-5 text-center text-[11px] text-[#9AA5B5]">Belum ada data penjualan pada periode ini.</p>
               ) : (
-                <div className="divide-y divide-[#EDF0F4]">
+                <div className="divide-y divide-[#22303D]">
                   {section.data.map((p: any, idx: number) => (
                     <div key={p.name} className="flex items-center gap-3 py-2">
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[#F1F4F8] text-[9px] font-bold text-[#7D899B]">{idx + 1}</span>
-                      <span className="min-w-0 flex-1 truncate text-[11px] font-medium text-[#172033]">{p.name}</span>
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[#16202B] text-[9px] font-bold text-[#94A3B8]">{idx + 1}</span>
+                      <span className="min-w-0 flex-1 truncate text-[11px] font-medium text-[#E5E7EB]">{p.name}</span>
                       <div className="shrink-0 text-right">
-                        <p className={`text-[11px] font-bold tabular-nums ${section.positive ? 'text-[#2F8F5B]' : 'text-[#172033]'}`}>{section.value(p)}</p>
+                        <p className={`text-[11px] font-bold tabular-nums ${section.positive ? 'text-[#2F8F5B]' : 'text-[#E5E7EB]'}`}>{section.value(p)}</p>
                         {section.extra(p) && <p className="text-[9px] text-[#9AA5B5]">{section.extra(p)}</p>}
                       </div>
                     </div>
