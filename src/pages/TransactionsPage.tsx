@@ -465,7 +465,7 @@ export function TransactionsPage() {
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-h-[580px] overflow-y-auto pr-1">
+              <div className="grid grid-cols-2 sm:grid-cols-3 divide-x divide-y divide-[#263744] border-y border-[#263744] max-h-[580px] overflow-y-auto pr-1">
                 {filteredProducts.map(product => {
                   const inCart = cart.find(c => c.product.id === product.id);
                   const isOutOfStock = product.stock <= 0;
@@ -478,14 +478,14 @@ export function TransactionsPage() {
                       type="button"
                       disabled={isOutOfStock || isMaxInCart}
                       onClick={() => addToCart(product)}
-                      className={`p-3 rounded-xl border text-left flex flex-col justify-between transition-all relative ${
+                      className={`p-3 text-left flex flex-col justify-between transition-all relative ${
                         isOutOfStock
-                          ? 'opacity-40 bg-[#111827] border-[#263744] cursor-not-allowed'
+                          ? 'opacity-40 bg-[#111827] cursor-not-allowed'
                           : isMaxInCart
-                          ? 'bg-[#16202B] border-[#D9CBB8]'
+                          ? 'bg-[#16202B]'
                           : inCart
-                          ? 'bg-[#16202B] border-[#0EA5E9]/50'
-                          : 'bg-[#111827] border-[#263744] hover:border-[#D5DCE5]'
+                          ? 'bg-[#16202B]'
+                          : 'bg-transparent hover:bg-[#0D151D]'
                       }`}
                     >
                       {inCart && (
