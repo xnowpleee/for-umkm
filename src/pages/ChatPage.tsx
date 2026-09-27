@@ -11,6 +11,7 @@ import {
   Copy,
   Check,
 } from 'lucide-react';
+import { Logo } from '../components/common/Logo';
 
 interface MarkdownContentProps {
   content: string;
@@ -491,13 +492,14 @@ export function ChatPage() {
   return (
     <div className="flex min-h-0 h-full max-h-full flex-col max-w-4xl mx-auto pb-16 md:pb-0 overflow-hidden">
       {/* Chat Header */}
-      <div className="relative z-20 flex min-h-[52px] h-[52px] items-center justify-between border-b border-[#22303D] bg-[#0D151D] py-2.5 shrink-0">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#0EA5E9]" />
-            <h1 className="text-sm font-semibold text-[#E5E7EB]">Asisten AI</h1>
-            <span className="rounded bg-[#16202B] px-1.5 py-0.5 text-[7px] font-medium text-[#0EA5E9]">Beta</span>
-          </div>
+      <div className="relative z-20 flex min-h-[56px] h-[56px] items-center justify-between border-b border-[#22303D] py-2 shrink-0">
+        <div className="min-w-0 flex items-center gap-2.5">
+          <Logo size={32} />
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-sm font-semibold text-[#E5E7EB]">BisnisKu Assistant</h1>
+              <span className="border border-[#214052] bg-[#0E202B] px-1.5 py-0.5 text-[7px] font-semibold text-[#22D3EE]">AI</span>
+            </div>
           <p className="mt-0.5 text-[9px] text-[#94A3B8]">Analisis bisnis berdasarkan data usahamu.</p>
         </div>
 
@@ -517,7 +519,7 @@ export function ChatPage() {
             } catch {}
             setChatError(null);
           }}
-          className="p-1.5 text-[#94A3B8] hover:text-[#E5E7EB] hover:bg-[#16202B] rounded-lg transition-colors text-xs flex items-center gap-1 select-none"
+          className="flex h-8 items-center gap-1.5 border border-[#263744] px-2.5 text-[9px] font-medium text-[#94A3B8] transition-colors hover:border-[#0EA5E9] hover:text-[#E5E7EB] select-none"
           title="Bersihkan Percakapan"
         >
           <RefreshCw className="w-3.5 h-3.5" />
@@ -545,7 +547,7 @@ export function ChatPage() {
               <div
                 className={`hidden w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-xs ${
                   isUser
-                    ? 'bg-[#16202B] border border-[#263744] text-[#E5E7EB]'
+                    ? 'bg-[#16202B] border-[#263744] text-[#E5E7EB]'
                     : 'bg-[#111827] border border-[#263744] text-[#0EA5E9]'
                 }`}
               >
@@ -554,17 +556,17 @@ export function ChatPage() {
 
               {/* Message bubble: User is lighter surface (#16202B), Assistant is dark card (#111827) */}
               <div
-                className={`max-w-[94%] sm:max-w-[82%] rounded-xl px-3.5 py-3 text-[11px] leading-relaxed relative group ${
+                className={`max-w-[94%] sm:max-w-[82%] border-y px-3.5 py-3 text-[11px] leading-relaxed relative group ${
                   isUser
                     ? 'bg-[#16202B] border border-[#263744] text-[#E5E7EB]'
-                    : 'bg-[#0D151D] border border-[#263744] text-[#E5E7EB]'
+                    : 'bg-[#0D151D] border-[#263744] text-[#E5E7EB]'
                 }`}
               >
                 <div className="allow-select">
-                  {!isUser && msg.id.startsWith('msg-welcome') && <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-full border border-[#263744] bg-[#16202B]"><span className="h-2.5 w-2.5 rounded-full bg-[#0EA5E9]" /></div>}
+                  {!isUser && msg.id.startsWith('msg-welcome') && <div className="mb-2 flex h-9 w-9 items-center justify-center border border-[#214052] bg-[#0E202B]"><span className="h-2.5 w-2.5 rounded-full bg-[#0EA5E9]" /></div>}
                   <MarkdownContent content={msg.content} isUser={isUser} />
-                  {!isUser && msg.id.startsWith('msg-welcome') && <div className="mt-3 grid grid-cols-2 gap-1.5">
-                    {samplePrompts.map((prompt, idx) => <button key={idx} type="button" disabled={isLoading} onClick={() => handleSendMessage(prompt)} className="rounded-lg border border-[#263744] bg-[#111827] px-2.5 py-2 text-left text-[9px] font-medium text-[#94A3B8] transition-colors hover:border-[#0EA5E9] hover:text-[#E5E7EB] disabled:opacity-50">{prompt}</button>)}
+                  {!isUser && msg.id.startsWith('msg-welcome') && <div className="mt-3 grid grid-cols-2 divide-x divide-[#263744] border-y border-[#263744]">
+                    {samplePrompts.map((prompt, idx) => <button key={idx} type="button" disabled={isLoading} onClick={() => handleSendMessage(prompt)} className="px-2.5 py-2 text-left text-[9px] font-medium text-[#94A3B8] transition-colors hover:bg-[#111A23] hover:text-[#E5E7EB] disabled:opacity-50">{prompt}</button>)}
                   </div>}
                 </div>
 
