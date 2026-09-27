@@ -36,12 +36,12 @@ function MainApp() {
     } finally { setIsSavingExp(false); }
   };
 
-  return <div className="min-h-screen bg-[#F7F9FC] text-[#172033] flex flex-col selection:bg-[#DCE6F2] selection:text-[#172E4D]">
+  return <div className="min-h-screen bg-[#080F14] text-[#E5E7EB] flex flex-col selection:bg-[#123A4D] selection:text-[#E5E7EB]">
     <Navbar activeTab={activeTab} onTabChange={tab => user.isAuthenticated && setActiveTab(tab)} onOpenQuickTxModal={user.isAuthenticated ? () => setActiveTab('transactions') : undefined} onOpenQuickExpenseModal={user.isAuthenticated ? () => setIsQuickExpenseOpen(true) : undefined} onOpenAuthModal={() => {}} />
-    <div className="flex-1 flex max-w-7xl w-full mx-auto">
-      {!user.isAuthenticated ? <main className="flex-1 p-4 sm:p-6 lg:p-8 flex items-center justify-center min-h-[calc(100vh-60px)]"><AuthPages onSuccess={() => setActiveTab('dashboard')} /></main> : <>
+    <div className="flex-1 flex max-w-[1400px] w-full mx-auto">
+      {!user.isAuthenticated ? <main className="flex-1 p-3 sm:p-5 lg:p-6 flex items-center justify-center min-h-[calc(100vh-60px)]"><AuthPages onSuccess={() => setActiveTab('dashboard')} /></main> : <>
         <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
-        <main className={'flex-1 p-4 sm:p-6 lg:p-8 max-w-full min-w-0 ' + (activeTab === 'chat' ? 'overflow-hidden p-0 sm:p-4 lg:p-6 h-[calc(100dvh-48px)] md:h-auto' : 'overflow-x-hidden')}>
+        <main className={'flex-1 p-3 sm:p-5 lg:p-6 max-w-full min-w-0 pb-24 md:pb-6 ' + (activeTab === 'chat' ? 'overflow-hidden p-0 sm:p-4 lg:p-6 h-[calc(100dvh-48px)] md:h-auto' : 'overflow-x-hidden')}>
           {activeTab === 'dashboard' && <DashboardPage onNavigate={setActiveTab} onOpenQuickTx={() => setActiveTab('transactions')} onOpenQuickExpense={() => setIsQuickExpenseOpen(true)} />}
           {activeTab === 'products' && <ProductsPage />}
           {activeTab === 'transactions' && <TransactionsPage />}
