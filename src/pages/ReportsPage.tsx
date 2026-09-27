@@ -170,7 +170,6 @@ export function ReportsPage() {
     y: 92 - (d.omzet / analysisMax) * 68,
   }));
   const analysisLine = analysisPoints.map(p => p.x + ',' + p.y).join(' ');
-  const analysisArea = analysisPoints.length ? '0,100 ' + analysisLine + ' 100,100' : '';
 
   const handleShareWhatsApp = () => {
     const text =
@@ -281,8 +280,7 @@ export function ReportsPage() {
           </div>
           <div className="h-[104px] w-full">
             <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-full w-full overflow-visible">
-              <defs><linearGradient id="reportChartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#0EA5E9" stopOpacity=".18" /><stop offset="100%" stopColor="#0EA5E9" stopOpacity="0" /></linearGradient></defs>
-              {[20,40,60,80].map(y => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#22303D" strokeWidth=".6" vectorEffect="non-scaling-stroke" />)}
+                            {[20,40,60,80].map(y => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#22303D" strokeWidth=".6" vectorEffect="non-scaling-stroke" />)}
               <polygon points={analysisArea} fill="url(#reportChartFill)" />
               <polyline points={analysisLine} fill="none" stroke="#22D3EE" strokeWidth="1.8" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
               {analysisPoints.map((p, i) => <circle key={p.key} cx={p.x} cy={p.y} r={i === analysisPoints.length - 1 ? 2 : 1.2} fill="#0EA5E9" stroke="#B9F2FF" strokeWidth=".7" vectorEffect="non-scaling-stroke"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
