@@ -70,7 +70,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         <button type="button" onClick={onOpenQuickTx} className="flex items-center gap-1.5 border border-[#0EA5E9]/30 bg-[#0E2533] px-2.5 py-1.5 text-[9px] font-semibold text-[#67D5F5] active:scale-[.98]"><Plus className="h-3.5 w-3.5" /> Transaksi Baru</button>
       </div>
 
-      <section className="relative overflow-hidden border-y border-[#263744] py-4 sm:py-5">
+      <section className="bk-grid-section relative overflow-hidden py-4 sm:py-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_5%,rgba(14,165,233,.10),transparent_32%)] pointer-events-none" />
         <div className="relative">
           <div className="flex items-start justify-between gap-4">
@@ -103,7 +103,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         </div>
       </section>
 
-      <section className="mt-3 flex border-y border-[#263744]">
+      <section className="bk-grid-section mt-3 flex">
         {[
           ['Transaksi', String(transactionsCountToday), 'hari ini', Receipt],
           ['Item Terjual', String(topProductsToday.reduce((sum: number, p: any) => sum + Number(p.quantity || 0), 0)), 'item', Package],
@@ -114,7 +114,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         })}
       </section>
 
-      <section className="mt-3 border-y border-[#263744] py-3.5 sm:py-4">
+      <section className="bk-grid-section mt-3 py-3.5 sm:py-4">
         <div className="mb-3 flex items-center gap-2"><Wallet className="h-4 w-4 text-[#22D3EE]" /><h2 className="text-[12px] font-semibold text-[#E5E7EB]">Ringkasan Keuangan</h2><span className="ml-auto text-[8px] uppercase tracking-[.12em] text-[#526579]">Hari ini</span></div>
         <div className="flex flex-wrap">
           {[['Omzet', omzetToday, 'text-[#E5E7EB]'], ['Laba', estimatedProfitToday, 'text-[#34D399]'], ['HPP', hppToday, 'text-[#CBD5E1]'], ['Pengeluaran', expensesToday, 'text-[#F87171]']].map(function(item: any) {
@@ -123,7 +123,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         </div>
       </section>
 
-      <section className="mt-4 border-y border-[#263744]">
+      <section className="bk-grid-section mt-4">
         <div className="grid lg:grid-cols-2 lg:divide-x lg:divide-[#22303D]">
           <div className="px-0 py-3.5 lg:pr-5">
             <div className="flex items-center gap-2">
