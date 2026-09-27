@@ -37,7 +37,7 @@ export function Modal({ isOpen, onClose, title, subtitle, children, maxWidth = '
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#E5E7EB]/25 backdrop-blur-[2px] animate-in fade-in duration-150">
       <div
-        className={`w-full ${maxWidthClass} bg-white border border-[#263744] rounded-xl shadow-xl overflow-hidden flex flex-col max-h-[90vh]`}
+        className={`w-full ${maxWidthClass} bg-[#111827] border border-[#263744] rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]`}
         role="dialog"
         aria-modal="true"
       >
