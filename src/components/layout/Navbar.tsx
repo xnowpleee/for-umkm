@@ -24,10 +24,10 @@ export function Navbar({ activeTab, onTabChange, onOpenQuickTxModal, onOpenQuick
             className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] font-medium text-[#94A3B8] border border-[#2A3947] bg-[#111A23] hover:bg-[#16222D]">
             <ArrowDownCircle className="w-3.5 h-3.5"/><span>Pengeluaran</span>
           </button>}
-          <button type="button" onClick={() => onTabChange('chat')} aria-label="Buka Asisten AI"
+          {activeTab !== 'chat' && <button type="button" onClick={() => onTabChange('chat')} aria-label="Buka Asisten AI"
             className="flex h-8 w-8 items-center justify-center border border-[#2A3947] bg-[#111A23] text-[#22D3EE] hover:border-[#0EA5E9] hover:bg-[#102331]">
             <Sparkles className="h-3.5 w-3.5" />
-          </button>
+          </button>}
           {onOpenQuickTxModal && <button type="button" onClick={onOpenQuickTxModal}
             className="flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] font-semibold text-white bg-[#0EA5E9] hover:bg-[#0284C7] shadow-[0_0_16px_rgba(14,165,233,.14)]">
             <Plus className="w-3.5 h-3.5"/><span className="hidden sm:inline">Kasir / Jual</span><span className="sm:hidden">Jual</span>
