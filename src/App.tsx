@@ -41,13 +41,13 @@ function MainApp() {
     <div className="flex-1 flex max-w-[1400px] w-full mx-auto">
       {!user.isAuthenticated ? <main className="flex-1 p-3 sm:p-5 lg:p-6 flex items-center justify-center min-h-[calc(100vh-60px)]"><AuthPages onSuccess={() => setActiveTab('dashboard')} /></main> : <>
         <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
-        <main className={'flex-1 p-3 sm:p-5 lg:p-6 max-w-full min-w-0 pb-24 md:pb-6 ' + (activeTab === 'chat' ? 'overflow-hidden p-0 sm:p-4 lg:p-6 pb-0 md:pb-6 h-[calc(100dvh-48px)] md:h-auto' : 'overflow-x-hidden')}>
+        <main className={'flex-1 p-3 sm:p-5 lg:p-6 max-w-full min-w-0 pb-24 md:pb-6 ' + (activeTab === 'chat' ? 'overflow-hidden flex flex-col p-0 sm:p-4 lg:p-6 pb-0 md:pb-6 h-[calc(100dvh-48px)] md:h-[calc(100dvh-48px)]' : 'overflow-x-hidden')}>
           {activeTab === 'dashboard' && <DashboardPage onNavigate={setActiveTab} onOpenQuickTx={() => setActiveTab('transactions')} onOpenQuickExpense={() => setIsQuickExpenseOpen(true)} />}
           {activeTab === 'products' && <ProductsPage />}
           {activeTab === 'transactions' && <TransactionsPage />}
           {activeTab === 'expenses' && <ExpensesPage />}
           {activeTab === 'reports' && <ReportsPage />}
-          <div className={activeTab === 'chat' ? 'block h-full min-h-0' : 'hidden'}><ChatPage /></div>
+          <div className={activeTab === 'chat' ? 'flex h-full min-h-0 min-w-0' : 'hidden'}><ChatPage /></div>
           {activeTab === 'settings' && <SettingsPage />}
         </main>
       </>}
