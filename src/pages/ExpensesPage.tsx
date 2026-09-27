@@ -273,8 +273,8 @@ export function ExpensesPage() {
       )}
 
       {/* Summary 4-Column Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-        <div className="p-4 rounded-xl bg-[#111827] border border-[#263744]">
+      <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-[#263744] border-y border-[#263744]">
+        <div className="p-4">
           <div className="flex items-center justify-between text-xs text-[#94A3B8] mb-2 font-medium">
             <span>Total Bulan Ini</span>
             <ArrowDownCircle className="w-4 h-4 text-[#94A3B8]" />
@@ -292,7 +292,7 @@ export function ExpensesPage() {
           const pct = monthSummary.total > 0 ? Math.round((amount / monthSummary.total) * 100) : 0;
 
           return (
-            <div key={cat} className="p-4 rounded-xl bg-[#111827] border border-[#263744]">
+            <div key={cat} className="p-4">
               <div className="flex items-center justify-between text-xs text-[#94A3B8] mb-2 font-medium">
                 <span>Kategori {cat}</span>
                 <span className="text-[#E5E7EB] font-semibold tabular-nums">{pct}%</span>
@@ -300,9 +300,9 @@ export function ExpensesPage() {
               <div className="text-lg font-bold text-[#E5E7EB] mb-1 tabular-nums">
                 {formatRupiah(amount)}
               </div>
-              <div className="w-full bg-[#16202B] rounded-full h-1.5 mt-2 overflow-hidden">
+              <div className="w-full bg-[#16202B] h-1.5 mt-2 overflow-hidden">
                 <div
-                  className="bg-[#94A3B8] h-1.5 rounded-full transition-all"
+                  className="bg-[#22D3EE] h-1.5 transition-all"
                   style={{ width: `${pct}%` }}
                 />
               </div>
