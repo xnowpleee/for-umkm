@@ -69,7 +69,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         <button type="button" onClick={onOpenQuickTx} className="flex items-center gap-1.5 border border-[#0EA5E9]/30 bg-[#0E2533] px-2.5 py-1.5 text-[9px] font-semibold text-[#67D5F5] active:scale-[.98]"><Plus className="h-3.5 w-3.5" /> Transaksi Baru</button>
       </div>
 
-      <section className="relative overflow-hidden border-y border-[#263744] bg-[#0D151D] py-4 sm:py-5">
+      <section className="relative overflow-hidden border-y border-[#263744] py-4 sm:py-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_5%,rgba(14,165,233,.10),transparent_32%)] pointer-events-none" />
         <div className="relative">
           <div className="flex items-start justify-between gap-4">
@@ -81,34 +81,41 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
             <div className="hidden sm:block text-right"><p className="text-[9px] uppercase tracking-[0.12em] text-[#526579]">Status</p><p className="mt-1 flex items-center justify-end gap-1 text-[9px] font-medium text-[#34D399]"><span className="h-1.5 w-1.5 rounded-full bg-[#34D399] shadow-[0_0_8px_rgba(52,211,153,.55)]" /> LIVE</p></div>
           </div>
 
-          <div className="mt-4 h-[128px] w-full">
-            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-full w-full overflow-visible">
-              <defs><linearGradient id="bkChartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#0EA5E9" stopOpacity=".20" /><stop offset="100%" stopColor="#0EA5E9" stopOpacity="0" /></linearGradient></defs>
-              {[20, 40, 60, 80].map(y => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#263744" strokeWidth=".55" strokeDasharray="2 3" vectorEffect="non-scaling-stroke" />)}
-              <line x1="0" x2="100" y1="92" y2="92" stroke="#526579" strokeWidth=".7" vectorEffect="non-scaling-stroke" />
-              <polygon points={areaPoints} fill="url(#bkChartFill)" />
-              <polyline points={linePoints} fill="none" stroke="#22D3EE" strokeWidth="1.8" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
-              {chartPoints.map((p, i) => <circle key={p.date} cx={p.x} cy={p.y} r={i === chartPoints.length - 1 ? 2.2 : 1.25} fill="#0EA5E9" stroke="#B9F2FF" strokeWidth=".7" vectorEffect="non-scaling-stroke"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
-            </svg>
-          </div>
-          <div className="mt-1 flex justify-between text-[8px] text-[#526579]">
-            {trend.filter((_, i) => days === 30 ? i === 0 || i === trend.length - 1 || i % 5 === 0 : true).slice(0, days === 30 ? 7 : days).map(p => <span key={p.date}>{days === 30 ? p.date.slice(8) : p.label}</span>)}
+          <div className="mt-5">
+            <div className="mb-1 flex items-center justify-between text-[8px] uppercase tracking-[0.12em] text-[#526579]">
+              <span>Analisis omzet</span>
+              <span>{days} titik data</span>
+            </div>
+            <div className="relative h-[132px] w-full">
+              <div className="absolute inset-y-0 left-0 flex flex-col justify-between pr-2 text-[7px] text-[#526579]">
+                <span>{formatRupiah(maxOmzet)}</span><span>{formatRupiah(maxOmzet / 2)}</span><span>Rp0</span>
+              </div>
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="ml-9 h-full w-[calc(100%-2.25rem)] overflow-visible">
+                {[0, 50, 100].map(y => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="#263744" strokeWidth=".55" strokeDasharray="2 3" vectorEffect="non-scaling-stroke" />)}
+                {chartPoints.map((p, i) => i > 0 ? <line key={'v'+p.date} x1={p.x} x2={p.x} y1="0" y2="100" stroke="#1B2935" strokeWidth=".45" vectorEffect="non-scaling-stroke" /> : null)}
+                <polyline points={linePoints} fill="none" stroke="#22D3EE" strokeWidth="1.6" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
+                {chartPoints.map((p, i) => <circle key={p.date} cx={p.x} cy={p.y} r={i === chartPoints.length - 1 ? 2.3 : 1.15} fill="#080F14" stroke="#22D3EE" strokeWidth=".9" vectorEffect="non-scaling-stroke"><title>{p.label}: {formatRupiah(p.omzet)}</title></circle>)}
+              </svg>
+            </div>
+            <div className="ml-9 mt-1 flex justify-between text-[8px] text-[#526579]">
+              {trend.filter((_, i) => days === 30 ? i === 0 || i === trend.length - 1 || i % 5 === 0 : true).slice(0, days === 30 ? 7 : days).map(p => <span key={p.date}>{days === 30 ? p.date.slice(8) : p.label}</span>)}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="mt-3 grid grid-cols-3 border-y border-[#263744] bg-[#0D151D]">
+      <section className="mt-3 grid grid-cols-3 border-y border-[#263744]">
         {[
           ['Transaksi', String(transactionsCountToday), 'hari ini', Receipt],
           ['Item Terjual', String(topProductsToday.reduce((sum: number, p: any) => sum + Number(p.quantity || 0), 0)), 'item', Package],
           ['Rata-rata', formatRupiah(average), '/ transaksi', CircleDollarSign],
         ].map(function(item: any) {
           const Icon = item[3];
-          return <div key={item[0]} className="min-w-0 bg-[#0D151D] px-2.5 py-3 sm:px-4"><Icon className="h-3.5 w-3.5 text-[#60758A]" /><p className="mt-2 truncate text-[9px] text-[#64748B]">{item[0]}</p><p className="mt-1 truncate text-[12px] font-semibold text-[#E5E7EB] tabular-nums">{item[1]}</p><p className="mt-0.5 truncate text-[8px] text-[#526579]">{item[2]}</p></div>;
+          return <div key={item[0]} className="min-w-0 px-2.5 py-3 sm:px-4"><Icon className="h-3.5 w-3.5 text-[#60758A]" /><p className="mt-2 truncate text-[9px] text-[#64748B]">{item[0]}</p><p className="mt-1 truncate text-[12px] font-semibold text-[#E5E7EB] tabular-nums">{item[1]}</p><p className="mt-0.5 truncate text-[8px] text-[#526579]">{item[2]}</p></div>;
         })}
       </section>
 
-      <section className="mt-3 border-y border-[#263744] bg-[#0D151D] p-3.5 sm:p-4">
+      <section className="mt-3 border-y border-[#263744] p-3.5 sm:p-4">
         <div className="mb-3 flex items-center gap-2"><Wallet className="h-4 w-4 text-[#22D3EE]" /><h2 className="text-[12px] font-semibold text-[#E5E7EB]">Ringkasan Keuangan</h2><span className="ml-auto text-[8px] uppercase tracking-[.12em] text-[#526579]">Hari ini</span></div>
         <div className="grid grid-cols-2 divide-x divide-y divide-[#263744] sm:grid-cols-4 sm:divide-y-0">
           {[['Omzet', omzetToday, 'text-[#E5E7EB]'], ['Laba', estimatedProfitToday, 'text-[#34D399]'], ['HPP', hppToday, 'text-[#CBD5E1]'], ['Pengeluaran', expensesToday, 'text-[#F87171]']].map(function(item: any) {
@@ -117,7 +124,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         </div>
       </section>
 
-      <section className="mt-4 border-y border-[#263744] bg-[#0D151D]">
+      <section className="mt-4 border-y border-[#263744]">
         <div className="grid lg:grid-cols-2 lg:divide-x lg:divide-[#22303D]">
           <div className="px-0 py-3.5 lg:pr-5">
             <div className="flex items-center gap-2">
@@ -156,7 +163,7 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
         </div>
       </section>
 
-      <button type="button" onClick={() => onNavigate('chat') className="mt-3 flex w-full items-center gap-3 border border-[#214052] bg-[#0E202B] p-3.5 rounded-[10px] text-left transition-colors hover:bg-[#102936]">
+      <button type="button" onClick={() => onNavigate('chat') className="mt-3 flex w-full items-center gap-3 border-y border-[#214052] py-3.5 text-left transition-colors hover:bg-[#0E202B]">
         <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-[#123247] text-[#22D3EE]"><Sparkles className="h-4 w-4" /></div>
         <div className="min-w-0 flex-1"><p className="text-[11px] font-semibold text-[#E5E7EB]">BisnisKu AI</p><p className="mt-0.5 text-[9px] text-[#718096]">Insight dan saran bisnis dari data usahamu.</p></div>
         <span className="shrink-0 text-[9px] font-semibold text-[#67D5F5]">Buka AI <ChevronRight className="inline h-3 w-3" /></span>
