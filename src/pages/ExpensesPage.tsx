@@ -225,10 +225,10 @@ export function ExpensesPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-1">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#172033]">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#E5E7EB]">
             Catatan Pengeluaran
           </h1>
-          <p className="text-xs text-[#7D899B] mt-0.5">
+          <p className="text-xs text-[#94A3B8] mt-0.5">
             Belanja bahan baku, operasional, transport, dan biaya {profile.business_name || 'toko'}.
           </p>
         </div>
@@ -236,7 +236,7 @@ export function ExpensesPage() {
         <button
           type="button"
           onClick={openAddModal}
-          className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-[#FFFFFF] bg-[#172E4D] hover:bg-[#213D61] rounded-lg transition-colors self-start sm:self-auto active:scale-[0.98] select-none"
+          className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-[#111827] bg-[#0EA5E9] hover:bg-[#0284C7] rounded-lg transition-colors self-start sm:self-auto active:scale-[0.98] select-none"
         >
           <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
           <span>Catat Pengeluaran</span>
@@ -248,7 +248,7 @@ export function ExpensesPage() {
         <div
           className={`p-3 rounded-lg border text-xs flex items-center justify-between transition-all ${
             toast.type === 'success'
-              ? 'bg-[#172E4D]/10 border-[#172E4D]/20 text-[#172E4D]'
+              ? 'bg-[#0EA5E9]/10 border-[#0EA5E9]/20 text-[#0EA5E9]'
               : 'bg-[#FBF4F4] border-[#E6CACA] text-[#B86B6B]'
           }`}
         >
@@ -264,7 +264,7 @@ export function ExpensesPage() {
           <button
             type="button"
             onClick={() => setToast(null)}
-            className="text-[#7D899B] hover:text-[#172033] text-sm leading-none px-1"
+            className="text-[#94A3B8] hover:text-[#E5E7EB] text-sm leading-none px-1"
             aria-label="Tutup notifikasi"
           >
             &times;
@@ -274,15 +274,15 @@ export function ExpensesPage() {
 
       {/* Summary 4-Column Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-        <div className="p-4 rounded-xl bg-[#FFFFFF] border border-[#E4E8EE]">
-          <div className="flex items-center justify-between text-xs text-[#7D899B] mb-2 font-medium">
+        <div className="p-4 rounded-xl bg-[#111827] border border-[#263744]">
+          <div className="flex items-center justify-between text-xs text-[#94A3B8] mb-2 font-medium">
             <span>Total Bulan Ini</span>
-            <ArrowDownCircle className="w-4 h-4 text-[#7D899B]" />
+            <ArrowDownCircle className="w-4 h-4 text-[#94A3B8]" />
           </div>
-          <div className="text-xl sm:text-2xl font-bold tracking-tight text-[#172033] mb-1 tabular-nums">
+          <div className="text-xl sm:text-2xl font-bold tracking-tight text-[#E5E7EB] mb-1 tabular-nums">
             {formatRupiah(monthSummary.total)}
           </div>
-          <p className="text-xs text-[#7D899B] tabular-nums">
+          <p className="text-xs text-[#94A3B8] tabular-nums">
             {monthSummary.count} transaksi biaya
           </p>
         </div>
@@ -292,17 +292,17 @@ export function ExpensesPage() {
           const pct = monthSummary.total > 0 ? Math.round((amount / monthSummary.total) * 100) : 0;
 
           return (
-            <div key={cat} className="p-4 rounded-xl bg-[#FFFFFF] border border-[#E4E8EE]">
-              <div className="flex items-center justify-between text-xs text-[#7D899B] mb-2 font-medium">
+            <div key={cat} className="p-4 rounded-xl bg-[#111827] border border-[#263744]">
+              <div className="flex items-center justify-between text-xs text-[#94A3B8] mb-2 font-medium">
                 <span>Kategori {cat}</span>
-                <span className="text-[#172033] font-semibold tabular-nums">{pct}%</span>
+                <span className="text-[#E5E7EB] font-semibold tabular-nums">{pct}%</span>
               </div>
-              <div className="text-lg font-bold text-[#172033] mb-1 tabular-nums">
+              <div className="text-lg font-bold text-[#E5E7EB] mb-1 tabular-nums">
                 {formatRupiah(amount)}
               </div>
-              <div className="w-full bg-[#F1F4F8] rounded-full h-1.5 mt-2 overflow-hidden">
+              <div className="w-full bg-[#16202B] rounded-full h-1.5 mt-2 overflow-hidden">
                 <div
-                  className="bg-[#7D899B] h-1.5 rounded-full transition-all"
+                  className="bg-[#94A3B8] h-1.5 rounded-full transition-all"
                   style={{ width: `${pct}%` }}
                 />
               </div>
@@ -314,13 +314,13 @@ export function ExpensesPage() {
       {/* Filters Bar */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         <div className="relative flex-1 max-w-sm">
-          <Search className="w-4 h-4 text-[#7D899B] absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[#94A3B8] absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             placeholder="Cari pengeluaran atau catatan..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 text-xs bg-[#FFFFFF] border border-[#E4E8EE] rounded-lg text-[#172033] placeholder-[#7D899B] focus:outline-hidden focus:border-[#172E4D]"
+            className="w-full pl-9 pr-3 py-2 text-xs bg-[#111827] border border-[#263744] rounded-lg text-[#E5E7EB] placeholder-[#94A3B8] focus:outline-hidden focus:border-[#0EA5E9]"
           />
         </div>
 
@@ -329,13 +329,13 @@ export function ExpensesPage() {
             type="month"
             value={selectedMonth}
             onChange={e => setSelectedMonth(e.target.value)}
-            className="px-3 py-1.5 text-xs bg-[#FFFFFF] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
+            className="px-3 py-1.5 text-xs bg-[#111827] border border-[#263744] rounded-lg text-[#E5E7EB] focus:outline-hidden focus:border-[#0EA5E9]"
           />
 
           <select
             value={selectedCategory}
             onChange={e => setSelectedCategory(e.target.value)}
-            className="px-3 py-1.5 text-xs bg-[#FFFFFF] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
+            className="px-3 py-1.5 text-xs bg-[#111827] border border-[#263744] rounded-lg text-[#E5E7EB] focus:outline-hidden focus:border-[#0EA5E9]"
           >
             <option value="all">Semua Kategori</option>
             {categories.map(c => (
@@ -348,11 +348,11 @@ export function ExpensesPage() {
       </div>
 
       {/* Expenses Table */}
-      <div className="rounded-xl bg-[#FFFFFF] border border-[#E4E8EE] overflow-hidden">
+      <div className="rounded-xl bg-[#111827] border border-[#263744] overflow-hidden">
         {filteredExpenses.length === 0 ? (
-          <div className="p-12 text-center text-xs text-[#7D899B]">
+          <div className="p-12 text-center text-xs text-[#94A3B8]">
             <ArrowDownCircle className="w-8 h-8 mx-auto mb-2 opacity-30" />
-            <p className="font-medium text-[#172033]">Belum ada data pengeluaran</p>
+            <p className="font-medium text-[#E5E7EB]">Belum ada data pengeluaran</p>
             <p className="mt-1">
               {searchQuery
                 ? 'Tidak ada pengeluaran yang cocok dengan pencarian.'
@@ -362,7 +362,7 @@ export function ExpensesPage() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs min-w-[550px]">
-              <thead className="text-[#7D899B] border-b border-[#E4E8EE] font-medium bg-[#F7F9FC]">
+              <thead className="text-[#94A3B8] border-b border-[#263744] font-medium bg-[#111827]">
                 <tr>
                   <th className="py-2.5 px-4">Nama Pengeluaran</th>
                   <th className="py-2.5 px-3">Kategori</th>
@@ -371,21 +371,21 @@ export function ExpensesPage() {
                   <th className="py-2.5 px-3 text-center">Aksi</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E4E8EE]">
+              <tbody className="divide-y divide-[#263744]">
                 {filteredExpenses.map(exp => (
-                  <tr key={exp.id} className="hover:bg-[#F1F4F8]/40 transition-colors">
+                  <tr key={exp.id} className="hover:bg-[#16202B]/40 transition-colors">
                     <td className="py-3 px-4">
-                      <p className="font-semibold text-[#172033]">{exp.name}</p>
+                      <p className="font-semibold text-[#E5E7EB]">{exp.name}</p>
                       {exp.notes && (
-                        <p className="text-[11px] text-[#7D899B] line-clamp-1">{exp.notes}</p>
+                        <p className="text-[11px] text-[#94A3B8] line-clamp-1">{exp.notes}</p>
                       )}
                     </td>
                     <td className="py-3 px-3">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-[#F1F4F8] text-[#7D899B] border border-[#E4E8EE]">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-[#16202B] text-[#94A3B8] border border-[#263744]">
                         {exp.category}
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-[#7D899B] whitespace-nowrap tabular-nums">
+                    <td className="py-3 px-3 text-[#94A3B8] whitespace-nowrap tabular-nums">
                       {formatDateOnly(exp.date)}
                     </td>
                     <td className="py-3 px-3 text-right font-semibold text-[#B86B6B] tabular-nums">
@@ -396,7 +396,7 @@ export function ExpensesPage() {
                         <button
                           type="button"
                           onClick={() => openEditModal(exp)}
-                          className="p-1.5 text-[#7D899B] hover:text-[#172033] hover:bg-[#F1F4F8] rounded-md transition-colors"
+                          className="p-1.5 text-[#94A3B8] hover:text-[#E5E7EB] hover:bg-[#16202B] rounded-md transition-colors"
                           title="Edit"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
@@ -404,7 +404,7 @@ export function ExpensesPage() {
                         <button
                           type="button"
                           onClick={() => setDeletingExpense(exp)}
-                          className="p-1.5 text-[#7D899B] hover:text-[#B86B6B] hover:bg-[#FBF4F4] rounded-md transition-colors"
+                          className="p-1.5 text-[#94A3B8] hover:text-[#B86B6B] hover:bg-[#FBF4F4] rounded-md transition-colors"
                           title="Hapus"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -429,7 +429,7 @@ export function ExpensesPage() {
       >
         <form onSubmit={handleSubmit} className="space-y-4 text-xs">
           <div>
-            <label className="block font-medium text-[#7D899B] mb-1">
+            <label className="block font-medium text-[#94A3B8] mb-1">
               Nama Pengeluaran *
             </label>
             <input
@@ -438,13 +438,13 @@ export function ExpensesPage() {
               placeholder="Contoh: Beli Biji Kopi Arabika 1kg"
               value={formName}
               onChange={e => setFormName(e.target.value)}
-              className="w-full px-3 py-2 bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
+              className="w-full px-3 py-2 bg-[#111827] border border-[#263744] rounded-lg text-[#E5E7EB] focus:outline-hidden focus:border-[#0EA5E9]"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block font-medium text-[#7D899B] mb-1">
+              <label className="block font-medium text-[#94A3B8] mb-1">
                 Nominal Biaya (Rp) *
               </label>
               <input
@@ -454,18 +454,18 @@ export function ExpensesPage() {
                 placeholder="0"
                 value={formAmount}
                 onChange={e => setFormAmount(e.target.value === '' ? '' : Number(e.target.value))}
-                className="w-full px-3 py-2 bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] tabular-nums focus:outline-hidden focus:border-[#172E4D]"
+                className="w-full px-3 py-2 bg-[#111827] border border-[#263744] rounded-lg text-[#E5E7EB] tabular-nums focus:outline-hidden focus:border-[#0EA5E9]"
               />
             </div>
 
             <div>
-              <label className="block font-medium text-[#7D899B] mb-1">
+              <label className="block font-medium text-[#94A3B8] mb-1">
                 Kategori
               </label>
               <select
                 value={formCategory}
                 onChange={e => setFormCategory(e.target.value as ExpenseCategory)}
-                className="w-full px-3 py-2 bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
+                className="w-full px-3 py-2 bg-[#111827] border border-[#263744] rounded-lg text-[#E5E7EB] focus:outline-hidden focus:border-[#0EA5E9]"
               >
                 {categories.map(c => (
                   <option key={c} value={c}>
@@ -477,7 +477,7 @@ export function ExpensesPage() {
           </div>
 
           <div>
-            <label className="block font-medium text-[#7D899B] mb-1">
+            <label className="block font-medium text-[#94A3B8] mb-1">
               Tanggal
             </label>
             <input
@@ -485,12 +485,12 @@ export function ExpensesPage() {
               required
               value={formDate}
               onChange={e => setFormDate(e.target.value)}
-              className="w-full px-3 py-2 bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
+              className="w-full px-3 py-2 bg-[#111827] border border-[#263744] rounded-lg text-[#E5E7EB] focus:outline-hidden focus:border-[#0EA5E9]"
             />
           </div>
 
           <div>
-            <label className="block font-medium text-[#7D899B] mb-1">
+            <label className="block font-medium text-[#94A3B8] mb-1">
               Catatan Tambahan (Opsional)
             </label>
             <textarea
@@ -498,23 +498,23 @@ export function ExpensesPage() {
               placeholder="Keterangan toko / supplier / nota belanja..."
               value={formNotes}
               onChange={e => setFormNotes(e.target.value)}
-              className="w-full px-3 py-2 bg-[#F7F9FC] border border-[#E4E8EE] rounded-lg text-[#172033] focus:outline-hidden focus:border-[#172E4D]"
+              className="w-full px-3 py-2 bg-[#111827] border border-[#263744] rounded-lg text-[#E5E7EB] focus:outline-hidden focus:border-[#0EA5E9]"
             />
           </div>
 
-          <div className="flex items-center justify-end gap-2 pt-3 border-t border-[#E4E8EE]">
+          <div className="flex items-center justify-end gap-2 pt-3 border-t border-[#263744]">
             <button
               type="button"
               disabled={isSubmitting}
               onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 text-xs font-medium text-[#7D899B] hover:text-[#172033] bg-[#FFFFFF] border border-[#E4E8EE] rounded-lg transition-colors"
+              className="px-4 py-2 text-xs font-medium text-[#94A3B8] hover:text-[#E5E7EB] bg-[#111827] border border-[#263744] rounded-lg transition-colors"
             >
               Batal
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-4 py-2 text-xs font-semibold text-[#FFFFFF] bg-[#172E4D] hover:bg-[#213D61] rounded-lg transition-colors flex items-center gap-2"
+              className="px-4 py-2 text-xs font-semibold text-[#111827] bg-[#0EA5E9] hover:bg-[#0284C7] rounded-lg transition-colors flex items-center gap-2"
             >
               {isSubmitting ? (
                 <>
@@ -541,12 +541,12 @@ export function ExpensesPage() {
           <div className="p-3 rounded-lg bg-[#FBF4F4] border border-[#E6CACA] text-[#B86B6B]">
             Yakin ingin menghapus pengeluaran <strong>&quot;{deletingExpense?.name}&quot;</strong> senilai <strong className="tabular-nums">{formatRupiah(deletingExpense?.amount || 0)}</strong>?
           </div>
-          <div className="flex items-center justify-end gap-2 pt-2 border-t border-[#E4E8EE]">
+          <div className="flex items-center justify-end gap-2 pt-2 border-t border-[#263744]">
             <button
               type="button"
               disabled={isDeleting}
               onClick={() => setDeletingExpense(null)}
-              className="px-4 py-2 text-xs font-medium text-[#7D899B] hover:text-[#172033] bg-[#FFFFFF] border border-[#E4E8EE] rounded-lg transition-colors"
+              className="px-4 py-2 text-xs font-medium text-[#94A3B8] hover:text-[#E5E7EB] bg-[#111827] border border-[#263744] rounded-lg transition-colors"
             >
               Batal
             </button>
