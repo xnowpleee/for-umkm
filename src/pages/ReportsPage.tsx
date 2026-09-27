@@ -270,7 +270,7 @@ export function ReportsPage() {
           </div>
         </div>
 
-        <section className="p-4 lg:pr-5">
+        <section className="py-3.5 lg:pr-5">
           <div className="mb-3 flex items-center justify-between gap-3">
             <div>
               <h2 className="text-sm font-bold text-[#E5E7EB]">Analisis Omzet</h2>
@@ -289,7 +289,7 @@ export function ReportsPage() {
           </div>
         </section>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-[#22303D] border-y border-[#22303D]">
+        <div className="flex flex-wrap border-y border-[#22303D]">
           {[
             { label: 'Omzet', value: reportData.totalOmzet, icon: DollarSign, note: `${reportData.txCount} transaksi` },
             { label: 'HPP / Modal', value: reportData.totalHpp, icon: ShoppingBag, note: 'Modal penjualan' },
@@ -300,7 +300,7 @@ export function ReportsPage() {
             const isProfit = item.label === 'Laba Bersih';
             const isNegative = item.value < 0;
             return (
-              <div key={item.label} className="min-w-0 px-3.5 py-3">
+              <div key={item.label} className="min-w-0 w-1/2 border-b border-[#22303D] px-3.5 py-3 first:pl-0 sm:w-1/4 sm:border-b-0 sm:border-r last:border-r-0">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-[10px] font-medium text-[#94A3B8]">{item.label}</span>
                   <Icon className="h-3.5 w-3.5 text-[#94A0B1]" />
