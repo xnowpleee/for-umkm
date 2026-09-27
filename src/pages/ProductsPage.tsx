@@ -180,7 +180,7 @@ export function ProductsPage() {
   };
 
   return (
-    <div className="bk-terminal-page space-y-5 pb-24 md:pb-8">
+    <div className="bk-terminal-page bk-grid-page space-y-5 pb-24 md:pb-8">
       {/* Header & Quick Action */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-1">
         <div>
@@ -288,7 +288,7 @@ export function ProductsPage() {
         </div>
       ) : filteredProducts.length === 0 ? (
         /* Empty State */
-        <div className="p-12 text-center rounded-xl bg-[#111827] border border-[#263744]">
+        <div className="bk-grid-panel p-12 text-center">
           <Package className="w-8 h-8 text-[#94A3B8] mx-auto mb-2 opacity-40" />
           <h3 className="text-sm font-semibold text-[#E5E7EB]">Tidak ada produk ditemukan</h3>
           <p className="text-xs text-[#94A3B8] mt-1 max-w-sm mx-auto">
@@ -306,7 +306,7 @@ export function ProductsPage() {
         </div>
       ) : (
         /* Products List / Grid */
-        <div className="divide-y divide-[#263744] border-y border-[#263744]">
+        <div className="bk-grid-panel divide-y divide-[#263744]">
           {filteredProducts.map(product => {
             const { profit, margin } = calculateProfit(product.selling_price, product.hpp);
             const isLowStock = product.stock <= product.min_stock;
@@ -443,7 +443,7 @@ export function ProductsPage() {
           )}
 
           {/* Optional Product Photo Upload */}
-          <div className="p-3 rounded-xl bg-[#16202B] border border-[#263744] space-y-2">
+          <div className="bk-grid-panel p-3 space-y-2">
             <label className="block text-xs font-medium text-[#94A3B8]">
               Foto Produk <span className="text-[8px] sm:text-[9px] text-[#94A3B8] font-normal">(Opsional)</span>
             </label>
@@ -592,7 +592,7 @@ export function ProductsPage() {
 
           {/* Live Profit Preview */}
           {(formSellingPrice !== '' || formHpp !== '') && (
-            <div className="p-3 rounded-lg bg-[#16202B] border border-[#263744] flex items-center justify-between text-xs">
+            <div className="bk-grid-cell p-3 flex items-center justify-between text-xs">
               <div>
                 <span className="text-[#94A3B8]">Estimasi Laba Kotor: </span>
                 <span className="font-semibold text-[#0EA5E9] tabular-nums">
