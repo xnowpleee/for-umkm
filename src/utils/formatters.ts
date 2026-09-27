@@ -2,101 +2,43 @@
  * Format number to Indonesian Rupiah currency: Rp 25.000
  */
 export function formatRupiah(amount: number): string {
-  if (isNaN(amount) || amount === null || amount === undefined) {
-    return 'Rp 0';
-  }
-  return new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(amount);
+  if (isNaN(amount) || amount === null || amount === undefined) return 'Rp 0';
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(amount);
 }
 
-/**
- * Format plain number with thousand separator: 25.000
- */
 export function formatNumber(value: number): string {
-  if (isNaN(value) || value === null || value === undefined) {
-    return '0';
-  }
+  if (isNaN(value) || value === null || value === undefined) return '0';
   return new Intl.NumberFormat('id-ID').format(value);
 }
 
-/**
- * Calculate profit and margin percentage
- */
 export function calculateProfit(sellingPrice: number, hpp: number): { profit: number; margin: number } {
   const profit = (sellingPrice || 0) - (hpp || 0);
   const margin = sellingPrice > 0 ? (profit / sellingPrice) * 100 : 0;
-  return {
-    profit,
-    margin: Math.round(margin * 10) / 10,
-  };
+  return { profit, margin: Math.round(margin * 10) / 10 };
 }
 
-/**
- * Format date to Indonesian human-friendly format
- * e.g. 23 Sep 2026, 14:30
- */
 export function formatDateTime(isoString: string): string {
-  try {
-    const d = new Date(isoString);
-    return new Intl.DateTimeFormat('id-ID', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    }).format(d);
-  } catch {
-    return isoString;
-  }
+  try { return new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(new Date(isoString)); } catch { return isoString; }
 }
 
-/**
- * Format date to simple format (e.g. 23 Sep 2026)
- */
 export function formatDateOnly(dateStr: string): string {
-  try {
-    const d = new Date(dateStr);
-    return new Intl.DateTimeFormat('id-ID', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    }).format(d);
-  } catch {
-    return dateStr;
-  }
+  try { return new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(dateStr)); } catch { return dateStr; }
 }
 
-/**
- * Get date string in YYYY-MM-DD
- */
-export function getTodayDateString(): string {
-  return getDateKey(new Date());
-}
+export function getTodayDateString(): string { return getDateKey(new Date()); }
 
-/**
- * Get local calendar date key (YYYY-MM-DD) from an ISO timestamp/date.
- * This avoids treating a UTC Supabase timestamp as a different calendar day.
- */
 export function getDateKey(value?: string | Date | null): string {
   if (!value) return '';
-
-  // Date-only values (YYYY-MM-DD) are already local calendar dates; do not parse them as UTC.\n  if (typeof value === 'string' && /^\\d{4}-\\d{2}-\\d{2}$/.test(value)) return value;\n\n  const d = value instanceof Date ? value : new Date(value);
+  // Date-only values are already local calendar dates; do not parse them as UTC.
+  if (typeof value === 'string' && /^\\d{4}-\\d{2}-\\d{2}$/.test(value)) return value;
+  const d = value instanceof Date ? value : new Date(value);
   if (Number.isNaN(d.getTime())) return '';
-
   const year = d.getFullYear();
   const month = String(d.getMonth() + 1).padStart(2, '0');
   const day = String(d.getDate()).padStart(2, '0');
-
-  return `${year}-${month}-${day}`;
+  return year + '-' + month + '-' + day;
 }
 
-/**
- * Generate invoice number
- */
 export function generateInvoiceNumber(existingCount: number = 0): string {
   const now = new Date();
   const yy = String(now.getFullYear()).slice(-2);
@@ -104,5 +46,5 @@ export function generateInvoiceNumber(existingCount: number = 0): string {
   const dd = String(now.getDate()).padStart(2, '0');
   const time = String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0');
   const seq = String(existingCount + 1).padStart(3, '0');
-  return `TRX-${yy}${mm}${dd}-${time}-${seq}`;
+  return 'TRX-' + yy + mm + dd + '-' + time + '-' + seq;
 }
