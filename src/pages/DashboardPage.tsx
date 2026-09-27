@@ -47,7 +47,6 @@ export function DashboardPage({ onNavigate, onOpenQuickTx }: DashboardPageProps)
     return { ...point, x, y };
   });
   const linePoints = chartPoints.map(p => p.x + ',' + p.y).join(' ');
-  const areaPoints = chartPoints.length ? '0,100 ' + linePoints + ' 100,100' : '';
 
   return (
     <div className="min-h-full pb-24 text-[#E5E7EB]">
