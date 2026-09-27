@@ -122,7 +122,8 @@ export function ReportsPage() {
   }, [transactions, period]);
 
   const analysisMax = Math.max(...analysisTrend.map(d => d.omzet), 1);
-  const analysisPoints = analysisTrend.map((d, i) => ({ ...d, x: analysisTrend.length === 1 ? 50 : (i / (analysisTrend.length - 1)) * 100, y: 92 - (d.omzet / analysisMax) * 68 }));
+  const analysisScaleMax = analysisMax * 1.15;
+  const analysisPoints = analysisTrend.map((d, i) => ({ ...d, x: analysisTrend.length === 1 ? 50 : (i / (analysisTrend.length - 1)) * 100, y: 92 - (d.omzet / analysisScaleMax) * 68 }));
   const analysisLine = analysisPoints.map(p => p.x + ',' + p.y).join(' ');
 
   const handleShareWhatsApp = () => {
