@@ -147,11 +147,18 @@ export function ReportsPage() {
     setIsExporting(true);
     try {
       const canvas = await html2canvas(reportContainerRef.current, { scale: 2, backgroundColor: '#111827', logging: false, useCORS: true });
-      const imgData = canvas.toDataURL('image/png');
+      const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/png'));
+      if (!blob) throw new Error('Gagal membuat file laporan.');
+
+      const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.href = imgData;
+      link.href = url;
       link.download = `Laporan_${profile.business_name || 'BisnisKu'}_${period}_${Date.now()}.png`;
+      link.style.display = 'none';
+      document.body.appendChild(link);
       link.click();
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch (err) {
       console.error('Failed to export report image:', err);
     } finally {
@@ -173,7 +180,7 @@ export function ReportsPage() {
               <button key={value} type="button" onClick={() => setPeriod(value)} className={`rounded-md px-3 py-1.5 text-[11px] font-semibold transition-colors ${period === value ? 'bg-[#0EA5E9] text-white' : 'text-[#94A3B8] hover:text-[#E5E7EB]'}`}>{label}</button>
             ))}
           </div>
-          <button type="button" disabled={isExporting} onClick={handleDownloadReportImage} className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-[#263744] bg-[#111827] px-2.5 text-[11px] font-medium text-[#E5E7EB] hover:bg-[#111827] disabled:opacity-50">
+          <button type="button" aria-label="Simpan laporan" title="Simpan laporan" disabled={isExporting} onClick={handleDownloadReportImage} className="flex h-9 min-w-9 shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#263744] bg-[#111827] px-2.5 text-[11px] font-medium text-[#E5E7EB] hover:bg-[#17212B] disabled:opacity-50">
             {isExporting ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Download className="h-3.5 w-3.5" />}<span className="hidden sm:inline">Simpan</span>
           </button>
           <button type="button" onClick={handleShareWhatsApp} className="flex h-8 shrink-0 items-center gap-1.5 rounded-lg bg-[#0EA5E9] px-3 text-[11px] font-semibold text-white hover:bg-[#0284C7]"><Share2 className="h-3.5 w-3.5" />Bagikan</button>
@@ -237,5 +244,4 @@ export function ReportsPage() {
       </div>
     </div>
   );
-
 }
