@@ -507,7 +507,9 @@ ${JSON.stringify(businessContext, null, 2)}
       parts: [{ text: message }],
     });
 
-    const candidateModels = ['gemini-3.8-flash', 'gemini-3.1-flash-lite', 'gemini-flash-latest'];
+    const candidateModels = [
+  process.env.GEMINI_MODEL || 'gemini-3.5-flash-lite',
+];
     let replyText = '';
 
     // Handle streaming mode
